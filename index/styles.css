@@ -1,0 +1,177 @@
+html,body {
+    height: 100%;
+    background-color: rgba(52, 146, 37, 0.20);
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+/****************************************************************
+Start
+****************************************************************/
+.start-image-container {
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding-bottom: 75%;
+    margin: 0;
+}
+
+.start-image-container img {
+    position: absolute;
+    margin: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.start-text-container {
+    position: absolute;
+    top: 50%;
+    left: 5%;
+    transform: translateY(-50%);
+    color: white;
+    font-size: 2.5vw;
+    max-width: 50%;
+}
+
+@media (max-width: 768px) {
+    .start-image-container img {
+        content: url('pictures/lionbutsmaller.jpg');
+    }
+    .start-text-container {
+        max-width: 40%;
+    }
+}
+
+/********************************
+    Animal Categories
+**********************************************************/
+
+.animal-categories {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+}
+
+.animal-category {
+    width: 33.33%;
+    margin: 0;
+    position: relative;
+    text-align: center;
+    max-width: 100%;
+    height: 300px; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.animal-category img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+}
+
+.animal-category-text {
+    font-size: 36px;
+    font-weight: bold;
+    color: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+@media screen and (max-width: 1024px) {
+    .animal-category {
+        width: 50%;
+    }
+
+}
+
+@media screen and (max-width: 744px) {
+    .animal-category {
+        width: 100%;
+        height: 200px;
+    }
+}
+/***
+maybe start lower height end higher ???
+***/
+
+
+/****************************************
+FOOTER
+*************************************/
+
+footer {
+    background-color: #1A8F07;
+    margin-top: auto;
+    padding: 20px;
+}
+
+.footer-top {
+    text-align: center;
+}
+
+.footer-top img {
+    width: 280px;
+    height: 215px;
+    max-width: 100%;
+}
+
+hr {
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin: 20px 0;
+}
+
+.footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footer-bottom p {
+    margin: 0;
+    color: white;
+}
+
+.footer-bottom ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.footer-bottom li {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.footer-bottom li a {
+    color: white;
+    text-decoration: none;
+}
+
+.footer-bottom li:last-child {
+    margin-right: 0;
+}
+
+@media screen and (max-width: 768px) {
+    .footer-bottom {
+        flex-direction: column;
+    }
+
+}

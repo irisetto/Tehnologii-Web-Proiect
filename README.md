@@ -1,2 +1,5 @@
 # Tehnologii-Web-Proiect
-# lalalalalal
+# 2B5
+# Cohman Teodora
+# Dodun Dan
+# Mihaita Andrei

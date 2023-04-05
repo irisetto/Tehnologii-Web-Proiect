@@ -6,198 +6,43 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>NavBar</title>
     <link rel="stylesheet" href="style.css" />
-    <script src="/index/navBar/app.js" defer></script>
   </head>
   <body>
-    <button id="burger" class="open-main-nav">
-      <span class="burger"></span>
-      <span class="burger-text">Menu</span>
-    </button>
-    <nav class="main-nav" id="main-nav">
-      <ul>
-        <li>
-          <p>HOME</p>
-        </li>
-
-        <li>
-          <p>ABOUT</p>
-        </li>
-        <li>
-          <p>ANIMALS</p>
-        </li>
-        <li>
-          <p>CONTACT</p>
-        </li>
-      </ul>
-    </nav>
-
-    <style>
-      /* Main menu positionning */
-      .main-nav {
-        position: absolute;
-        top: 0;
-        right: 0;
-        left: 0;
-        bottom: 0;
-        text-align: center;
-        background: #dfdce3;
-        opacity: 0;
-        z-index: -1;
-        visibility: hidden;
-        transition: all 0.375s;
-      }
-
-      .main-nav.is-open {
-        opacity: 1;
-        z-index: 100;
-        visibility: visible;
-      }
-
-      /* Yellow band effect */
-      .main-nav::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        left: 0;
-        right: -15px;
-        background: #f7b733;
-        transform-origin: 0 0;
-        transform: skew(-14deg) translateX(-120%);
-        transition: all 0.275s 0.1s;
-      }
-
-      .main-nav.is-open::before {
-        transform: skew(-14deg) translateX(0);
-      }
-
-      .main-nav ul {
-        display: inline-flex;
-        flex-direction: column;
-        height: 100%;
-        align-items: flex-end;
-        justify-content: center;
-        transform: translateX(-18%) skew(-16deg);
-      }
-
-      .main-nav li {
-        display: block;
-        margin: 0.5rem 0;
-        text-align: right;
-        transform: skew(16deg);
-      }
-
-      .main-nav a {
-        opacity: 0;
-        transform: translateY(-10px);
-      }
-
-      .main-nav.is-open a {
-        opacity: 1;
-        transform: translateY(0);
-      }
-      .main-nav li:nth-child(1) a {
-        transition: all 275ms 175ms;
-      }
-      .main-nav li:nth-child(2) a {
-        transition: all 275ms 225ms;
-      }
-      .main-nav li:nth-child(3) a {
-        transition: all 275ms 275ms;
-      }
-      .main-nav li:nth-child(4) a {
-        transition: all 275ms 325ms;
-      }
-      .main-nav li:nth-child(5) a {
-        transition: all 275ms 375ms;
-      }
-
-      .main-nav ul,
-      .main-nav li {
-        list-style: none;
-        padding: 0;
-      }
-      .main-nav p {
-        display: block;
-        padding: 12px 0;
-        color: #f5f5f5;
-        font-size: 1.4em;
-        text-decoration: none;
-        font-weight: bold;
-      }
-
-      .open-main-nav {
-        position: absolute;
-        top: 15px;
-        padding-top: 20px;
-        right: 15px;
-        z-index: 1000;
-        background: none;
-        border: 0;
-        cursor: pointer;
-      }
-      .open-main-nav:focus {
-        outline: none;
-      }
-      .burger {
-        position: relative;
-        display: block;
-        width: 28px;
-        height: 4px;
-        margin: 0 auto;
-        background: #dfdce3;
-        transform: skew(5deg);
-        transition: all 0.275s;
-      }
-
-      .burger:after,
-      .burger:before {
-        content: "";
-        display: block;
-        height: 100%;
-        background: #dfdce3;
-        transition: all 0.275s;
-      }
-
-      .burger:after {
-        transform: translateY(-12px) translateX(-2px) skew(-20deg);
-      }
-
-      .burger:before {
-        transform: translateY(-16px) skew(-10deg);
-      }
-
-      .is-open .burger {
-        transform: skew(5deg) translateY(-8px) rotate(-45deg);
-      }
-
-      .is-open .burger:before {
-        transform: translateY(0px) skew(-10deg) rotate(75deg);
-      }
-
-      .is-open .burger:after {
-        transform: translateY(-12px) translateX(10px) skew(-20deg);
-        opacity: 0;
-      }
-
-      .burger-text {
-        display: block;
-        font-size: 0.75 rem;
-        letter-spacing: 0.05em;
-        margin-top: 0.5em;
-        text-transform: uppercase;
-        font-weight: 500;
-        text-align: center;
-        color: #dfdce3;
-      }
-    </style>
-    <script>
-      const burgerMenu = document.getElementById("burger");
-      const navMenu = document.getElementById("main-nav");
-      burgerMenu.addEventListener("click", (e) => {
-        burgerMenu.classList.toggle("is-open");
-        navMenu.classList.toggle("is-open");
-      });
-    </script>
+    <div class="navbar__container">
+      <img
+        src="/index/pictures/animals_background.jpg"
+        alt="animals_background"
+        id="animals_background"
+      />
+      <div id="navbar">
+        <!-- <div class="navbar__profile">
+          <img src="/index/pictures/profile_img.png" alt="profile" />
+        </div> -->
+        <div>
+          <a href="/animals">Animals</a>
+        </div>
+        <div>
+          <a href="/help">Help</a>
+        </div>
+        <div>
+          <a href="/index/index.html">
+            <img
+              src="/index/pictures/logo.png"
+              alt="logo"
+              class="navbar__logo"
+            />
+          </a>
+        </div>
+        <div>
+          <a href="#name">Settings</a>
+        </div>
+        <div>
+          <a href="#name">About Us</a>
+        </div>
+        <!-- <div class="navbar__signout">
+          <img src="/index/pictures/sign_out.png" alt="signout" />
+        </div> -->
+      </div>
+    </div>
   </body>
 </html>

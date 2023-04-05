@@ -15,8 +15,8 @@ body {
   font-weight: 400;
 }
 .section__image {
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: auto;
 }
 .main__container {
   display: flex;

@@ -6,9 +6,41 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>NavBar</title>
     <link rel="stylesheet" href="style.css" />
-    <script src="/index/navBar/app.js" defer></script>
   </head>
   <body>
+    <div class="navbar__container">
+      <img
+        src="/pictures/animals_background.jpg"
+        alt="animals_background"
+        id="animals_background"
+      />
+      <div id="navbar">
+        <!-- <div class="navbar__profile">
+          <img src="/pictures/profile_img.png" alt="profile" />
+        </div> -->
+        <div>
+          <a href="/animals">Animals</a>
+        </div>
+        <div>
+          <a href="/help">Help</a>
+        </div>
+        <div>
+          <a href="/index.html">
+            <img src="/pictures/logo.png" alt="logo" class="navbar__logo" />
+          </a>
+        </div>
+        <div>
+          <a href="/settings">Settings</a>
+        </div>
+        <div>
+          <a href="/about">About Us</a>
+        </div>
+        <!-- <div class="navbar__signout">
+          <img src="/pictures/sign_out.png" alt="signout" />
+        </div> -->
+      </div>
+    </div>
+
     <button id="burger" class="open-main-nav">
       <span class="burger"></span>
       <span class="burger-text">Menu</span>
@@ -16,25 +48,104 @@
     <nav class="main-nav" id="main-nav">
       <ul>
         <li>
-          <p>HOME</p>
+          <p>
+            <a href="/animals">Help</a>
+          </p>
+        </li>
+        <li>
+          <p>
+            <a href="/animals">Animals</a>
+          </p>
+        </li>
+        <li>
+          <p>
+            <a href="/index.html">
+              <img src="/pictures/logo.png" alt="logo" class="navbar__logo" />
+            </a>
+          </p>
         </li>
 
         <li>
-          <p>ABOUT</p>
+          <p><a href="/settings">Settings</a></p>
         </li>
         <li>
-          <p>ANIMALS</p>
-        </li>
-        <li>
-          <p>CONTACT</p>
+          <p><a href="/about">About Us</a></p>
         </li>
       </ul>
     </nav>
-
     <style>
+      .navbar__container {
+        display: flex;
+        height: 200px;
+        width: 100vw;
+        justify-content: center;
+        align-items: center;
+      }
+
+      #animals_background {
+        width: 100vw;
+        height: 10rem;
+        position: absolute;
+        top: 0;
+      }
+
+      #navbar {
+        width: 100%;
+        display: flex;
+        justify-content: space-evenly;
+        text-transform: uppercase;
+        margin-inline-start: 5rem;
+        margin-inline-end: 5rem;
+      }
+
+      #navbar a {
+        display: block;
+        text-align: center;
+        text-decoration: none;
+        color: #fff;
+        cursor: pointer;
+        position: relative;
+      }
+
+      .navbar__logo {
+        width: 100px;
+        position: relative;
+        bottom: 1.6rem;
+      }
+      .navbar__profile {
+        position: relative;
+        bottom: 1.3rem;
+        left: 5rem;
+      }
+      .navbar__signout {
+        position: relative;
+        bottom: 1rem;
+        right: 4rem;
+      }
+      .navbar__signout img,
+      .navbar__profile img {
+        width: 50px;
+        cursor: pointer;
+      }
+
+      /* #navbar li a:hover {
+  border-radius: 5px;
+  background-color: rgb(216, 213, 213);
+  color: whitesmoke;
+}
+
+#navbar ul:hover li {
+  filter: blur(2px);
+}
+
+#navbar ul li:hover {
+  opacity: 1;
+  filter: blur(0px);
+} */
+
       /* Main menu positionning */
       .main-nav {
-        position: absolute;
+        position: fixed;
         top: 0;
         right: 0;
         left: 0;
@@ -56,7 +167,7 @@
       /* Yellow band effect */
       .main-nav::before {
         content: "";
-        position: absolute;
+        position: fixed;
         top: 0;
         bottom: 0;
         left: 0;
@@ -117,7 +228,7 @@
         list-style: none;
         padding: 0;
       }
-      .main-nav p {
+      .main-nav p a {
         display: block;
         padding: 12px 0;
         color: #f5f5f5;
@@ -125,9 +236,14 @@
         text-decoration: none;
         font-weight: bold;
       }
+      .main-nav p a img {
+        position: relative;
+        left: 1rem;
+        top: 1rem;
+      }
 
       .open-main-nav {
-        position: absolute;
+        position: fixed;
         top: 15px;
         padding-top: 20px;
         right: 15px;
@@ -189,6 +305,18 @@
         font-weight: 500;
         text-align: center;
         color: #dfdce3;
+      }
+
+      @media only screen and (max-width: 900px) {
+        .navbar__container {
+          display: none;
+        }
+      }
+
+      @media only screen and (min-width: 900px) {
+        #burger {
+          display: none;
+        }
       }
     </style>
     <script>

@@ -1,0 +1,13 @@
+html,body {
+    background-color: rgba(52, 146, 37, 0.20);
+    margin: 0;
+    margin-right: -1px;
+    padding: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+

@@ -1,7 +1,7 @@
 html,body {
-    height: 100%;
     background-color: rgba(52, 146, 37, 0.20);
     margin: 0;
+    margin-right: -1px;
     padding: 0;
 }
 
@@ -16,19 +16,18 @@ Start
 .start-image-container {
     position: relative;
     width: 100%;
-    height: 0;
-    padding-bottom: 75%;
+    max-height: 700px;
     margin: 0;
 }
 
 .start-image-container img {
-    position: absolute;
+    position: relative;
     margin: 0;
     top: 0;
     left: 0;
     right: 0;
     width: 100%;
-    height: 100%;
+    height: 700px;
     object-fit: cover;
 }
 
@@ -42,12 +41,38 @@ Start
     max-width: 50%;
 }
 
-@media (max-width: 768px) {
-    .start-image-container img {
-        content: url('pictures/lionbutsmaller.jpg');
-    }
+.start-text-animals-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.start-text-animals-text {
+    color: white;
+    text-decoration: none;
+    
+}
+
+@media (max-width: 800px){
     .start-text-container {
-        max-width: 40%;
+        font-size: 3vw;
+        max-width: 60%;
+    }
+}
+
+
+@media (max-width: 744px) {
+
+    .start-image-container img {
+        content: url('../pictures/indPic/liondarkbutsmaller.jpg');
+    }
+
+    .start-image-container {
+        min-height: 300px;
+    }
+
+    .start-text-container {
+        font-size: 4vw;
+        max-width: 60%;
     }
 }
 
@@ -72,7 +97,7 @@ Start
     position: relative;
     text-align: center;
     max-width: 100%;
-    height: 300px; 
+    height: 300px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -81,7 +106,7 @@ Start
 .animal-category img {
     width: 100%;
     height: 100%;
-    object-fit: cover; 
+    object-fit: cover;
 }
 
 .animal-category-text {
@@ -94,6 +119,25 @@ Start
     transform: translate(-50%, -50%);
 }
 
+.subtitle {
+    position: absolute;
+    top: 60%;
+    font-size: 20px;
+    color: white;
+    color: transparent;
+    margin: 2px;;
+}
+
+.animal-category:hover .subtitle{
+    transition: color 1s ease;
+    color: white
+}
+
+.image-darken{
+    transition: 1s;
+    filter:brightness(0%);
+}
+
 @media screen and (max-width: 1024px) {
     .animal-category {
         width: 50%;
@@ -104,74 +148,6 @@ Start
 @media screen and (max-width: 744px) {
     .animal-category {
         width: 100%;
-        height: 200px;
+        height: 300px;
     }
-}
-/***
-maybe start lower height end higher ???
-***/
-
-
-/****************************************
-FOOTER
-*************************************/
-
-footer {
-    background-color: #1A8F07;
-    margin-top: auto;
-    padding: 20px;
-}
-
-.footer-top {
-    text-align: center;
-}
-
-.footer-top img {
-    width: 280px;
-    height: 215px;
-    max-width: 100%;
-}
-
-hr {
-    border: 0;
-    border-top: 1px solid #ccc;
-    margin: 20px 0;
-}
-
-.footer-bottom {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.footer-bottom p {
-    margin: 0;
-    color: white;
-}
-
-.footer-bottom ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-}
-
-.footer-bottom li {
-    display: inline-block;
-    margin-right: 10px;
-}
-
-.footer-bottom li a {
-    color: white;
-    text-decoration: none;
-}
-
-.footer-bottom li:last-child {
-    margin-right: 0;
-}
-
-@media screen and (max-width: 768px) {
-    .footer-bottom {
-        flex-direction: column;
-    }
-
 }

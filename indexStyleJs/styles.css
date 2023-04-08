@@ -1,4 +1,5 @@
-html,body {
+html,
+body {
     background-color: rgba(52, 146, 37, 0.20);
     margin: 0;
     margin-right: -1px;
@@ -20,6 +21,7 @@ Start
     max-height: 700px;
     margin: 0;
 }
+
 
 .start-image-container img {
     position: relative;
@@ -43,6 +45,10 @@ Start
     max-width: 50%;
 }
 
+.start-text-container .zom-text {
+    color: #1A8F07;
+}
+
 .start-text-animals-container {
     display: flex;
     justify-content: space-between;
@@ -57,7 +63,12 @@ Start
     text-decoration: none;
 }
 
-@media (max-width: 800px){
+.start-text-animals-text:hover {
+    transition: .5s;
+    box-shadow: 0px 0px 10px 5px #31f114a4;
+}
+
+@media (max-width: 800px) {
     .start-text-container {
         font-size: 3vw;
         max-width: 60%;
@@ -76,13 +87,23 @@ Start
     }
 
     .start-text-container {
-        font-size: 4vw;
+        font-size: 3vw;
         max-width: 60%;
     }
 
-    .start-text-animals-text{
-        font-size:3vw;
+    .start-text-animals-text {
+        font-size: 3vw;
     }
+}
+
+
+@media (max-width: 500px) {
+
+    .start-text-container {
+        font-size: 4vw;
+        max-width: 80%;
+    }
+
 }
 
 
@@ -127,6 +148,13 @@ Start
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+
+}
+
+
+.animal-category:hover .animal-category-text {
+    color:#31f114a4;
+    transition: 1s;
 }
 
 .subtitle {
@@ -135,17 +163,19 @@ Start
     font-size: 20px;
     color: white;
     color: transparent;
-    margin: 2px;;
+    margin: 2px;
+    ;
 }
 
-.animal-category:hover .subtitle{
+.animal-category:hover .subtitle {
     transition: color 1s ease;
     color: white
 }
 
-.image-darken{
+
+.image-darken {
     transition: 1s;
-    filter:brightness(0%);
+    filter: brightness(0%);
 }
 
 @media screen and (max-width: 1024px) {

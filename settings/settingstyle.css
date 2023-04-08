@@ -33,11 +33,177 @@ body {
 @media (max-width: 744px) {
 
     .start-image-container img {
-        content: url('giraffebutsmaller.jpg');
+        content: url('bearbutsmaller.jpg');
     }
 
     .start-image-container {
         min-height: 300px;
     }
 
+}
+
+
+/*****************
+settings 
+****************************************************************/
+
+.container {
+    max-width: 800px;
+    margin: 10px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-image: linear-gradient(to top right, #008000, #00ff00);
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+}
+
+h1 {
+    font-size: 5vw;
+    text-align: center;
+    margin-top: 0;
+    color: white;
+}
+
+.section {
+    margin-bottom: 20px;
+}
+
+h2 {
+    font-size: 3vw;
+    margin-top: 0;
+    color: white;
+}
+
+.button {
+    border: none;
+    background-color: #10ea17a9;
+    color: #fff;
+    padding: 12px 24px;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+
+.button:hover {
+    color: #1A8F07;
+    box-shadow: 0 0px 10px rgba(118, 250, 2, 0.732);
+}
+
+.theme-buttons {
+    display: flex;
+}
+
+.theme-button.active {
+    background-color: #333;
+}
+
+.language-select {
+    font-size: 1rem;
+    padding: 8px;
+    border-radius: 4px;
+    border: none;
+    margin-top: 10px;
+}
+
+
+@media only screen and (max-width: 600px) {
+
+    h1 {
+        font-size: 7vw;
+        text-align: center;
+        margin-top: 0;
+    }
+
+    h2 {
+        font-size: 5vw;
+        margin-top: 0;
+    }
+
+    .section {
+        text-align: center;
+    }
+
+    .theme-buttons {
+        display: block;
+    }
+}
+
+
+/****************************************************************
+export menu
+****************************************************************/
+
+.hidden {
+    display: none;
+}
+
+#export-panel {
+    position: static;
+    border-radius: 4px;
+    background-color: #0a3104;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    margin-top: 10px;
+}
+
+#export-panel h2 {
+    margin-top: 0;
+}
+
+#export-panel p {
+    margin-top: 10px;
+}
+
+#export-panel p {
+    color: white;
+}
+
+#export-panel label {
+    color: white;
+}
+
+#export-panel div {
+    margin-top: 10px;
+}
+
+#export-panel input[type=radio],
+#export-panel input[type=checkbox] {
+    margin-right: 10px;
+}
+
+#export-panel label {
+    font-weight: bold;
+}
+
+#export-panel button {
+    margin-top: 20px;
+}
+
+
+select {
+    padding: 8px;
+    border-radius: 4px;
+    border: none;
+    font-size: 1rem;
+    margin-top: 10px;
+    background-color: #fff;
+    color: #333;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+select:hover {
+    transition: 0.3s;
+    box-shadow: 0 0px 10px rgba(118, 250, 2, 0.732);
+}
+
+
+
+@media only screen and (max-width: 600px) {
+    #export-panel {
+        text-align: left;
+    }
 }

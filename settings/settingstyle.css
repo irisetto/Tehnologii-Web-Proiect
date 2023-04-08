@@ -1,8 +1,9 @@
-html,body {
+html,
+body {
     background-color: rgba(52, 146, 37, 0.20);
     margin: 0;
-    margin-right: -1px;
     padding: 0;
+    overflow-x: hidden;
 }
 
 body {
@@ -10,4 +11,33 @@ body {
     flex-direction: column;
 }
 
+.start-image-container {
+    position: relative;
+    width: 100%;
+    max-height: 700px;
+    margin: 0;
+}
 
+.start-image-container img {
+    position: relative;
+    margin: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 700px;
+    object-fit: cover;
+    border: 1px solid black;
+}
+
+@media (max-width: 744px) {
+
+    .start-image-container img {
+        content: url('giraffebutsmaller.jpg');
+    }
+
+    .start-image-container {
+        min-height: 300px;
+    }
+
+}

@@ -49,9 +49,12 @@ Start
 }
 
 .start-text-animals-text {
+    background-color: #198f07a4;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0px 2px 10px black;
     color: white;
     text-decoration: none;
-    
 }
 
 @media (max-width: 800px){
@@ -76,7 +79,12 @@ Start
         font-size: 4vw;
         max-width: 60%;
     }
+
+    .start-text-animals-text{
+        font-size:3vw;
+    }
 }
+
 
 /********************************
     Animal Categories

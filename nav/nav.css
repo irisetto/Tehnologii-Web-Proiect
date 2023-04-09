@@ -302,11 +302,9 @@ a img.sign {
 }
 
 .mimages-cont {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
+  display: block;
   max-width: 90%;
-  margin-top: 40px;
+  margin-top: 20px;
   margin-left: 10px;
 }
 
@@ -318,7 +316,7 @@ a img.sign {
 #sign1 {
   max-width: 10%;
   height: auto;
-  margin-left: 80px;
+  margin-left: 50px;
 }
 
 
@@ -337,7 +335,7 @@ a img.sign {
 
 @media screen and (max-width: 830px) {
   .main-nav.is-open a {
-      font-size: 5vw;
+      font-size: 6vw;
   }
 }
 

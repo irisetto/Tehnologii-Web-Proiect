@@ -333,3 +333,17 @@ input[type="checkbox"]:before {
   transform: rotate(45deg) translate(-50%, -50%);
   z-index: 2;
 }
+@media screen and ( max-width: 500px){
+  .animals__main__container {
+    flex-direction: column;
+  }
+  .animals__left__container {
+    width: 100%;
+  }
+  .animals__right__container {
+    width: 100%;
+  }
+  .animals__right__container .card {
+    margin: 30px;
+  }
+}

@@ -10,9 +10,15 @@
     <link rel="stylesheet" href="footer.css">
     <script src="exp.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Viga">
     <style>
         body {
             font-family: 'Montserrat', sans-serif;
+        }
+
+        nav {
+            font-family: 'Viga';
+            text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.8);
         }
     </style>
 
@@ -21,15 +27,49 @@
 
 <body>
     <header>
-        <nav>
+        <nav class="nav">
+            <a href="../profile/profile.html"><img src="../pictures/profile_img.png" alt="profile" class="profile"></a>
+            <a href="#" id="menu_item1">Animals</a>
+            <a href="../help/help.html" id="menu_item2">Help</a>
+            <a href="../index.html"><img src="../pictures/zom.png" alt="zom" class="logo"></a>
+            <a href="../settings/settings.html" id="menu_item3">Settings</a>
+            <a href="../about/about.html" id="menu_item4">About</a>
+            <a href="../login/login.html"><img src="../pictures/sign_out.png" alt="log" class="sign"></a>
+        </nav>
+        <button id="burger" class="open-main-nav">
+            <span class="burger"></span>
+            <span class="burger-text">Menu</span>
+        </button>
+
+        <nav class="main-nav" id="main-nav">
+            <div class="mimages-cont">
+                <img src="../pictures/profile_img.png" id="prof1" alt="profile">
+                <img src="../pictures/sign_out.png" id="sign1" alt="log">
+            </div>
             <ul>
-                <li><a href="#">Profile</a></li>
-                <li><a href="#">Animals</a></li>
-                <li><a href="#">Help</a></li>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Settings</a></li>
-                <li><a href="#">About Us</a></li>
-                <li><a href="#">Logout</a></li>
+                <li>
+                    <p>
+                        <a href="../index.html">Home</a>
+                    </p>
+                </li>
+
+                <li>
+                    <p>
+                        <a href="../help/help.html">Help</a>
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        <a href="/animals">Animals</a>
+                    </p>
+                </li>
+
+                <li>
+                    <p><a href="../settings/settings.html">Settings</a></p>
+                </li>
+                <li>
+                    <p><a href="../about/about.html">About Us</a></p>
+                </li>
             </ul>
         </nav>
     </header>

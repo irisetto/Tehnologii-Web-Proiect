@@ -1,9 +1,7 @@
 
 body {
   overflow-x: hidden;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+
   width: 100vw;
   height: 1000vh;
   padding: 0;
@@ -25,10 +23,7 @@ body {
   font-family: "Poppins", sans-serif;
   width: 100vw;
   height: auto;
-  /* Flex */
-  display: flex;
-  justify-content: center;
-  align-items: center;
+
 }
 
 .section__image {

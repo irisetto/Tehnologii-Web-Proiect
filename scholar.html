@@ -70,6 +70,27 @@
         footer p {
             margin-bottom: 0;
         }
+        .image-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  
+  grid-gap: 10px;
+}
+
+.image-grid div {
+  text-align: center;
+}
+
+.image-grid img {
+  max-width: 90%;
+height: auto;
+  box-shadow: 5px 5px 5px gray;
+}
+
+.image-grid p {
+  
+  font-size: 14px;
+}
     </style>
 
 
@@ -82,7 +103,7 @@
 
     <section>
         <h2>Introducere</h2>
-        <p>Scopul acestui raport este dea a prezenta interfata responsive dezvoltata pentru o aplicație web menita de a
+        <p>Scopul acestui raport este de a prezenta interfata responsive dezvoltata pentru o aplicație web menita de a
             gestiona
             informațiile despre animalele găzduite într-o
             grădină zoologică. Scopul acestei aplicații este de a facilita redarea și managementul datelor despre
@@ -106,13 +127,47 @@
 
     <section>
         <h2>Design</h2>
-        <p>Aplicatia permite crearea unui cont de utilizator si de a il personaliza conform pozitiei pe care un angajat
-            o ocupa in
-            cadrul managementului gradinii zoo. Un utilizator ii este permis sa vizualizeze informatiii despre
-            animalele prezente in gradina zoologica. De asemenea un utilizator poate sa exporte sau sa importe un fisier
+        <p>Aplicatia permite crearea unui cont de utilizator pentru angajatii unei gradini zoologice si gestionarea usoara
+            a animalelor prezente in zoo. Unui utilizator ii este permis sa vizualizeze informatiii despre
+            animalele prezente in gradina zoologica si sa le filtreze dupa orice categorie este nevoie. De asemenea un utilizator poate sa exporte sau sa importe un fisier
             json sau xml care descrie un animal.</p>
-        <div>
-            imag here
+        <div class="image-grid">
+            <div>
+                <img src="menu.jpg" alt="Image 1">
+                <p>Menu</p>
+              </div>
+              <div>
+                <img src="profile.jpg" alt="Image 2">
+                <p>Profile</p>
+              </div>
+              <div>
+                <img src="animals.jpg" alt="Image 3">
+                <p>Animals</p>
+              </div>
+              <div>
+                <img src="help.jpg" alt="Image 4">
+                <p>Help</p>
+              </div>
+              <div>
+                <img src="home.jpg" alt="Image 5">
+                <p>Home</p>
+              </div>
+              <div>
+                <img src="settings.jpg" alt="Image 6">
+                <p>Settings</p>
+              </div>
+              <div>
+                <img src="about.jpg" alt="Image 7">
+                <p>About</p>
+              </div>
+              <div>
+                <img src="login.jpg" alt="Image 8">
+                <p>Login</p>
+              </div>
+              <div>
+                <img src="register.jpg" alt="Image 9">
+                <p>Register</p>
+              </div>
         </div>
     </section>
 
@@ -131,9 +186,9 @@
         <li>
             <ul>Pagina login - această pagină permite utilizatorilor să se autentifice și să acceseze funcționalitățile
                 aplicației.</ul>
-            <ul>Pagina registe - această pagină permite utilizatorilor să isi creeze un cont.</ul>
+            <ul>Pagina register - această pagină permite utilizatorilor să isi creeze un cont.</ul>
             <ul>Pagina home - această pagină servește ca punct de intrare pentru utilizatorii care accesează
-                aplicația</ul>
+                aplicația dupa ce s-au logat</ul>
             <ul>Pagina animals - această pagină conține informații despre animalele din grădina zoologică, inclusiv
                 denumirea populară și științifică, descriere, origine, statut, caracteristici, specii înrudite, dușmani
                 naturali și imagini. Utilizatorii pot căuta și filtra animalele în funcție de diferite criterii.</ul>
@@ -148,16 +203,20 @@
                 un utilizator sa importe sau exporte un fisier json sau xml care reprezinta un animal din gradina
                 zoologica
             </ul>
+            <ul>Pagina animal_id - această pagină permite utilizatorilor să vizualizeze informatii despre un anumit animal selectat.
+            </ul>
             <ul>Pagina about - această pagină conține informații despre aplicatie si despre autorii proiectului</ul>
         </li>
-        <p>Fiecare pagină, cu excepția paginilor de login și logout, are un meniu navigațional care permite
+        <p>Fiecare pagină, cu excepția paginilor de login, register si landing, are un meniu navigațional care permite
             utilizatorilor să acceseze toate celelalte pagini. De asemenea, toate paginile au un footer decorativ care
             include logo-ul aplicatiei.</p>
     </section>
 
     <section>
         <h2>Îmbunătățiri ulterioare</h2>
-        <p>?</p>
+        <p>Niste imbunatatiri de care aplicatia noastra va avea parte pe viitor ar fi introducerea unor animatii
+            ce va imbunatati pagina vizual. 
+        </p>
     </section>
 
     <section>

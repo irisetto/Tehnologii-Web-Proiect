@@ -1,12 +1,177 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="ro">
+
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Zoo Web Manager - Document Scholarly</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            font-size: 16px;
+            line-height: 1.5;
+            background-color: #f2f2f2;
+            color: #333;
+        }
+
+        header {
+            background-color: #1A8F07;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+
+        section {
+            padding: 20px;
+            margin: 20px 0;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        ul{
+            margin-bottom:10px
+        }
+
+        li {
+            list-style: none;
+            font-size: 18px;
+        }
+
+        
+        footer {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        footer p {
+            margin-bottom: 0;
+        }
+    </style>
+
+
 </head>
+
 <body>
-    
+    <header>
+        <h1>Zoo Web Manager - Scholarly HTML</h1>
+    </header>
+
+    <section>
+        <h2>Introducere</h2>
+        <p>Scopul acestui raport este dea a prezenta interfata responsive dezvoltata pentru o aplicație web menita de a
+            gestiona
+            informațiile despre animalele găzduite într-o
+            grădină zoologică. Scopul acestei aplicații este de a facilita redarea și managementul datelor despre
+            animalele găzduite, precum și de a permite utilizatorilor să efectueze căutări și filtrări complexe pentru a
+            găsi informațiile dorite.</p>
+    </section>
+
+    <section>
+        <h2>Cerința</h2>
+        <p>Să se implementeze o aplicație Web menită a gestiona informațiile vizând o grădina zoologică. Se vor facilita
+            redarea și managementul datelor despre animalele găzduite: denumire populară/științifică, descriere (de
+            dorit, multilingvă), origine, statut (e.g., specie protejată, pe cale de dispariție, dăunătoare etc.),
+            caracteristici (de exemplu, dependență de climă, periculozitate, proprietăți speciale), specii înrudite,
+            dușmani naturali, imagini de interes, regim alimentar (vegetarian, carnivor, omnivor), mod de înmulțire și
+            altele. Se vor pune la dispoziție mecanisme de căutare/filtrare/prezentare mulți-criteriala -- de pildă,
+            afișarea tuturor mamiferelor cu blană de origine europeană ce pot fi dresate sau generarea unei liste de
+            păsări/târâtoare capabile să supraviețuiască în condiții deșertice. Datele vor putea fi importate/exportate
+            via fișiere disponibile în formatele JSON și XML. Funcționalitățile esențiale se vor oferi și de către un
+            API REST/GraphQL.</p>
+    </section>
+
+    <section>
+        <h2>Design</h2>
+        <p>Aplicatia permite crearea unui cont de utilizator si de a il personaliza conform pozitiei pe care un angajat
+            o ocupa in
+            cadrul managementului gradinii zoo. Un utilizator ii este permis sa vizualizeze informatiii despre
+            animalele prezente in gradina zoologica. De asemenea un utilizator poate sa exporte sau sa importe un fisier
+            json sau xml care descrie un animal.</p>
+        <div>
+            imag here
+        </div>
+    </section>
+
+    <section>
+        <h2>Tehnologii utilizate</h2>
+        <p>Paginile au fost create fără utilizarea unui framework. HTML este folosit pentru a structura conținutul și a
+            crea elemente semantice. CSS este utilizat pentru a
+            stiliza paginile și a le face mai atractive prin adăugarea de stiluri și efecte de animație. JavaScript este
+            folosit pentru a adăuga funcționalitate in plus paginilor.</p>
+    </section>
+
+    <section>
+        <h2>Arhitectura aplicației</h2>
+        <p>Arhitectura acestei aplicații web este bazată pe o structură simplă de pagini, cu o navigare ușor de
+            utilizat:</p>
+        <li>
+            <ul>Pagina login - această pagină permite utilizatorilor să se autentifice și să acceseze funcționalitățile
+                aplicației.</ul>
+            <ul>Pagina registe - această pagină permite utilizatorilor să isi creeze un cont.</ul>
+            <ul>Pagina home - această pagină servește ca punct de intrare pentru utilizatorii care accesează
+                aplicația</ul>
+            <ul>Pagina animals - această pagină conține informații despre animalele din grădina zoologică, inclusiv
+                denumirea populară și științifică, descriere, origine, statut, caracteristici, specii înrudite, dușmani
+                naturali și imagini. Utilizatorii pot căuta și filtra animalele în funcție de diferite criterii.</ul>
+            <ul>Pagina help - această pagină oferă utilizatorilor informații despre cum să utilizeze aplicația și cum să
+                acceseze diferitele funcționalități.</ul>
+            <ul>Pagina profile - această pagină permite utilizatorilor să-și vizualizezesi si gestioneze profilul (să-și
+                modifice informațiile personale si/sau parola). De asemenea este posibil de a trimite un ticket catre un
+                manager al unei sectiuni pentru a aduce in vederea tuturor o posibila problema vizand gradina zoologică.
+            </ul>
+            <ul>Pagina settings - această pagină permite utilizatorilor să modifice diferite setari din cadrul
+                aplicatiei precum tema de fundal sau limba in care este prezentat textul. De asemenea, va fi posibil ca
+                un utilizator sa importe sau exporte un fisier json sau xml care reprezinta un animal din gradina
+                zoologica
+            </ul>
+            <ul>Pagina about - această pagină conține informații despre aplicatie si despre autorii proiectului</ul>
+        </li>
+        <p>Fiecare pagină, cu excepția paginilor de login și logout, are un meniu navigațional care permite
+            utilizatorilor să acceseze toate celelalte pagini. De asemenea, toate paginile au un footer decorativ care
+            include logo-ul aplicatiei.</p>
+    </section>
+
+    <section>
+        <h2>Îmbunătățiri ulterioare</h2>
+        <p>?</p>
+    </section>
+
+    <section>
+        <h2>Autori</h2>
+        <ul>
+            <li>Cohman Teodora</li>
+            <li>Dodun Dan</li>
+            <li>Mihaita Andrei</li>
+        </ul>
+    </section>
+
+    <footer>
+        <p>ZoM Web Manager</p>
+    </footer>
 </body>
+
 </html>

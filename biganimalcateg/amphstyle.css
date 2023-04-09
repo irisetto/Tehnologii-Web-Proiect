@@ -477,6 +477,18 @@ a img.sign {
     transform: translateY(-5px);
 }
 
+.nav a#menu_item5:hover {
+    transform: translateY(-5px);
+}
+
+.nav a#menu_item6:hover {
+    transform: translateY(-5px);
+}
+
+.nav a#menu_item7:hover {
+    transform: translateY(-5px);
+}
+
 .main-nav {
     position: fixed;
     top: 0;

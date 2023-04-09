@@ -28,13 +28,13 @@
 <body>
     <header>
         <nav class="nav">
-            <a href="../profile/profile.html"><img src="../pictures/profile_img.png" alt="profile" class="profile"></a>
+            <a href="../profile/profile.html" id="menu_item6"><img src="../pictures/profile_img.png" alt="profile" class="profile"></a>
             <a href="#" id="menu_item1">Animals</a>
             <a href="../help/help.html" id="menu_item2">Help</a>
-            <a href="../index.html"><img src="../pictures/zom.png" alt="zom" class="logo"></a>
+            <a href="../index.html" id="menu_item5"><img src="../pictures/zom.png" alt="zom" class="logo"></a>
             <a href="../settings/settings.html" id="menu_item3">Settings</a>
             <a href="../about/about.html" id="menu_item4">About</a>
-            <a href="../login/login.html"><img src="../pictures/sign_out.png" alt="log" class="sign"></a>
+            <a href="../login/login.html" id="menu_item7"><img src="../pictures/sign_out.png" alt="log" class="sign"></a>
         </nav>
         <button id="burger" class="open-main-nav">
             <span class="burger"></span>
@@ -83,11 +83,12 @@
         <h1>Control Panel Settings</h1>
         <div class="section">
             <h2>Animals Import/Export</h2>
-            <hr>
+            <span class="span"></span>
             <button class="button">Import Animals</button>
             <button class="button" id="export-toggle">Export Animals</button>
             <div id="export-panel" class="hidden">
                 <h2>Export Animals</h2>
+                <span class="span"></span>
                 <p>Select a file format:</p>
                 <div>
                     <input type="radio" id="xml" name="format" value="xml">
@@ -112,7 +113,7 @@
         </div>
         <div class="section">
             <h2>Theme</h2>
-            <hr>
+            <span class="span"></span>
             <div class="theme-buttons">
                 <button class="button theme-button active" data-theme="light">Light</button>
                 <button class="button theme-button" data-theme="dark">Dark</button>
@@ -120,7 +121,7 @@
         </div>
         <div class="section">
             <h2>Language</h2>
-            <hr>
+            <span class="span"></span>
             <select class="language-select">
                 <option value="en">English</option>
                 <option value="es">Español</option>
@@ -129,7 +130,7 @@
         </div>
         <div class="section">
             <h2>Accessibility</h2>
-            <hr>
+            <span class="span"></span>
             <button class="button">Increase Font Size</button>
             <button class="button">High Contrast Mode</button>
         </div>
@@ -149,7 +150,7 @@
             </ul>
         </div>
     </footer>
-
+    <script src="nav.js"></script>
 </body>
 
 </html>

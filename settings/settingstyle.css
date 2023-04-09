@@ -48,32 +48,48 @@ settings
 ****************************************************************/
 
 .container {
-    max-width: 800px;
-    margin: 10px auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 80%;
+    margin: 0 auto;
     padding: 20px;
     border: 1px solid #ccc;
     border-radius: 5px;
-    background-image: linear-gradient(to top right, #008000, #00ff00);
     border-radius: 5px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-
+    padding-left: 0;
 }
 
 h1 {
+    font-family: 'Viga';
     font-size: 5vw;
     text-align: center;
     margin-top: 0;
-    color: white;
+    color: black;
+    font-weight: bolder;
 }
 
 .section {
+    margin-left: 10px;
+    margin-right: 10px;
     margin-bottom: 20px;
 }
 
 h2 {
+    font-family: 'Viga';
     font-size: 3vw;
     margin-top: 0;
-    color: white;
+    margin-bottom: 1px;
+    color: black;
+    font-weight: bolder;
+}
+
+span.span {
+    display: block;
+    width: 100%;
+    height: 2px;
+    background: #1A8F07;
+    margin-bottom: 5px;
 }
 
 .button {
@@ -152,6 +168,7 @@ export menu
 
 #export-panel h2 {
     margin-top: 0;
+    color:white
 }
 
 #export-panel p {
@@ -309,6 +326,18 @@ a img.sign {
 }
 
 .nav a#menu_item4:hover {
+    transform: translateY(-5px);
+}
+
+.nav a#menu_item5:hover {
+    transform: translateY(-5px);
+}
+
+.nav a#menu_item6:hover {
+    transform: translateY(-5px);
+}
+
+.nav a#menu_item7:hover {
     transform: translateY(-5px);
 }
 
@@ -550,3 +579,8 @@ a img.sign {
         margin-left: 50px;
     }
 }
+
+/**
+
+**/
+

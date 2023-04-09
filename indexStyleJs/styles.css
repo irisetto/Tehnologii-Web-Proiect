@@ -153,7 +153,7 @@ Start
 
 
 .animal-category:hover .animal-category-text {
-    color:#31f114a4;
+    color: #31f114a4;
     transition: 1s;
 }
 
@@ -287,12 +287,24 @@ a img.sign {
 
 .nav a#menu_item3:hover {
     transform: translateY(-5px);
-
 }
 
 .nav a#menu_item4:hover {
     transform: translateY(-5px);
 }
+
+.nav a#menu_item5:hover {
+    transform: translateY(-5px);
+}
+
+.nav a#menu_item6:hover {
+    transform: translateY(-5px);
+}
+
+.nav a#menu_item7:hover {
+    transform: translateY(-5px);
+}
+
 
 .main-nav {
     position: fixed;

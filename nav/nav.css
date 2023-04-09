@@ -54,8 +54,7 @@
 
   .logo{
     
-    width: 80%;
-    height: auto;
+    width: 100%;
     margin: 0;
     padding: 0;
   }
@@ -73,7 +72,7 @@ text-align: center;
     transition: all 0.2s ease-in-out;
   }
   
-  .nav a#menu_item:hover {
+  .nav a:hover {
     transform: translateY(-5px);
   }
   
@@ -131,15 +130,8 @@ text-align: center;
         .main-nav.is-open::before {
           transform: skew(-14deg) translateX(0);
         }
-        .main-nav img {
-            display: block;
-            position: absolute;
-
-        }
-        .main-nav #sign {
-            margin-left: 20%;
-            margin-top: 2%;
-        }
+        
+        
         .main-nav ul {
           display: inline-flex;
           flex-direction: column;
@@ -148,7 +140,16 @@ text-align: center;
           justify-content: center;
           transform: translateX(-18%) skew(-16deg);
         }
-  
+        /* .icon-container{
+          position: absolute;
+        }*/
+        .icon{
+          width:50px !important;
+        
+        } 
+        #sign{
+          left:-4px !important;
+        }
         .main-nav li {
           display: block;
           margin: 0.5rem 0;
@@ -180,6 +181,14 @@ text-align: center;
         .main-nav li:nth-child(5) a {
           transition: all 275ms 375ms;
         }
+        .main-nav li:nth-child(6) a {
+          transition: all 275ms 375ms;
+        }
+  
+        .main-nav li:nth-child(7) a {
+          transition: all 275ms 375ms;
+        }
+  
   
         .main-nav ul,
         .main-nav li {
@@ -188,7 +197,7 @@ text-align: center;
         }
         .main-nav p a {
           display: block;
-          padding: 12px 0;
+         
           color: #f5f5f5;
           font-size: 1.4em;
           text-decoration: none;
@@ -198,7 +207,7 @@ text-align: center;
           position: relative;
           width: 100px;
           left: 1rem;
-          top: 1rem;
+          
         }
   
         .open-main-nav {
@@ -257,7 +266,7 @@ text-align: center;
   
         .burger-text {
           display: block;
-          font-size: 0.75 rem;
+          font-size: 0.75rem;
           letter-spacing: 0.05em;
           margin-top: 0.5em;
           text-transform: uppercase;
@@ -266,13 +275,13 @@ text-align: center;
           color: #dfdce3;
         }
   
-        @media only screen and (max-width: 900px) {
+        @media only screen and (max-width: 650px) {
           .nav_container {
             display: none;
           }
         }
   
-        @media only screen and (min-width: 900px) {
+        @media only screen and (min-width: 650px) {
           #burger {
             display: none;
           }

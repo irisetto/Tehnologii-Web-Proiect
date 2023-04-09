@@ -285,6 +285,11 @@ nav
     font-family: 'Viga';
     text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.8);
     z-index: 1;
+    width: 80%; 
+    margin-left: auto; 
+    margin-right: auto;
+    left: 0;
+    right: 0;
 }
 
 .logo {
@@ -548,13 +553,13 @@ a img.sign {
 }
 
 
-@media only screen and (max-width: 900px) {
+@media only screen and (max-width: 750px) {
     .nav {
         display: none;
     }
 }
 
-@media only screen and (min-width: 900px) {
+@media only screen and (min-width: 750px) {
     #burger {
         display: none;
     }

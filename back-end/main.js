@@ -1,6 +1,7 @@
 const http = require("http");
 const fs = require("fs");
 const path = require("path");
+const pool = require("./util/db");
 
 const server = http.createServer((req, res) => {
   const url = req.url.split("?")[0];

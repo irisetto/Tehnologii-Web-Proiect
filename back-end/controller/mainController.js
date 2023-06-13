@@ -3,6 +3,14 @@ const path = require("path");
 const url = require("url");
 
 const handleRequest = (req, res) => {
+  if (req.method == "GET") {
+    handleGetRequests(req, res);
+  } else if (req.method == "POST") {
+    handlePostRequests(req, res);
+  }
+};
+
+const handleGetRequests = (req, res) => {
   if (req.url == "/" || req.url == "/home") {
     serveView(req, res, "home.html");
   } else if (req.url.startsWith("/animals")) {
@@ -10,7 +18,6 @@ const handleRequest = (req, res) => {
   } else if (req.url.startsWith("/profile")) {
     serveView(req, res, "profile.html");
   } else {
-    console.log("PROBA1");
     const fileUrl = "/public" + req.url;
     // let filepath = url.parse(path.__dirname + "/public" + req.url);
     // let fileExt = filepath.pathname.split(".").pop();
@@ -19,7 +26,7 @@ const handleRequest = (req, res) => {
     fs.access(filepath, (err) => {
       if (err) {
         res.statusCode = 404;
-        res.end("Not Found");
+        serveView(req, res, "notFound.html");
       } else {
         fs.readFile(filepath, (err, data) => {
           if (err) {
@@ -34,6 +41,10 @@ const handleRequest = (req, res) => {
       }
     });
   }
+};
+
+const handlePostRequests = (req, res) => {
+  res.end("salut");
 };
 
 const fileContentType = {

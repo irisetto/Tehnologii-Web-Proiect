@@ -1,4 +1,4 @@
-const pool = require("../util/db");
+const pool = require("../utils/db");
 
 
 exports.getAllAni = (async () => {

@@ -32,7 +32,7 @@ const handleHelp = (req, res) => {
 
             const mailOptions = {
               from: email,
-              to: "mihaitaandrei86@gmail.com",
+              to: "dmnzom@gmail.com",
               subject: "New Problem Submission",
               text: `Email: ${email}\nProblem: ${problem}`,
             };

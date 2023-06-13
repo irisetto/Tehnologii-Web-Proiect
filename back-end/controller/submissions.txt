@@ -4,3 +4,6 @@ Email: tcohman@yahoo.ro, Problem: ccc
 Email: cohmanteodora@gmail.com, Problem: ccc
 Email: cohmanteodora@gmail.com, Problem: ac
 Email: tcohman@yahoo.ro, Problem: gg
+Email: null, Problem: null
+Email: tcohman@yahoo.ro, Problem: alo
+Email: universul@gmail.com, Problem: problema e dan

@@ -42,6 +42,11 @@ html, body {
     height: auto;
     margin-top: 10%;
 }
+.text{
+    font-family: 'Montserrat';
+    margin-bottom: -20px;
+    font-weight: bold;
+}
 .txt_field {
     position: relative;
     background-color: hsla(112, 60%, 36%, 0.281);

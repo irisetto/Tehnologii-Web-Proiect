@@ -5,6 +5,8 @@ const { handleRegister } = require("./register");
 const { handleLogin } = require("./login");
 const animalsController = require("./animalsController");
 const { handleHelp } = require("./helpController");
+const { handleSendCode } = require("./forgotPass");
+const { handleInsertCode } = require("./forgotPass");
 const handleStaticRequest = require("./staticController");
 const { handleApiRequest } = require("./apiController");
 
@@ -23,6 +25,12 @@ const handlePostRequests = (req, res) => {
     handleLogin(req, res);
   } else if (req.url.startsWith("/help")) {
     handleHelp(req, res);
+  }
+   else if (req.url.startsWith("/forgotPassword")) {
+      handleSendCode(req, res);
+    }
+      else if (req.url.startsWith("/insertCode")) {
+        handleInsertCode(req, res);
   } else res.end("post?");
 };
 

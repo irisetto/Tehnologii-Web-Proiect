@@ -14,5 +14,9 @@
   "devDependencies": {
     "eslint": "^8.42.0",
     "nodemon": "^2.0.22"
+  },
+  "dependencies": {
+    "og": "^0.0.2",
+    "pg": "^8.11.0"
   }
 }

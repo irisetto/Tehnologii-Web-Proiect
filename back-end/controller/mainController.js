@@ -3,7 +3,9 @@ const path = require("path");
 const url = require("url");
 
 const handleRequest = (req, res) => {
-  if (req.url.startsWith("/animals")) {
+  if (req.url == "/" || req.url == "/home") {
+    serveView(req, res, "home.html");
+  } else if (req.url.startsWith("/animals")) {
     serveView(req, res, "animals.html");
   } else if (req.url.startsWith("/profile")) {
     serveView(req, res, "profile.html");

@@ -24,7 +24,7 @@ const handleGetRequests = (req, res) => {
   } else if (req.url.startsWith("/login")) {
     serveView(req, res, "login.html");
   } else if (req.url.startsWith("/help")) {
-    handleHelp(req, res);
+    serveView(req, res, "help.html");
   } else if (req.url.startsWith("/about")) {
     serveView(req, res, "about.html");
   } else if (req.url.startsWith("/settings")) {
@@ -68,7 +68,9 @@ const handleGetRequests = (req, res) => {
 };
 
 const handlePostRequests = (req, res) => {
-  res.end("post request done");
+  if (req.url.startsWith("/help")) {
+    handleHelp(req, res);
+  } else res.end("post request done");
 };
 
 const handleApiRequest = (req, res) => {

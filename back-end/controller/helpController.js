@@ -2,7 +2,7 @@ const fs = require("fs");
 const path = require("path");
 const nodemailer = require("nodemailer");
 const handleHelp = (req, res) => {
-  if (req.url === "/help") {
+  if (req.url === "/api/help") {
     let body = "";
 
     req.on("data", (data) => {
@@ -32,7 +32,7 @@ const handleHelp = (req, res) => {
 
             const mailOptions = {
               from: email,
-              to: "dmnzom@gmail.com",
+              to: "mihaitaandrei86@gmail.com",
               subject: "New Problem Submission",
               text: `Email: ${email}\nProblem: ${problem}`,
             };

@@ -45,8 +45,7 @@ const handleGetRequests = (req, res) => {
     serveView(req, res, "code.html");
   } else {
     const fileUrl = "/public" + req.url;
-    // let filepath = url.parse(path.__dirname + "/public" + req.url);
-    // let fileExt = filepath.pathname.split(".").pop();
+    
     const filepath = path.resolve("." + fileUrl);
     const fileExt = path.extname(filepath);
     fs.access(filepath, (err) => {
@@ -73,13 +72,12 @@ const handlePostRequests = (req, res) => {
   if (req.url.startsWith("/register")) {
     handleRegister(req, res);
   }
-
-  if (req.url.startsWith("/login")) {
+  else if (req.url.startsWith("/login")) {
     handleLogin(req, res);
   }
-  if (req.url.startsWith("/help")) {
+  else if (req.url.startsWith("/help")) {
     handleHelp(req, res);
-  } else res.end("post request done");
+  } else res.end("post?");
 };
 
 const handleApiRequest = (req, res) => {

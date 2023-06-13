@@ -3,6 +3,8 @@ const path = require("path");
 const url = require("url");
 const { handleRegister } = require("./register");
 const { handleLogin } = require("./login");
+const animalsController = require("./animalsController");
+const { handleHelp } = require("./helpController");
 
 const handleRequest = (req, res) => {
   if (req.method == "GET") {
@@ -13,31 +15,34 @@ const handleRequest = (req, res) => {
 };
 
 const handleGetRequests = (req, res) => {
-  if (req.url == "/" || req.url == "/index") {
+  console.log(req.url);
+  if (req.url.startsWith("/api")) {
+    console.log("API");
+    handleApiRequest(req, res);
+  } else if (req.url == "/" || req.url == "/index") {
     serveView(req, res, "index.html");
   } else if (req.url.startsWith("/home")) {
     serveView(req, res, "home.html");
   } else if (req.url.startsWith("/login")) {
     serveView(req, res, "login.html");
-  }
-  else if (req.url.startsWith("/help")) {
+  } else if (req.url.startsWith("/help")) {
     serveView(req, res, "help.html");
-  }
-  else if (req.url.startsWith("/about")) {
+  } else if (req.url.startsWith("/about")) {
     serveView(req, res, "about.html");
-  }
-  else if (req.url.startsWith("/settings")) {
+  } else if (req.url.startsWith("/settings")) {
     serveView(req, res, "settings.html");
-  }
-  else if (req.url.startsWith("/animals")) {
+  } else if (req.url.startsWith("/animals")) {
     serveView(req, res, "animals.html");
-  }
-  else if (req.url.startsWith("/animal")) {
+  } else if (req.url.startsWith("/animal")) {
     serveView(req, res, "animal.html");
   } else if (req.url.startsWith("/register")) {
     serveView(req, res, "register.html");
   } else if (req.url.startsWith("/profile")) {
     serveView(req, res, "profile.html");
+  } else if (req.url.startsWith("/forgotPassword")) {
+    serveView(req, res, "forgot.html");
+  } else if (req.url.startsWith("/insertCode")) {
+    serveView(req, res, "code.html");
   } else {
     const fileUrl = "/public" + req.url;
     // let filepath = url.parse(path.__dirname + "/public" + req.url);
@@ -72,6 +77,14 @@ const handlePostRequests = (req, res) => {
   if (req.url.startsWith("/login")) {
     handleLogin(req, res);
   }
+  if (req.url.startsWith("/help")) {
+    handleHelp(req, res);
+  } else res.end("post request done");
+};
+
+const handleApiRequest = (req, res) => {
+  animalsController(req, res);
+  //res.end("salut");
 };
 
 const fileContentType = {

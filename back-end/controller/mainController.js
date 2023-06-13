@@ -2,6 +2,7 @@ const fs = require("fs");
 const path = require("path");
 const url = require("url");
 const { handleRegister } = require("./register");
+const { handleLogin } = require("./login");
 
 const handleRequest = (req, res) => {
   if (req.method == "GET") {
@@ -30,9 +31,9 @@ const handleGetRequests = (req, res) => {
   }
   else if (req.url.startsWith("/animals")) {
     serveView(req, res, "animals.html");
-   }
-    else if (req.url.startsWith("/animal")) {
-      serveView(req, res, "animal.html");
+  }
+  else if (req.url.startsWith("/animal")) {
+    serveView(req, res, "animal.html");
   } else if (req.url.startsWith("/register")) {
     serveView(req, res, "register.html");
   } else if (req.url.startsWith("/profile")) {
@@ -66,6 +67,10 @@ const handleGetRequests = (req, res) => {
 const handlePostRequests = (req, res) => {
   if (req.url.startsWith("/register")) {
     handleRegister(req, res);
+  }
+
+  if (req.url.startsWith("/login")) {
+    handleLogin(req, res);
   }
 };
 

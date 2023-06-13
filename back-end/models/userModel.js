@@ -37,6 +37,28 @@ exports.getUserWithEmail = async (email) => {
     }
 };
 
+exports.getUserWithPhonenumber = async (phonenumber) => {
+    try {
+        const client = await pool.connect();
+        const query = {
+            text: "SELECT * FROM users WHERE phone_number = $1",
+            values: [phonenumber],
+        };
+        const result = await client.query(query);
+        client.release();
+
+        if (result.rows.length > 0) {
+            const user = result.rows[0];
+            return user;
+        } else {
+            return null;
+        }
+    } catch (err) {
+        console.error("Error executing query", err);
+    }
+};
+
+
 
 exports.insertUser = async (user) => {
     try {

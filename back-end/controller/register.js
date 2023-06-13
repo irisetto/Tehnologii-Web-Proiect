@@ -23,7 +23,7 @@ const handleRegister = async (req, res) => {
         const position = formData.get('position');
 
         try {
-            const existingUser = await user.getUserWithEmail(email);
+            let existingUser = await user.getUserWithEmail(email);
             if (existingUser) {
                 console.log("Email already exists");
                 res.statusCode = 302;
@@ -31,6 +31,16 @@ const handleRegister = async (req, res) => {
                 res.end();
                 return;
             }
+
+            existingUser = await user.getUserWithPhonenumber(phoneNumber);
+            if (existingUser) {
+                console.log("Phone Number already exists");
+                res.statusCode = 302;
+                res.setHeader("Location", "/register");
+                res.end();
+                return;
+            }
+
             const hashedPassword = await bcrypt.hash(password, 10);
 
             await user.insertUser({

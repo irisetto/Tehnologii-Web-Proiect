@@ -1,45 +1,42 @@
-
 body {
-    background-color: rgba(52, 146, 37, 0.20);
-    margin: 0;
-    padding: 0;
-    overflow-x: hidden;
+  background-color: rgba(52, 146, 37, 0.2);
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
 }
 
 body {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 .start-image-container {
-    position: relative;
-    width: 100%;
-    max-height: 700px;
-    margin: 0;
+  position: relative;
+  width: 100%;
+  max-height: 700px;
+  margin: 0;
 }
 
 .start-image-container img {
-    position: relative;
-    margin: 0;
-    top: 0;
-    left: 0;
-    right: 0;
-    width: 100%;
-    height: 700px;
-    object-fit: cover;
-    border: 1px solid black;
+  position: relative;
+  margin: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 700px;
+  object-fit: cover;
+  border: 1px solid black;
 }
 
 @media (max-width: 744px) {
+  .start-image-container img {
+    content: url("/pictures/giraffebutsmaller.jpg");
+  }
 
-    .start-image-container img {
-        content: url('giraffebutsmaller.jpg');
-    }
-
-    .start-image-container {
-        min-height: 300px;
-    }
-
+  .start-image-container {
+    min-height: 300px;
+  }
 }
 
 /* =================================================================
@@ -47,226 +44,210 @@ body {
 ================================================================*/
 
 .form-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .information-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    margin: 5px;
-    margin-top: -5px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin: 5px;
+  margin-top: -5px;
 }
 
 .current-information {
-    background-color: #1A8F07;
-    padding: 20px;
-    border-radius: 10px;
-    margin-bottom: 20px;
-    box-shadow: 0px 2px 10px black;
+  background-color: #1a8f07;
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  box-shadow: 0px 2px 10px black;
 }
 
 .current-information h2 {
-    font-size: 30px;
-    margin-bottom: 20px;
-    text-align: center;
-    padding: 10px;
-    border-radius: 5px;
-    background-color: #367F1C;
-    color: #fff;
-
-
+  font-size: 30px;
+  margin-bottom: 20px;
+  text-align: center;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #367f1c;
+  color: #fff;
 }
 
-
 .current-information p {
-    margin: 0;
-    margin-bottom: 10px;
-    font-size: 20px;
-    padding-bottom: 10px;
-    line-height: 1.5;
-    color: #fff;
+  margin: 0;
+  margin-bottom: 10px;
+  font-size: 20px;
+  padding-bottom: 10px;
+  line-height: 1.5;
+  color: #fff;
 }
 
 .current-information img {
-    border-radius: 50%;
-    margin-bottom: 20px;
-    width: 150px;
-    height: 150px;
-    object-fit: cover;
-    border: 1px solid gray;
+  border-radius: 50%;
+  margin-bottom: 20px;
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border: 1px solid gray;
 }
 
 .current-information label {
-    font-weight: bold;
-    margin-bottom: 10px;
+  font-weight: bold;
+  margin-bottom: 10px;
 }
 
-
 .update-information {
-    background-color: #198f07a4;
-    padding: 20px;
-    border-radius: 10px;
-    margin-bottom: 20px;
-    box-shadow: 0px 2px 10px black;
+  background-color: #198f07a4;
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  box-shadow: 0px 2px 10px black;
 }
 
 .current-information span {
-    margin-bottom: 10px;
+  margin-bottom: 10px;
 }
 
-
 form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
-    border-radius: 10px;
-    width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  border-radius: 10px;
+  width: 100%;
 }
 
 input {
-    margin: 10px;
-    padding: 10px;
-    border-radius: 5px;
-    border: 1px solid black;
-    width: 100%;
-    max-width: 95%;
-    box-sizing: border-box;
+  margin: 10px;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid black;
+  width: 100%;
+  max-width: 95%;
+  box-sizing: border-box;
 }
 
 label {
-    margin-left: 10px;
-    font-weight: bold;
-    text-align: left;
-    font-size: 20px;
-    color: #fff;
+  margin-left: 10px;
+  font-weight: bold;
+  text-align: left;
+  font-size: 20px;
+  color: #fff;
 }
 
 button {
-    margin-top: 20px;
-    padding: 10px 20px;
-    background-color: #0ded14;
-    color: white;
-    border-radius: 5px;
-    border: none;
-    cursor: pointer;
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #0ded14;
+  color: white;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
 }
-
 
 h2 {
-    font-size: 30px;
-    margin-bottom: 20px;
-    text-align: center;
-    padding: 10px;
-    border-radius: 5px;
-    background-color: #367F1C;
-    color: #fff;
-
+  font-size: 30px;
+  margin-bottom: 20px;
+  text-align: center;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #367f1c;
+  color: #fff;
 }
-
 
 .update-information,
 .current-information {
-    flex-basis: calc(50% - 50px);
+  flex-basis: calc(50% - 50px);
 }
 
-
 .sec-in-cont {
-    display: grid;
-    flex-direction: column;
-    align-items: center;
+  display: grid;
+  flex-direction: column;
+  align-items: center;
 }
 
 .sub-container {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 
 .change-password-container {
-    flex-direction: column;
-    align-items: center;
-    background-color: #198f07a4;
-    padding: 20px;
-    border-radius: 10px;
-    margin-bottom: 20px;
-    box-shadow: 0px 2px 10px black;
+  flex-direction: column;
+  align-items: center;
+  background-color: #198f07a4;
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  box-shadow: 0px 2px 10px black;
 }
 
-
 .submit-ticket-container {
-    flex-direction: column;
-    align-items: center;
-    background-color: #1A8F07;
-    padding: 20px;
-    border-radius: 10px;
-    margin-bottom: 20px;
-    box-shadow: 0px 2px 10px black;
+  flex-direction: column;
+  align-items: center;
+  background-color: #1a8f07;
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  box-shadow: 0px 2px 10px black;
 }
 
 .change-password-container,
 .submit-ticket-container {
-    flex-basis: calc(50% - 50px);
+  flex-basis: calc(50% - 50px);
 }
 
-
 @media screen and (max-width: 768px) {
+  .update-information,
+  .current-information {
+    flex-basis: 100%;
+  }
 
-    .update-information,
-    .current-information {
-        flex-basis: 100%;
-    }
+  .change-password-container {
+    background-color: #1a8f07;
+  }
 
-    .change-password-container {
-        background-color: #1A8F07;
-    }
+  .submit-ticket-container {
+    background-color: #198f07a4;
+  }
 
-    .submit-ticket-container {
-        background-color: #198f07a4;
-    }
+  .change-password-container,
+  .submit-ticket-container {
+    flex-basis: 100%;
+  }
 
-    .change-password-container,
-    .submit-ticket-container {
-        flex-basis: 100%;
-    }
+  .current-information {
+    margin-right: 0;
+  }
 
-    .current-information {
-        margin-right: 0;
-    }
+  .current-information-content {
+    display: flex;
+  }
 
-    .current-information-content {
-        display: flex;
-    }
-
-    .current-information p {
-        margin-left: 20px;
-    }
-
+  .current-information p {
+    margin-left: 20px;
+  }
 }
 
 @media screen and (max-width: 579px) {
+  .current-information-content {
+    display: block;
+  }
 
-    .current-information-content {
-        display: block;
-    }
+  .current-information p {
+    font-size: 20px;
+    margin-left: 5px;
+  }
 
-    .current-information p {
-        font-size: 20px;
-        margin-left: 5px;
-    }
+  .current-information img {
+    margin-top: 20px;
+    width: 130px;
+    height: 130px;
+  }
 
-    .current-information img {
-        margin-top: 20px;
-        width: 130px;
-        height: 130px;
-    }
-
-    label {
-        font-size: 25px;
-    }
-
+  label {
+    font-size: 25px;
+  }
 }
-

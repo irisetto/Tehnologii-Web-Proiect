@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Register Page</title>
+    <link rel="stylesheet" href="css/register.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Montserrat"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Viga"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <div class="form">
+        <img class="logo" src="/pictures/zom.png" alt="logo" />
+        <h2>Create account</h2>
+        <form method="post">
+          <div class="inputs">
+            <div class="txt_field">
+              <input type="text" required />
+              <label>First Name</label>
+            </div>
+
+            <div class="txt_field">
+              <input type="text" required />
+              <label>Last Name</label>
+            </div>
+
+            <div class="txt_field">
+              <input type="email" required />
+              <label>Email</label>
+            </div>
+
+            <div class="txt_field">
+              <input type="tel" required />
+              <label>Phone Number</label>
+            </div>
+
+            <div class="txt_field">
+              <input type="password" required />
+              <label>Password</label>
+            </div>
+
+            <div class="txt_field">
+              <input type="password" required />
+              <label>Confirm Password</label>
+            </div>
+
+            <div class="txt_field" id="middle">
+              <input type="text" required />
+              <label>Position</label>
+            </div>
+          </div>
+          <input
+            type="submit"
+            value="Register"
+            onclick="window.location.href='/login';"
+          />
+          <div class="signup_link">
+            Already have an account? <a href="/login">Sign in! </a>
+          </div>
+        </form>
+      </div>
+      <img class="picture" src="/pictures/lemur2.png" alt="lemur" />
+    </div>
+  </body>
+</html>

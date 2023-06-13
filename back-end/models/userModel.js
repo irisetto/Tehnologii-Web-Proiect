@@ -58,8 +58,6 @@ exports.getUserWithPhonenumber = async (phonenumber) => {
     }
 };
 
-
-
 exports.insertUser = async (user) => {
     try {
         const { first_name, last_name, email, phone_number, password, position } = user;
@@ -76,5 +74,3 @@ exports.insertUser = async (user) => {
         console.error("Error executing query", err);
     }
 };
-
-

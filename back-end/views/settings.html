@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="css/settingstyle.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/nav.css">
+    <script src="js/exp.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Viga">
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        nav {
+            font-family: 'Viga';
+            text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.8);
+        }
+    </style>
+
+    <title>Settings</title>
+</head>
+
+<body>
+    <header>
+        <nav class="nav">
+            <a href="./profile" id="menu_item6"><img src="../pictures/profile_img.png" alt="profile" class="profile"></a>
+            <a href="./animals" id="menu_item1">Animals</a>
+            <a href="./help" id="menu_item2">Help</a>
+            <a href="./home" id="menu_item5"><img src="../pictures/zom.png" alt="zom" class="logo"></a>
+            <a href="./settings" id="menu_item3">Settings</a>
+            <a href="./about" id="menu_item4">About</a>
+            <a href="./login" id="menu_item7"><img src="../pictures/sign_out.png" alt="log" class="sign"></a>
+        </nav>
+        <div class="imgOverlay">
+            <img src="../pictures/bear.jpg" id="banner" alt="banner">
+            <div class="overlay"></div>
+        </div>
+        <button id="burger" class="open-main-nav">
+            <span class="burger"></span>
+            <span class="burger-text">Menu</span>
+        </button>
+
+        <nav class="main-nav" id="main-nav">
+            <div class="mimages-cont">
+                <a href="./profile"><img src="../pictures/profile_img.png" id="prof1" alt="profile"></a>
+            <a href="./login"><img src="../pictures/sign_out.png" id="sign1" alt="log"></a>
+       </div>
+            <ul>
+                <li>
+                    <p>
+                        <a href="./home">Home</a>
+                    </p>
+                </li>
+
+                <li>
+                    <p>
+                        <a href="./help">Help</a>
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        <a href="./animals">Animals</a>
+                    </p>
+                </li>
+
+                <li>
+                    <p><a href="./settings">Settings</a></p>
+                </li>
+                <li>
+                    <p><a href="./about">About Us</a></p>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+
+    <div class="container">
+        <h1>Control Panel Settings</h1>
+        <div class="section">
+            <h2>Animals Import/Export</h2>
+            <span class="span"></span>
+            <button class="button">Import Animals</button>
+            <button class="button" id="export-toggle">Export Animals</button>
+            <div id="export-panel" class="hidden">
+                <h2>Export Animals</h2>
+                <span class="span"></span>
+                <p>Select a file format:</p>
+                <div>
+                    <input type="radio" id="xml" name="format" value="xml">
+                    <label for="xml">XML</label>
+                </div>
+                <div>
+                    <input type="radio" id="json" name="format" value="json">
+                    <label for="json">JSON</label>
+                </div>
+                <div class="section">
+                    <label for="animal-select">Choose Animal:</label>
+                    <select id="animal-select" name="animal">
+                        <option value="dog">Dog</option>
+                        <option value="cat">Cat</option>
+                        <option value="bird">Bird</option>
+                        <option value="fish">Fish</option>
+                    </select>
+                </div>
+
+                <button class="button">Export</button>
+            </div>
+        </div>
+        <div class="section">
+            <h2>Theme</h2>
+            <span class="span"></span>
+            <div class="theme-buttons">
+                <button class="button theme-button active" data-theme="light">Light</button>
+                <button class="button theme-button" data-theme="dark">Dark</button>
+            </div>
+        </div>
+        <div class="section">
+            <h2>Language</h2>
+            <span class="span"></span>
+            <select class="language-select">
+                <option value="en">English</option>
+                <option value="es">Español</option>
+                <option value="fr">Français</option>
+            </select>
+        </div>
+        <div class="section">
+            <h2>Accessibility</h2>
+            <span class="span"></span>
+            <button class="button">Increase Font Size</button>
+            <button class="button">High Contrast Mode</button>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-top">
+            <img src="../pictures/logo.png" alt="Bestest Zoo Evr Logo">
+        </div>
+        <hr>
+        <div class="footer-bottom">
+            <p>&copy; 2023 Bestest Zoo Evr</p>
+            <ul>
+                <li><a href="#">Contact Us</a></li>
+                <li><a href="#">Privacy Policy</a></li>
+                <li><a href="#">Terms of Use</a></li>
+            </ul>
+        </div>
+    </footer>
+    <script src="js/nav.js"></script>
+</body>
+
+</html>

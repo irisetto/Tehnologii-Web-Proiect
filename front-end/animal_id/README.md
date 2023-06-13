@@ -1,2 +1,0 @@
-# Tehnologii-Web-Proiect
-# lalalalalal

@@ -24,7 +24,7 @@ const handleGetRequests = (req, res) => {
   } else if (req.url.startsWith("/login")) {
     serveView(req, res, "login.html");
   } else if (req.url.startsWith("/help")) {
-    serveView(req, res, "help.html");
+    handleHelp(req, res);
   } else if (req.url.startsWith("/about")) {
     serveView(req, res, "about.html");
   } else if (req.url.startsWith("/settings")) {
@@ -41,8 +41,6 @@ const handleGetRequests = (req, res) => {
     serveView(req, res, "forgot.html");
   } else if (req.url.startsWith("/insertCode")) {
     serveView(req, res, "code.html");
-  } else if (req.url.startsWith("/help")) {
-    handleHelp(req, res);
   } else {
     const fileUrl = "/public" + req.url;
     // let filepath = url.parse(path.__dirname + "/public" + req.url);

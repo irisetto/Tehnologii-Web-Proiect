@@ -6,7 +6,7 @@ const animalHtmlCard = (animal) => `<div class="card">
   class="card__img"
   alt="amphibian"
 />
-<h2 class="card__title">Amphibian</h2>
+<h2 class="card__title">${animal.common_name}</h2>
 <div class="card__content">
   <div class="card__sizeContainer">
     <p class="card__sizeTitle">Habitat:</p>
@@ -15,31 +15,28 @@ const animalHtmlCard = (animal) => `<div class="card">
   <div class="card__colorContainer">
     <p class="card__colorTitle">Class:</p>
     <span class="card__colorCircle" style="background-color: #fff"
-      >Amphibian</span
+      >${animal.class}</span
     >
   </div>
 </div>
-<a href="./animal.html" class="card__link">View</a>
+<a href="/animal" class="card__link">View</a>
 </div>`;
 
-const createAnimalCardFromTemplate = (animalList, animal) => {
+const createAnimalCardFromTemplate = (animal) => {
   animalsContainer.insertAdjacentHTML("beforeend", animalHtmlCard(animal));
   console.log(animal);
 };
 
 function renderAnimalCards() {
   let animalList = [];
+  animalsContainer.innerHTML = "";
   getAllAnimals().then((data) => {
     animalList = data;
-    console.log(animalList);
+    animalList.forEach((animal) => {
+      createAnimalCardFromTemplate(animal);
+    });
   });
   console.log(animalsContainer);
-  //   animalsContainer.innerHTML = "";
-  console.log(animalsContainer);
-
-  animalList.forEach((animal) => {
-    createAnimalCardFromTemplate(animalList, animal);
-  });
 }
 
 const getAllAnimals = async () => {

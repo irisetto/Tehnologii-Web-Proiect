@@ -38,3 +38,21 @@ exports.getUserWithEmail = async (email) => {
 };
 
 
+exports.insertUser = async (user) => {
+    try {
+        const { first_name, last_name, email, phone_number, password, position } = user;
+        const client = await pool.connect();
+        const querry = {
+            text: "INSERT INTO users (first_name, last_name, email, phone_number, password, occupied_position) VALUES ($1,$2,$3,$4,$5,$6)",
+            values: [first_name, last_name, email, phone_number, password, position]
+        };
+
+        await client.query(querry);
+        client.release;
+
+    } catch (err) {
+        console.error("Error executing query", err);
+    }
+};
+
+

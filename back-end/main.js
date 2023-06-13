@@ -7,8 +7,6 @@ const { getAllAni } = require("./models/animalModel");
 const server = http.createServer(async (req, res) => {
   //   const url = req.url.split("?")[0];
   handleRequest(req, res);
-  const animals = await getAllAni();
-  console.log(animals);
 });
 
 const port = 3000;

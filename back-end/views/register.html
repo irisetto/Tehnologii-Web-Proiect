@@ -6,14 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Register Page</title>
     <link rel="stylesheet" href="css/register.css" />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css?family=Montserrat"
-    />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css?family=Viga"
-    />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Viga" />
   </head>
   <body>
     <div class="container">
@@ -23,45 +17,41 @@
         <form method="post">
           <div class="inputs">
             <div class="txt_field">
-              <input type="text" required />
+              <input type="text" name="first_name" required />
               <label>First Name</label>
             </div>
 
             <div class="txt_field">
-              <input type="text" required />
+              <input type="text" name="last_name" required />
               <label>Last Name</label>
             </div>
 
             <div class="txt_field">
-              <input type="email" required />
+              <input type="email" name="email" required />
               <label>Email</label>
             </div>
 
             <div class="txt_field">
-              <input type="tel" required />
+              <input type="tel" name="phone_number" required />
               <label>Phone Number</label>
             </div>
 
             <div class="txt_field">
-              <input type="password" required />
+              <input type="password" name="password" required />
               <label>Password</label>
             </div>
 
             <div class="txt_field">
-              <input type="password" required />
+              <input type="password" name="confirm_password" required />
               <label>Confirm Password</label>
             </div>
 
             <div class="txt_field" id="middle">
-              <input type="text" required />
+              <input type="text" name="position" required />
               <label>Position</label>
             </div>
           </div>
-          <input
-            type="submit"
-            value="Register"
-            onclick="window.location.href='/login';"
-          />
+          <input type="submit" value="Register" />
           <div class="signup_link">
             Already have an account? <a href="/login">Sign in! </a>
           </div>

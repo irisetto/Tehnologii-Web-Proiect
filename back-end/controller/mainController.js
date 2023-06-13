@@ -1,6 +1,7 @@
 const fs = require("fs");
 const path = require("path");
 const url = require("url");
+const { handleRegister } = require("./register");
 
 const handleRequest = (req, res) => {
   if (req.method == "GET") {
@@ -46,7 +47,9 @@ const handleGetRequests = (req, res) => {
 };
 
 const handlePostRequests = (req, res) => {
-  res.end("salut");
+  if (req.url.startsWith("/register")) {
+    handleRegister(req, res);
+  }
 };
 
 const fileContentType = {

@@ -1,6 +1,7 @@
 const fs = require("fs");
 const path = require("path");
 const url = require("url");
+const animalsController = require("./animalsController");
 
 const handleRequest = (req, res) => {
   if (req.method == "GET") {
@@ -11,27 +12,26 @@ const handleRequest = (req, res) => {
 };
 
 const handleGetRequests = (req, res) => {
-  if (req.url == "/" || req.url == "/index") {
+  console.log(req.url);
+  if (req.url.startsWith("/api")) {
+    console.log("API");
+    handleApiRequest(req, res);
+  } else if (req.url == "/" || req.url == "/index") {
     serveView(req, res, "index.html");
   } else if (req.url.startsWith("/home")) {
     serveView(req, res, "home.html");
   } else if (req.url.startsWith("/login")) {
     serveView(req, res, "login.html");
-  }
-  else if (req.url.startsWith("/help")) {
+  } else if (req.url.startsWith("/help")) {
     serveView(req, res, "help.html");
-  }
-  else if (req.url.startsWith("/about")) {
+  } else if (req.url.startsWith("/about")) {
     serveView(req, res, "about.html");
-  }
-  else if (req.url.startsWith("/settings")) {
+  } else if (req.url.startsWith("/settings")) {
     serveView(req, res, "settings.html");
-  }
-  else if (req.url.startsWith("/animals")) {
+  } else if (req.url.startsWith("/animals")) {
     serveView(req, res, "animals.html");
-   }
-    else if (req.url.startsWith("/animal")) {
-      serveView(req, res, "animal.html");
+  } else if (req.url.startsWith("/animal")) {
+    serveView(req, res, "animal.html");
   } else if (req.url.startsWith("/register")) {
     serveView(req, res, "register.html");
   } else if (req.url.startsWith("/profile")) {
@@ -63,7 +63,11 @@ const handleGetRequests = (req, res) => {
 };
 
 const handlePostRequests = (req, res) => {
-  res.end("salut");
+  res.end("post request done");
+};
+
+const handleApiRequest = (req, res) => {
+  animalsController(req, res);
 };
 
 const fileContentType = {

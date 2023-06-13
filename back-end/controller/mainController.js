@@ -2,6 +2,7 @@ const fs = require("fs");
 const path = require("path");
 const url = require("url");
 const animalsController = require("./animalsController");
+const { handleHelp } = require("./helpController");
 
 const handleRequest = (req, res) => {
   if (req.method == "GET") {
@@ -36,6 +37,12 @@ const handleGetRequests = (req, res) => {
     serveView(req, res, "register.html");
   } else if (req.url.startsWith("/profile")) {
     serveView(req, res, "profile.html");
+  } else if (req.url.startsWith("/forgotPassword")) {
+    serveView(req, res, "forgot.html");
+  } else if (req.url.startsWith("/insertCode")) {
+    serveView(req, res, "code.html");
+  } else if (req.url.startsWith("/help")) {
+    handleHelp(req, res);
   } else {
     const fileUrl = "/public" + req.url;
     // let filepath = url.parse(path.__dirname + "/public" + req.url);
@@ -68,6 +75,7 @@ const handlePostRequests = (req, res) => {
 
 const handleApiRequest = (req, res) => {
   animalsController(req, res);
+  //res.end("salut");
 };
 
 const fileContentType = {

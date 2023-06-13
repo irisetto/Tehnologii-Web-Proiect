@@ -120,6 +120,11 @@ div #problem {
     top: -10px;
     color: hsl(112, 60%, 36%);
 }
+.txt_field#problem input:focus ~ label,
+.txt_field#problem input:valid ~ label{
+    top: -10px;
+    color: hsl(112, 60%, 36%);
+}
 input[type="submit"]{
    
     width: 15%;

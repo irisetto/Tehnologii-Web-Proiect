@@ -15,6 +15,8 @@ const handleGetRequests = (req, res) => {
     serveView(req, res, "home.html");
   } else if (req.url.startsWith("/animals")) {
     serveView(req, res, "animals.html");
+  } else if (req.url.startsWith("/register")) {
+    serveView(req, res, "register.html");
   } else if (req.url.startsWith("/profile")) {
     serveView(req, res, "profile.html");
   } else {

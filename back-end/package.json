@@ -16,6 +16,7 @@
     "nodemon": "^2.0.22"
   },
   "dependencies": {
+    "nodemailer": "^6.9.3",
     "og": "^0.0.2",
     "pg": "^8.11.0"
   }

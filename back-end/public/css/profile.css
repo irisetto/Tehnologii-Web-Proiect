@@ -3,6 +3,8 @@ body {
   margin: 0;
   padding: 0;
   overflow-x: hidden;
+  width: 100vw;
+  height: 100vh;
 }
 
 body {
@@ -44,26 +46,29 @@ body {
 ================================================================*/
 
 .form-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+ gap:10px;
+ margin: 10px;
+ padding: 0;
 }
 
 .information-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  margin: 5px;
-  margin-top: -5px;
+  margin:0;
+  padding: 0;
+  background-color: #1a8f07;
+  width: 100%;
+  border-radius: 10px;
+  box-shadow: 0px 2px 10px black;
 }
 
 .current-information {
   background-color: #1a8f07;
   padding: 20px;
   border-radius: 10px;
-  margin-bottom: 20px;
-  box-shadow: 0px 2px 10px black;
+  
+  
 }
 
 .current-information h2 {
@@ -103,8 +108,7 @@ body {
   background-color: #198f07a4;
   padding: 20px;
   border-radius: 10px;
-  margin-bottom: 20px;
-  box-shadow: 0px 2px 10px black;
+ 
 }
 
 .current-information span {
@@ -115,7 +119,7 @@ form {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 20px;
+  
   border-radius: 10px;
   width: 100%;
 }
@@ -158,10 +162,7 @@ h2 {
   color: #fff;
 }
 
-.update-information,
-.current-information {
-  flex-basis: calc(50% - 50px);
-}
+
 
 .sec-in-cont {
   display: grid;
@@ -177,33 +178,26 @@ h2 {
 .change-password-container {
   flex-direction: column;
   align-items: center;
-  background-color: #198f07a4;
+  background-color: #198f07a4 !important;
   padding: 20px;
   border-radius: 10px;
-  margin-bottom: 20px;
-  box-shadow: 0px 2px 10px black;
+  
+  
 }
 
 .submit-ticket-container {
   flex-direction: column;
   align-items: center;
-  background-color: #1a8f07;
+  background-color: #1a8f07 !important;
   padding: 20px;
   border-radius: 10px;
-  margin-bottom: 20px;
-  box-shadow: 0px 2px 10px black;
+  
+ 
 }
 
-.change-password-container,
-.submit-ticket-container {
-  flex-basis: calc(50% - 50px);
-}
 
 @media screen and (max-width: 768px) {
-  .update-information,
-  .current-information {
-    flex-basis: 100%;
-  }
+
 
   .change-password-container {
     background-color: #1a8f07;
@@ -213,41 +207,34 @@ h2 {
     background-color: #198f07a4;
   }
 
-  .change-password-container,
-  .submit-ticket-container {
-    flex-basis: 100%;
-  }
-
-  .current-information {
-    margin-right: 0;
-  }
-
-  .current-information-content {
-    display: flex;
-  }
-
-  .current-information p {
-    margin-left: 20px;
-  }
+  
 }
 
 @media screen and (max-width: 579px) {
-  .current-information-content {
-    display: block;
+  .form-container {
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    grid-template-columns: 100%;
+   
+   margin: 10px;
+   padding: 0;
   }
-
-  .current-information p {
-    font-size: 20px;
-    margin-left: 5px;
+  .information-container {
+    margin:0;
+    padding: 0;
+   
+    width: 100%;
   }
-
-  .current-information img {
-    margin-top: 20px;
-    width: 130px;
-    height: 130px;
+  
+  .submit-ticket-container {
+    flex-direction: column;
+    align-items: center;
+    background-color: #1a8f07 !important;
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: -250px;
+    
+   
   }
-
-  label {
-    font-size: 25px;
-  }
+ 
 }

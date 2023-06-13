@@ -1,6 +1,7 @@
 const fs = require("fs");
 const path = require("path");
 const url = require("url");
+const {handleHelp} = require("./helpController");
 
 const handleRequest = (req, res) => {
   if (req.method == "GET") {
@@ -36,7 +37,13 @@ const handleGetRequests = (req, res) => {
     serveView(req, res, "register.html");
   } else if (req.url.startsWith("/profile")) {
     serveView(req, res, "profile.html");
-  } else {
+  }  else if (req.url.startsWith("/forgotPassword")) {
+    serveView(req, res, "forgot.html");
+  } else if (req.url.startsWith("/insertCode")) {
+    serveView(req, res, "code.html");
+  } 
+  
+  else {
     const fileUrl = "/public" + req.url;
     // let filepath = url.parse(path.__dirname + "/public" + req.url);
     // let fileExt = filepath.pathname.split(".").pop();
@@ -63,7 +70,9 @@ const handleGetRequests = (req, res) => {
 };
 
 const handlePostRequests = (req, res) => {
-  res.end("salut");
+  //res.end("salut");
+  if(req.url.startsWith("/help"))
+  handleHelp(req,res);
 };
 
 const fileContentType = {

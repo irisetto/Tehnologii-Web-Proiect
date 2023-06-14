@@ -5,6 +5,8 @@ const { handleRegister } = require("./register");
 const { handleSendCode } = require("./forgotPass");
 const { handleInsertCode } = require("./forgotPass");
 const authenticateJWT = require("../utils/authenticateJWT");
+const { handleChangePass } = require("./forgotPass");
+
 
 exports.handleApiRequest = (req, res) => {
   if (req.method === "POST") {
@@ -16,6 +18,8 @@ exports.handleApiRequest = (req, res) => {
       handleInsertCode(req, res);
     } else if (req.url.startsWith("/api/code")) {
       handleSendCode(req, res);
+    } else if (req.url.startsWith("/api/changePass")) {
+      handleChangePass(req, res);
     } else {
       res.statusCode = 404;
       res.setHeader("Content-Type", "text/plain");
@@ -48,4 +52,5 @@ exports.handleApiRequest = (req, res) => {
     res.setHeader("Content-Type", "text/plain");
     res.end("Not Found");
   }
+
 };

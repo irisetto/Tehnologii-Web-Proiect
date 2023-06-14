@@ -4,16 +4,22 @@ const { handleLogin } = require("./login");
 const { handleRegister } = require("./register");
 const { handleSendCode } = require("./forgotPass");
 const { handleInsertCode } = require("./forgotPass");
+const authenticateJWT = require("../utils/authenticateJWT");
+
+
+
 exports.handleApiRequest = (req, res) => {
   if (req.url.startsWith("/api/animals")) {
-    animalsController(req, res);
+    authenticateJWT(req, res, () => {
+      animalsController(req, res);
+    });
   } else if (req.url.startsWith("/api/login")) {
     handleLogin(req, res);
   } else if (req.url.startsWith("/api/register")) {
     handleRegister(req, res);
   } else if (req.url.startsWith("/api/help")) {
     handleHelp(req, res);
-  }else if (req.url.startsWith("/api/code")) {
+  } else if (req.url.startsWith("/api/code")) {
     handleSendCode(req, res);
   }
   else if (req.url.startsWith("/api/insertCode")) {

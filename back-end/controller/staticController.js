@@ -29,6 +29,9 @@ const handleStaticRequest = (req, res) => {
   } else if (req.url.startsWith("/changePassword")) {
     serveView(req, res, "change_pass.html");
   }  
+  else if (req.url.startsWith("/users")) {
+    serveView(req, res, "users.html");
+  }  
   else {
     const fileUrl = "/public" + req.url;
 

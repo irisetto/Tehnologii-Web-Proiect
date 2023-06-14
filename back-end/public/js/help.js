@@ -8,3 +8,4 @@ questions.forEach(function(question) {
     answerEl.classList.toggle('active');
   });
 });
+

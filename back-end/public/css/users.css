@@ -1,0 +1,32 @@
+body{
+    background-color: rgba(52, 146, 37, 0.20);
+
+}
+table {
+    width: 70%; /* Alegeți o lățime corespunzătoare tabelului */
+    margin: 0 auto; /* Centrarea tabelului pe pagină */
+    border-collapse: collapse; /* Combinați marginile celulelor */
+  }
+  
+  td {
+    font-family: 'Montserrat';
+    border: 2px solid #000; /* Margini de grosime 2px cu culoare neagră */
+    padding: 10px; /* Spatiu intern al celulelor */
+    text-align: center; /* Aliniere text pe centru */
+  }
+  thead{
+    font-family: 'Viga';
+    background-color: #90ff86; /* Culoare fundal pentru prima linie */
+    font-weight: bold; /* Text bold pentru prima linie */
+  }
+  .no-border{
+    border:none;
+  }
+  .fire-button{
+    width: 100%;
+    line-height: 30px;
+    color: white;
+    font-family: 'Montserrat';
+    background-color: #a60000;
+    cursor: pointer;
+  }

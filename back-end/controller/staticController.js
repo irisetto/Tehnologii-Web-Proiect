@@ -1,5 +1,6 @@
 const path = require("path");
 const fs = require("fs");
+const authenticateJWT = require("../utils/authenticateJWT");
 
 const handleStaticRequest = (req, res) => {
   if (req.url == "/" || req.url == "/index") {
@@ -9,7 +10,9 @@ const handleStaticRequest = (req, res) => {
   } else if (req.url.startsWith("/login")) {
     serveView(req, res, "login.html");
   } else if (req.url.startsWith("/help")) {
-    serveView(req, res, "help.html");
+    authenticateJWT(req, res, () => {
+      serveView(req, res, "help.html");
+    });
   } else if (req.url.startsWith("/about")) {
     serveView(req, res, "about.html");
   } else if (req.url.startsWith("/settings")) {
@@ -28,11 +31,9 @@ const handleStaticRequest = (req, res) => {
     serveView(req, res, "code.html");
   } else if (req.url.startsWith("/changePassword")) {
     serveView(req, res, "change_pass.html");
-  }  
-  else if (req.url.startsWith("/users")) {
+  } else if (req.url.startsWith("/users")) {
     serveView(req, res, "users.html");
-  }  
-  else {
+  } else {
     const fileUrl = "/public" + req.url;
 
     const filepath = path.resolve("." + fileUrl);

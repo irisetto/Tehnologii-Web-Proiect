@@ -1,13 +1,3 @@
-const fs = require("fs");
-const path = require("path");
-const url = require("url");
-const { handleRegister } = require("./register");
-const { handleLogin } = require("./login");
-const animalsController = require("./animalsController");
-const { handleHelp } = require("./helpController");
-const { handleSendCode } = require("./forgotPass");
-const { handleInsertCode } = require("./forgotPass");
-const { handleChangePass } = require("./forgotPass");
 
 const handleStaticRequest = require("./staticController");
 const { handleApiRequest } = require("./apiController");

@@ -6,6 +6,8 @@ CREATE TABLE users (
     phone_number VARCHAR(20) UNIQUE NOT NULL,
     password VARCHAR(100) NOT NULL,
     occupied_position VARCHAR(100),
+    profile_picture BYTEA,
+    is_admin BOOLEAN DEFAULT false,
     created_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP
 );
 

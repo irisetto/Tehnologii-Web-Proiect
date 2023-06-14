@@ -1,6 +1,5 @@
 const pool = require("../utils/db");
 
-
 exports.getAllUsers = (async () => {
     try {
         const client = await pool.connect();
@@ -14,7 +13,6 @@ exports.getAllUsers = (async () => {
         console.error("Error execution querry", err);
     }
 });
-
 
 exports.getUserWithId = async (id) => {
     try {
@@ -36,6 +34,7 @@ exports.getUserWithId = async (id) => {
         console.error("Error executing query", err);
     }
 };
+
 exports.getUserWithEmail = async (email) => {
     try {
         const client = await pool.connect();
@@ -80,11 +79,11 @@ exports.getUserWithPhonenumber = async (phonenumber) => {
 
 exports.insertUser = async (user) => {
     try {
-        const { first_name, last_name, email, phone_number, password, position } = user;
+        const { first_name, last_name, email, phone_number, password, position, profile_picture } = user;
         const client = await pool.connect();
         const querry = {
             text: "INSERT INTO users (first_name, last_name, email, phone_number, password, occupied_position) VALUES ($1,$2,$3,$4,$5,$6)",
-            values: [first_name, last_name, email, phone_number, password, position]
+            values: [first_name, last_name, email, phone_number, password, position, profile_picture]
         };
 
         await client.query(querry);
@@ -94,6 +93,7 @@ exports.insertUser = async (user) => {
         console.error("Error executing query", err);
     }
 };
+
 exports.changePassword = async (pass,email) => {
     try {
         const client = await pool.connect();
@@ -121,6 +121,76 @@ exports.deleteUser = async (id) => {
         await client.query(querry);
         client.release;
 
+    } catch (err) {
+        console.error("Error executing query", err);
+    }
+};
+
+exports.changeFirstName = async (id, firstName) => {
+    try {
+        const client = await pool.connect();
+        const query = {
+            text: "UPDATE users SET first_name = $1 WHERE id = $2",
+            values: [firstName, id],
+        };
+        await client.query(query);
+        client.release();
+    } catch (err) {
+        console.error("Error executing query", err);
+    }
+};
+
+exports.changeLastName = async (id, lastName) => {
+    try {
+        const client = await pool.connect();
+        const query = {
+            text: "UPDATE users SET last_name = $1 WHERE id = $2",
+            values: [lastName, id],
+        };
+        await client.query(query);
+        client.release();
+    } catch (err) {
+        console.error("Error executing query", err);
+    }
+};
+
+exports.changePhoneNumber = async (id, phoneNumber) => {
+    try {
+        const client = await pool.connect();
+        const query = {
+            text: "UPDATE users SET phone_number = $1 WHERE id = $2",
+            values: [phoneNumber, id],
+        };
+        await client.query(query);
+        client.release();
+    } catch (err) {
+        console.error("Error executing query", err);
+    }
+};
+
+exports.changeEmail = async (id, email) => {
+    try {
+        const client = await pool.connect();
+        const query = {
+            text: "UPDATE users SET email = $1 WHERE id = $2",
+            values: [email, id],
+        };
+        await client.query(query);
+        client.release();
+    } catch (err) {
+        console.error("Error executing query", err);
+    }
+};
+
+exports.changeOccupiedPosition = async (id, occupiedPosition) => {
+    try {
+        const client = await pool.connect();
+        const query = {
+            text: "UPDATE users SET occupied_position = $1 WHERE id = $2",
+            values: [occupiedPosition, id],
+        };
+        await client.query(query);
+        client.release();
     } catch (err) {
         console.error("Error executing query", err);
     }

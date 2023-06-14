@@ -40,8 +40,11 @@ function renderAnimalCards() {
 }
 
 const getAllAnimals = async () => {
+  const token = localStorage.getItem("token");
+  console.log(token);
   const response = await fetch("http://localhost:3000/api/animals", {
     method: "GET",
+    headers: { Authorization: `Bearer ${token}` },
   });
   return await response.json();
 };

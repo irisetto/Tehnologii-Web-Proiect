@@ -54,6 +54,22 @@ exports.getAniParameters = async (filters) => {
   }
 };
 
+exports.getAniWithId = async (animalId) => {
+  try {
+    const client = await pool.connect();
+    const query = 'SELECT * FROM animals WHERE id = $1';
+    const values = [animalId];
+    const result = await client.query(query, values);
+    client.release();
+
+    const animal = result.rows[0];
+    return animal;
+  } catch (err) {
+    console.error('Error executing query', err);
+    throw err;
+  }
+};
+
 // const filters = {
 //     class: ["Mammal", "Reptile"]
 // };

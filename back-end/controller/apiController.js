@@ -4,6 +4,9 @@ const { handleLogin } = require("./login");
 const { handleRegister } = require("./register");
 const { handleSendCode } = require("./forgotPass");
 const { handleInsertCode } = require("./forgotPass");
+const { handleChangePass } = require("./forgotPass");
+
+
 exports.handleApiRequest = (req, res) => {
   if (req.url.startsWith("/api/animals")) {
     animalsController(req, res);
@@ -19,4 +22,7 @@ exports.handleApiRequest = (req, res) => {
   else if (req.url.startsWith("/api/insertCode")) {
     handleInsertCode(req, res);
   }
+  else if (req.url.startsWith("/api/changePass")) {
+    handleChangePass(req, res);
+}
 };

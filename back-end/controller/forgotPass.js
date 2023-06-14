@@ -1,7 +1,10 @@
 const fs = require("fs");
 const path = require("path");
+const bcrypt = require('bcrypt');
 const nodemailer = require("nodemailer");
+const { changePassword } = require("../models/userModel");
 let globalCode;
+let userEmail;
 const handleSendCode = (req, res) => {
   if (req.url === "/api/code") {
 
@@ -18,6 +21,7 @@ const handleSendCode = (req, res) => {
     console.log(code);
     console.log(email);
     globalCode=code;
+    userEmail=email;
             const transporter = nodemailer.createTransport({
               service: "gmail",
               auth: {
@@ -73,7 +77,7 @@ const handleInsertCode = (req, res) => {
           } else {
             // Codul introdus este greșit
             res.setHeader('Content-Type', 'text/html');
-            res.write('<script>alert("Codul introdus este greșit."); window.location.href = "/insertCode";</script>');
+            res.write('<script>alert("Codul introdus este gresit."); window.location.href = "/insertCode";</script>');
             res.end();
           }
               }
@@ -81,6 +85,40 @@ const handleInsertCode = (req, res) => {
           );
     }
 }
+
+const handleChangePass = (req, res) => {
+  if (req.url === "/api/changePass") {
+    let body = "";
+
+    req.on("data", (data) => {
+      body += data;
+    });
+
+    req.on("end", async () => {
+      const formData = new URLSearchParams(body);
+      const newPass = formData.get("new_password");
+      const confirmPass = formData.get("confirm_password");
+
+    
+      if (newPass === confirmPass) {
+        // parolele coincid
+        const hashedPassword = await bcrypt.hash(newPass, 10);
+          changePassword(hashedPassword,userEmail);
+       res.writeHead(302, { 'Location': '/login' });
+        res.end();
+      } else {
+        // parolele nu coincid
+        res.setHeader('Content-Type', 'text/html');
+        res.write('<script>alert("Parolele nu coincid."); window.location.href = "/changePassword";</script>');
+        res.end();
+      }
+          }
+        
+      );
+  }
+}
+
+
 function generateRandomCode(length = 6) {
     const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
     let code = '';
@@ -95,3 +133,4 @@ function generateRandomCode(length = 6) {
 
   exports.handleSendCode = handleSendCode;
   exports.handleInsertCode = handleInsertCode;
+  exports.handleChangePass = handleChangePass;

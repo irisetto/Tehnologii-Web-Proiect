@@ -7,6 +7,8 @@ const animalsController = require("./animalsController");
 const { handleHelp } = require("./helpController");
 const { handleSendCode } = require("./forgotPass");
 const { handleInsertCode } = require("./forgotPass");
+const { handleChangePass } = require("./forgotPass");
+
 const handleStaticRequest = require("./staticController");
 const { handleApiRequest } = require("./apiController");
 
@@ -31,7 +33,11 @@ const handlePostRequests = (req, res) => {
     }
       else if (req.url.startsWith("/insertCode")) {
         handleInsertCode(req, res);
-  } else res.end("post?");
+  } 
+  else if (req.url.startsWith("/changePassword")) {
+    handleChangePass(req, res);
+}
+  else res.end("post?");
 };
 
 // const handleApiRequest = (req, res) => {

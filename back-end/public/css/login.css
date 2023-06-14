@@ -113,6 +113,13 @@ input[type="submit"]:hover{
     color: #666666;
     font-family: 'Montserrat';
 }
+input[name="new_password"].mismatch,
+input[name="confirm_password"].mismatch {
+  border-radius: 15px;
+  box-shadow: 2px 2px 4px 3px rgba(255, 0, 0, 0.375) ;
+ margin:0;
+ padding: 0;
+}
 .forgot_link{
     margin: 30px 0;
     text-align: center;

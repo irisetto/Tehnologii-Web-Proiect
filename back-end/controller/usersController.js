@@ -3,7 +3,7 @@ const jwt = require("jsonwebtoken");
 
 
 const getAllUsers = async (req, res) => {
-  const users = await UsersModel.getAllUsers();
+  const users = await usersModel.getAllUsers();
   if (!users) {
     res.end("Eroare la preluarea userilor!");
     return;
@@ -15,7 +15,7 @@ const getAllUsers = async (req, res) => {
 const getUserById = async (req, res) => {
   const urlParts = req.url.split('/');
   const id = urlParts[3];
-  const user = await UsersModel.getUserWithId(id);
+  const user = await usersModel.getUserWithId(id);
   if (!user) {
     res.end("NU exista user cu acest id!");
     return;
@@ -23,7 +23,7 @@ const getUserById = async (req, res) => {
   res.statusCode = 200;
   res.end(JSON.stringify(user));
   if (req.method === 'DELETE') {
-    UsersModel.deleteUser(id)
+    usersModel.deleteUser(id)
       .then(() => {
         res.statusCode = 200;
         res.end('User deleted successfully');

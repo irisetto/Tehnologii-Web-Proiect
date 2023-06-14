@@ -4,6 +4,7 @@ submitButton.addEventListener("click", async (event) => {
   event.preventDefault();
   await validateLoginForm();
 });
+
 const validateLoginForm = async () => {
   let email = document.forms["loginForm"]["email"].value;
   let password = document.forms["loginForm"]["password"].value;
@@ -17,8 +18,13 @@ const validateLoginForm = async () => {
     },
     body: JSON.stringify(data),
   });
-  const { token } = await response.json();
-  localStorage.setItem("token", token);
 
-  window.location.href = "/home";
+  if (response.ok) {
+    const { token } = await response.json();
+    localStorage.setItem("token", token);
+    window.location.href = "/home";
+  } else {
+    const errorData = await response.json();
+    alert(errorData.error);
+  }
 };

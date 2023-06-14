@@ -37,6 +37,7 @@ const getUserById = async (req, res) => {
     res.end('Not Found');
   }
 }
+
 const usersController = async (req, res) => {
   if (req.url === "/api/users") {
     getAllUsers(req, res);

@@ -1,9 +1,5 @@
 const bcrypt = require('bcrypt');
-const fs = require('fs');
-const path = require('path');
 const user = require('../models/userModel');
-
-
 
 const handleRegister = async (req, res) => {
     let body = "";

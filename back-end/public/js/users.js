@@ -48,8 +48,11 @@ const createUserRowFromTemplate = (user) => {
   deleteButton.classList.add("fire-button");
 
   deleteButton.addEventListener("click", async () => {
+    const token = localStorage.getItem("token");
+    
     const response = await fetch(`http://localhost:3000/api/users/${user.id}`, {
       method: "DELETE",
+      headers: { Authorization: `Bearer ${token}` },
     });
     if (response.ok) {
       row.remove();
@@ -76,8 +79,10 @@ function renderUserCards() {
 }
 
 const getAllUsers = async () => {
+  const token = localStorage.getItem("token");
   const response = await fetch("http://localhost:3000/api/users", {
     method: "GET",
+    headers: { Authorization: `Bearer ${token}` },
   });
   return await response.json();
 };

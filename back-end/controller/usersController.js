@@ -10,9 +10,10 @@ const getAllUsers = async (req, res) => {
   res.statusCode = 200;
   res.end(JSON.stringify(users));
 };
-const getUserById = async (req,res) => {
+
+const getUserById = async (req, res) => {
   const urlParts = req.url.split('/');
-    const id = urlParts[3];
+  const id = urlParts[3];
   const user = await UsersModel.getUserWithId(id);
   if (!user) {
     res.end("NU exista user cu acest id!");
@@ -39,8 +40,8 @@ const getUserById = async (req,res) => {
 const usersController = async (req, res) => {
   if (req.url === "/api/users") {
     getAllUsers(req, res);
-  } else if(req.url.startsWith("/api/users/"))
-    getUserById(req,res);
+  } else if (req.url.startsWith("/api/users/"))
+    getUserById(req, res);
   else {
     res.end("nu exista api pentru acest request");
   }

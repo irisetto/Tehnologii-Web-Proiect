@@ -21,7 +21,7 @@ const authenticateJWT = (req, res, next) => {
           console.log("JWT verified successfully-:");
           const decodedToken = jwt.decode(token);
 
-          if (!decodedToken || !decodedToken.hasOwnProperty("email")) {
+          if (!decodedToken || !Object.prototype.hasOwnProperty.call(decodedToken, "email")) {
             console.error("User data not found in the JWT");
             res.writeHead(403, { "Content-Type": "application/json" });
             res.end(JSON.stringify({ error: "Forbidden" }));

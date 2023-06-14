@@ -42,8 +42,11 @@ exports.handleApiRequest = (req, res) => {
       authenticateJWT(req, res, () => {
         usersController(req, res);
       });
-    }
-    else {
+    } else if (req.url.startsWith("/api/logUser")) {
+      authenticateJWT(req, res, () => {
+        usersController(req, res);
+      });
+    } else {
       res.statusCode = 404;
       res.setHeader("Content-Type", "text/plain");
       res.end("Not Found");

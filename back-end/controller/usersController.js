@@ -1,5 +1,6 @@
+const usersModel = require("../models/userModel");
+const jwt = require("jsonwebtoken");
 
-const UsersModel = require("../models/userModel");
 
 const getAllUsers = async (req, res) => {
   const users = await UsersModel.getAllUsers();
@@ -38,12 +39,45 @@ const getUserById = async (req, res) => {
   }
 }
 
+const getLoggedInUser = async (req, res) => {
+  try {
+    const token = req.headers.authorization.split(' ')[1];
+    const decoded = jwt.decode(token);
+
+    if (!decoded) {
+      res.statusCode = 401;
+      res.end('Invalid or expired JWT');
+      return;
+    }
+
+    const email = decoded.email;
+    const user = await usersModel.getUserWithEmail(email);
+
+    if (!user) {
+      res.statusCode = 404;
+      res.end('User not found');
+      return;
+    }
+
+    res.statusCode = 200;
+    res.end(JSON.stringify(user));
+
+  } catch (err) {
+    console.error('Error decoding JWT or retrieving user', err);
+    res.statusCode = 500;
+    res.end('Internal Server Error');
+  }
+}
+
+
 const usersController = async (req, res) => {
   if (req.url === "/api/users") {
     getAllUsers(req, res);
   } else if (req.url.startsWith("/api/users/"))
     getUserById(req, res);
-  else {
+  else if (req.url === "/api/logUser") {
+    getLoggedInUser(req, res);
+  } else {
     res.end("nu exista api pentru acest request");
   }
 };

@@ -10,9 +10,7 @@ const handleStaticRequest = (req, res) => {
   } else if (req.url.startsWith("/login")) {
     serveView(req, res, "login.html");
   } else if (req.url.startsWith("/help")) {
-    authenticateJWT(req, res, () => {
-      serveView(req, res, "help.html");
-    });
+    serveView(req, res, "help.html");
   } else if (req.url.startsWith("/about")) {
     serveView(req, res, "about.html");
   } else if (req.url.startsWith("/settings")) {

@@ -23,7 +23,7 @@ const authorizeRoute = () => {
 
   const request = new XMLHttpRequest();
 
-  request.open("GET", "http://localhost:3000/verify", false); // false makes the request synchronous
+  request.open("GET", "http://localhost:3000/verify", false); 
   request.setRequestHeader("Authorization", `Bearer ${token}`);
   request.send();
 

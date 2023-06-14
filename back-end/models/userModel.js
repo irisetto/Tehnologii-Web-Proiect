@@ -1,4 +1,6 @@
 const pool = require("../utils/db");
+const fs = require('fs');
+
 
 exports.getAllUsers = (async () => {
     try {
@@ -208,4 +210,23 @@ exports.changeOccupiedPosition = async (id, occupiedPosition) => {
     } catch (err) {
         console.error("Error executing query", err);
     }
+};
+
+exports.changeProfilePicture = async (id, imagePath) => {
+  try {
+    const imageData = fs.readFileSync(imagePath);
+  
+    const base64Image = imageData.toString('base64');
+  
+    const client = await pool.connect();
+    const query = {
+      text: 'UPDATE users SET profile_picture = $1 WHERE id = $2',
+      values: [base64Image, id],
+    };
+    
+    await client.query(query);
+    client.release();
+  } catch (err) {
+    console.error('Error executing query', err);
+  }
 };

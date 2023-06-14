@@ -94,12 +94,26 @@ exports.insertUser = async (user) => {
     }
 };
 
-exports.changePassword = async (pass,email) => {
+exports.deleteUserById = async (userId) => {
+    try {
+        const client = await pool.connect();
+        const query = {
+            text: "DELETE FROM users WHERE id = $1",
+            values: [userId],
+        };
+        await client.query(query);
+        client.release();
+    } catch (err) {
+        console.error("Error executing query", err);
+    }
+}
+
+exports.changePassword = async (pass, email) => {
     try {
         const client = await pool.connect();
         const querry = {
             text: "UPDATE users SET password = $1 WHERE email = $2",
-            values: [pass,email]
+            values: [pass, email]
         };
 
         await client.query(querry);

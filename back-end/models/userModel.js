@@ -15,7 +15,6 @@ exports.getAllUsers = (async () => {
     }
 });
 
-
 exports.getUserWithEmail = async (email) => {
     try {
         const client = await pool.connect();
@@ -70,6 +69,20 @@ exports.insertUser = async (user) => {
         await client.query(querry);
         client.release;
 
+    } catch (err) {
+        console.error("Error executing query", err);
+    }
+};
+
+exports.deleteUserById = async (userId) => {
+    try {
+        const client = await pool.connect();
+        const query = {
+            text: "DELETE FROM users WHERE id = $1",
+            values: [userId],
+        };
+        await client.query(query);
+        client.release();
     } catch (err) {
         console.error("Error executing query", err);
     }

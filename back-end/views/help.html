@@ -1,137 +1,168 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Help Page</title>
-    <link rel = "stylesheet" href="css/help.css">
-    <link rel = "stylesheet" href="css/nav.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Viga">
-
-</head>
-<body>
-  <header>
-    <nav class="nav">
-        <a href="./profile" id="menu_item6"><img src="../pictures/profile_img.png" alt="profile" class="profile"></a>
+    <link rel="stylesheet" href="css/help.css" />
+    <link rel="stylesheet" href="css/nav.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Montserrat"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Viga"
+    />
+    <script src="js/authorization.js"></script>
+  </head>
+  <body>
+    <header>
+      <nav class="nav">
+        <a href="./profile" id="menu_item6"
+          ><img src="../pictures/profile_img.png" alt="profile" class="profile"
+        /></a>
         <a href="./animals" id="menu_item1">Animals</a>
         <a href="./help" id="menu_item2">Help</a>
-        <a href="./home" id="menu_item5"><img src="../pictures/zom.png" alt="zom" class="logo"></a>
+        <a href="./home" id="menu_item5"
+          ><img src="../pictures/zom.png" alt="zom" class="logo"
+        /></a>
         <a href="./settings" id="menu_item3">Settings</a>
         <a href="./about" id="menu_item4">About</a>
-        <a href="./login" id="menu_item7"><img src="../pictures/sign_out.png" alt="log" class="sign"></a>
-    </nav>
-    <div class="imgOverlay">
-        <img src="../pictures/help.jpg" id="banner" alt="banner">
+        <a href="./login" id="menu_item7"
+          ><img src="../pictures/sign_out.png" alt="log" class="sign"
+        /></a>
+      </nav>
+      <div class="imgOverlay">
+        <img src="../pictures/help.jpg" id="banner" alt="banner" />
         <div class="overlay"></div>
-    </div>
-    <button id="burger" class="open-main-nav">
+      </div>
+      <button id="burger" class="open-main-nav">
         <span class="burger"></span>
         <span class="burger-text">Menu</span>
-    </button>
+      </button>
 
-    <nav class="main-nav" id="main-nav">
+      <nav class="main-nav" id="main-nav">
         <div class="mimages-cont">
-            <a href="./profile"><img src="../pictures/profile_img.png" id="prof1" alt="profile"></a>
-            <a href="./login"><img src="../pictures/sign_out.png" id="sign1" alt="log"></a>
-       </div>
+          <a href="./profile"
+            ><img src="../pictures/profile_img.png" id="prof1" alt="profile"
+          /></a>
+          <a href="./login"
+            ><img src="../pictures/sign_out.png" id="sign1" alt="log"
+          /></a>
+        </div>
         <ul>
-            <li>
-                <p>
-                    <a href="./home">Home</a>
-                </p>
-            </li>
+          <li>
+            <p>
+              <a href="./home">Home</a>
+            </p>
+          </li>
 
-            <li>
-                <p>
-                    <a href="./help">Help</a>
-                </p>
-            </li>
-            <li>
-                <p>
-                    <a href="./animals">Animals</a>
-                </p>
-            </li>
+          <li>
+            <p>
+              <a href="./help">Help</a>
+            </p>
+          </li>
+          <li>
+            <p>
+              <a href="./animals">Animals</a>
+            </p>
+          </li>
 
-            <li>
-                <p><a href="./settings">Settings</a></p>
-            </li>
-            <li>
-                <p><a href="./about">About Us</a></p>
-            </li>
+          <li>
+            <p><a href="./settings">Settings</a></p>
+          </li>
+          <li>
+            <p><a href="./about">About Us</a></p>
+          </li>
         </ul>
-    </nav>
-</header>
+      </nav>
+    </header>
     <div class="container">
-     
-          <div class="help">
-            <h1>Frequent questions</h1>
-          <span class="span"></span>
-            <ul class="questions">
-              <li>
-                <div class="question">Where can I change the theme?</div>
-                <div class="answer">From the menu above press SETTINGS and there you will find the theme option.</div>
-              </li>
-              <li>
-                <div class="question">Where can I find my profile?</div>
-                <div class="answer">In the menu above, top left, you can see a person icon. Press on that and there it is your profile.</div>
-              </li>
-              <li>
-                <div class="question">How to sign out?</div>
-                <div class="answer">In the menu above, top right, you can see a door with an arrow icon. Press on that and you will sign out.</div>
-              </li>
-              <li>
-                <div class="question">How can I see just the existing birds in the zoo?</div>
-                <div class="answer">First option: Press on the logo in the middle of the menu to access home. From there you can press directly on the birds category.
-                            <br>    Second option: Go to ANIMALS from the menu above and choose class -> birds from the filter section.
-                </div>
-              </li>
-              <li>
-                <div class="question">Where is the menu for the home page?</div>
-                <div class="answer">In the menu above you can see the logo of our zoo in the middle, press on that and you will reach home.</div>
-              </li>
-              
-            </ul>
+      <div class="help">
+        <h1>Frequent questions</h1>
         <span class="span"></span>
-        <h3>You don’t find your problem here? Fill in the form and we’ll reach out  to you!</h3>
-          <form action = "/api/help" method="post">
-              <div class="inputs">
-                <div class="txt_field" >
-                    <input type ="email" name="email" required>
-                    <label>Email</label>
-                </div>
-    
-                <div class="txt_field" id="problem">
-                    <input type ="text" name="problem" required>
-                    <label>Type your problem here...</label>
-                </div>
-                <input type="submit" value = "Submit">
-              </div>
+        <ul class="questions">
+          <li>
+            <div class="question">Where can I change the theme?</div>
+            <div class="answer">
+              From the menu above press SETTINGS and there you will find the
+              theme option.
+            </div>
+          </li>
+          <li>
+            <div class="question">Where can I find my profile?</div>
+            <div class="answer">
+              In the menu above, top left, you can see a person icon. Press on
+              that and there it is your profile.
+            </div>
+          </li>
+          <li>
+            <div class="question">How to sign out?</div>
+            <div class="answer">
+              In the menu above, top right, you can see a door with an arrow
+              icon. Press on that and you will sign out.
+            </div>
+          </li>
+          <li>
+            <div class="question">
+              How can I see just the existing birds in the zoo?
+            </div>
+            <div class="answer">
+              First option: Press on the logo in the middle of the menu to
+              access home. From there you can press directly on the birds
+              category. <br />
+              Second option: Go to ANIMALS from the menu above and choose class
+              -> birds from the filter section.
+            </div>
+          </li>
+          <li>
+            <div class="question">Where is the menu for the home page?</div>
+            <div class="answer">
+              In the menu above you can see the logo of our zoo in the middle,
+              press on that and you will reach home.
+            </div>
+          </li>
+        </ul>
+        <span class="span"></span>
+        <h3>
+          You don’t find your problem here? Fill in the form and we’ll reach out
+          to you!
+        </h3>
+        <form action="/api/help" method="post">
+          <div class="inputs">
+            <div class="txt_field">
+              <input type="email" name="email" required />
+              <label>Email</label>
+            </div>
 
-            </form>
-      
+            <div class="txt_field" id="problem">
+              <input type="text" name="problem" required />
+              <label>Type your problem here...</label>
+            </div>
+            <input type="submit" value="Submit" />
+          </div>
+        </form>
       </div>
-    
-    <footer>
-        <div class="footer-top">
-            <img src="../pictures/zom.png" alt="Bestest Zoo Evr Logo">
-        </div>
-        <hr>
-        <div class="footer-bottom">
-            <p>&copy; 2023 Bestest Zoo Evr</p>
-            <ul>
-                <li><a href="#">Contact Us</a></li>
-                <li><a href="#">Privacy Policy</a></li>
-                <li><a href="#">Terms of Use</a></li>
-            </ul>
-        </div>
-    </footer>
-    
-</div>
 
- <script src="js/help.js">
- </script>
- <script src="js/nav.js"></script>
-</body>
+      <footer>
+        <div class="footer-top">
+          <img src="../pictures/zom.png" alt="Bestest Zoo Evr Logo" />
+        </div>
+        <hr />
+        <div class="footer-bottom">
+          <p>&copy; 2023 Bestest Zoo Evr</p>
+          <ul>
+            <li><a href="#">Contact Us</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Terms of Use</a></li>
+          </ul>
+        </div>
+      </footer>
+    </div>
+
+    <script src="js/help.js"></script>
+    <script src="js/nav.js"></script>
+  </body>
 </html>

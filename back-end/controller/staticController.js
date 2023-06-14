@@ -18,6 +18,8 @@ const handleStaticRequest = (req, res) => {
   } else if (req.url.startsWith("/animals")) {
     serveView(req, res, "animals.html");
   } else if (req.url.startsWith("/animal")) {
+    const id = req.url.split("?id=")[1].replace(/%20/g, " ");
+    console.log(id);
     serveView(req, res, "animal.html");
   } else if (req.url.startsWith("/register")) {
     serveView(req, res, "register.html");

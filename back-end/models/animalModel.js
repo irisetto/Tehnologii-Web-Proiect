@@ -78,8 +78,20 @@ exports.getAniWithId = async (animalId) => {
 
 exports.insertAnimal = async (animal) => {
   try {
-    const { animalClass, common_name, scientific_name, habitat, lifestyle, diet,
-      weight, height, region, lifespan, skin_type, about_text } = animal;
+    const {
+      animalClass,
+      common_name,
+      scientific_name,
+      habitat,
+      lifestyle,
+      diet,
+      weight,
+      height,
+      region,
+      lifespan,
+      skin_type,
+      about_text,
+    } = animal;
 
     const client = await pool.connect();
     const query = `INSERT INTO animals ("class",common_name,scientific_name,habitat,lifestyle,diet,weight,height,region,lifespan,skin_type,about_text) VALUES (
@@ -97,7 +109,7 @@ exports.insertAnimal = async (animal) => {
       region,
       lifespan,
       skin_type,
-      about_text
+      about_text,
     ];
 
     await client.query(query, values);
@@ -127,14 +139,31 @@ exports.insertAnimal = async (animal) => {
 exports.deleteAnimal = async (animalId) => {
   try {
     const client = await pool.connect();
-    const query = 'DELETE FROM animals WHERE id = $1';
+    const query = "DELETE FROM animals WHERE id = $1";
     const values = [animalId];
     await client.query(query, values);
     client.release();
 
-    console.log('Animal deleted successfully.');
+    console.log("Animal deleted successfully.");
   } catch (err) {
-    console.error('Error executing query', err);
+    console.error("Error executing query", err);
+    throw err;
+  }
+};
+
+exports.getAnimalById = async (animalId) => {
+  try {
+    const client = await pool.connect();
+    const query = "SELECT * FROM animals WHERE id = $1";
+    const values = [animalId];
+    const result = await client.query(query, values);
+
+    client.release();
+
+    const animal = result.rows.map((row) => row)[0];
+    return animal;
+  } catch (err) {
+    console.error("Error executing query", err);
     throw err;
   }
 };

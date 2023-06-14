@@ -19,7 +19,7 @@ const animalHtmlCard = (animal) => `<div class="card">
     >
   </div>
 </div>
-<a href="/animal" class="card__link">View</a>
+<a href="/animal?id=${animal.id}" class="card__link">View</a>
 </div>`;
 
 const createAnimalCardFromTemplate = (animal) => {

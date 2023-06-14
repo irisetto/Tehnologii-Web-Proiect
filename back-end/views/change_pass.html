@@ -14,12 +14,13 @@
       rel="stylesheet"
       href="https://fonts.googleapis.com/css?family=Viga"
     />
+    
   </head>
   <body>
     <div class="container">
       <div class="form">
         <img class="logo" src="../pictures/zom.png" alt="logo" />
-        <form method="post" action="/api/login">
+        <form method="post" action="/api/changePass" >
           <div class="inputs">
             <div class="txt_field">
               <input type="password" name="new_password" required />
@@ -37,5 +38,43 @@
       </div>
       <img class="picture" src="../pictures/lemur2.png" alt="lemur" />
     </div>
+    <script>
+      // Selectați elementele de input pentru parole
+      const newPasswordInput = document.querySelector('input[name="new_password"]');
+      const confirmPasswordInput = document.querySelector('input[name="confirm_password"]');
+    
+      // Adăugați un eveniment de ascultare pentru schimbarea valorii input-urilor
+      newPasswordInput.addEventListener('input', validatePasswords);
+      confirmPasswordInput.addEventListener('input', validatePasswords);
+    
+      // Funcția de validare a potrivirii parolelor
+      function validatePasswords() {
+        const newPassword = newPasswordInput.value;
+        const confirmPassword = confirmPasswordInput.value;
+    
+        if (newPassword === confirmPassword) {
+    
+      newPasswordInput.classList.remove('mismatch');
+      confirmPasswordInput.classList.remove('mismatch');
+    } else {
+
+      newPasswordInput.classList.add('mismatch');
+      confirmPasswordInput.classList.add('mismatch');
+    
+    }
+      }
+  //     function checkSubmit() {
+  //   const newPassword = newPasswordInput.value;
+  //   const confirmPassword = confirmPasswordInput.value;
+
+  //   if (newPassword === confirmPassword) {
+  //     // Redirecționare către pagina de login
+  //     window.location.href = '/login';
+  //   } else {
+  //     // Afișare alertă că parolele nu sunt egale
+  //     alert('Parolele nu coincid!');
+  //   }
+  // }
+    </script>
   </body>
 </html>

@@ -1,4 +1,4 @@
-INSERT INTO animals(class, common_name, scientific_name, habitat, lifestyle, diet, weight, height, region, lifespan, skin_type, about_text) 
+INSERT INTO animals(animal_class, common_name, scientific_name, habitat, lifestyle, diet, weight, height, region, lifespan, skin_type, about_text) 
 VALUES 
 ('Mammal', 'Elephant', 'Elephas maximus', 'Grasslands', 'Diurnal', 'Herbivore', 6000, 3.3, 'Africa', 70, 'Thick Skin', 'The elephant is the largest terrestrial mammal.'),
 

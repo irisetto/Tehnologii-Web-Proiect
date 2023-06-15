@@ -16,7 +16,7 @@ exports.getAllAni = async () => {
 exports.getAllAniNames = async () => {
   try {
     const client = await pool.connect();
-    const result = await client.query("SELECT common_name FROM animals");
+    const result = await client.query("SELECT id,common_name FROM animals");
     client.release();
 
     const animalNamesArray = result.rows.map((row) => row);
@@ -92,7 +92,7 @@ exports.getAniWithId = async (animalId) => {
 };
 
 // const filters = {
-//     class: ["Mammal", "Reptile"]
+//     animal_class: ["Mammal", "Reptile"]
 // };
 // const animals = await animale.getAniParameters(filters);
 // console.log(animals);
@@ -100,7 +100,7 @@ exports.getAniWithId = async (animalId) => {
 exports.insertAnimal = async (animal) => {
   try {
     const {
-      animalClass,
+      animal_class,
       common_name,
       scientific_name,
       habitat,
@@ -115,11 +115,11 @@ exports.insertAnimal = async (animal) => {
     } = animal;
 
     const client = await pool.connect();
-    const query = `INSERT INTO animals ("class",common_name,scientific_name,habitat,lifestyle,diet,weight,height,region,lifespan,skin_type,about_text) VALUES (
+    const query = `INSERT INTO animals (animal_class,common_name,scientific_name,habitat,lifestyle,diet,weight,height,region,lifespan,skin_type,about_text) VALUES (
         $1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12);`;
 
     const values = [
-      animalClass,
+      animal_class,
       common_name,
       scientific_name,
       habitat,
@@ -188,3 +188,4 @@ exports.getAnimalById = async (animalId) => {
     throw err;
   }
 };
+

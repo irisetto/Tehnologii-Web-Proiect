@@ -16,7 +16,7 @@ CREATE TABLE users (
 
 CREATE TABLE animals (
   id SERIAL PRIMARY KEY,
-  class VARCHAR(100),
+  animal_class VARCHAR(100),
   common_name VARCHAR(100),
   scientific_name VARCHAR(100),
   habitat VARCHAR(100),
@@ -29,5 +29,6 @@ CREATE TABLE animals (
   skin_type VARCHAR(100),
   about_text TEXT
 );
+
 
 --select * from animals;

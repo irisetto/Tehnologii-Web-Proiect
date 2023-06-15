@@ -36,7 +36,12 @@ exports.handleApiRequest = (req, res) => {
       authenticateJWT(req, res, () => {
         settingsController(req, res);
       });
-    } else {
+    } else if (req.url == "/api/animals/filter") {
+      authenticateJWT(req, res, () => {
+        animalsController(req, res);
+      });
+    }
+    else {
       res.statusCode = 404;
       res.setHeader("Content-Type", "text/plain");
       res.end("Not Found");
@@ -64,6 +69,11 @@ exports.handleApiRequest = (req, res) => {
       });
     } else if (req.url === "/api/animalNames") {
       authenticateJWT(req, res, () => {
+        //console.log("heeheheheh");
+        animalsController(req, res);
+      });
+    } else if (req.url.match(/\/api\/animalJSON\/([0-9]+)/)) {
+      authenticateJWT(req, res, () => {
         animalsController(req, res);
       });
     } else {
@@ -82,9 +92,18 @@ exports.handleApiRequest = (req, res) => {
       res.end("Not Found");
     }
   } else if (req.method === "PUT") {
-    res.statusCode = 404;
-    res.setHeader("Content-Type", "text/plain");
-    res.end("Not Found");
+    if (req.url === "/api/insertAni") {
+      authenticateJWT(req, res, () => {
+        console.log("Insert Ani")
+        animalsController(req, res);
+      });
+    }
+    else {
+      res.statusCode = 404;
+      res.setHeader("Content-Type", "text/plain");
+      res.end("Not Found");
+    }
+
   } else {
     res.statusCode = 404;
     res.setHeader("Content-Type", "text/plain");

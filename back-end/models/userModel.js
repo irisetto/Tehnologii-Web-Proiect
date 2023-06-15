@@ -84,7 +84,7 @@ exports.insertUser = async (user) => {
         const { first_name, last_name, email, phone_number, password, position, profile_picture } = user;
         const client = await pool.connect();
         const querry = {
-            text: "INSERT INTO users (first_name, last_name, email, phone_number, password, occupied_position) VALUES ($1,$2,$3,$4,$5,$6)",
+            text: "INSERT INTO users (first_name, last_name, email, phone_number, password, occupied_position,profile_picture) VALUES ($1,$2,$3,$4,$5,$6,$7)",
             values: [first_name, last_name, email, phone_number, password, position, profile_picture]
         };
 
@@ -107,6 +107,46 @@ exports.deleteUserById = async (userId) => {
         client.release();
     } catch (err) {
         console.error("Error executing query", err);
+    }
+}
+
+exports.getPrefferedMode = async (email) => {
+    try {
+        const client = await pool.connect();
+        const querry = {
+            text: "SELECT mode_preference FROM users WHERE email = $1",
+            values: [email]
+        };
+        const result = await client.query(querry);
+        client.release();
+
+        if (result.rows.length > 0) {
+            const user = result.rows[0];
+            return user;
+        } else {
+            return null;
+        }
+
+    } catch (err) {
+        console.error("Error execution querry", err);
+    }
+}
+
+exports.setPreferredMode = async (email, mode) => {
+    try {
+        const client = await pool.connect();
+        const query = {
+            text: "UPDATE users SET mode_preference = $1 WHERE email = $2",
+            values: [mode, email]
+        };
+        await client.query(query);
+        client.release();
+
+        return true;
+
+    } catch (err) {
+        console.error("Error executing query", err);
+        return false; 
     }
 }
 
@@ -213,20 +253,20 @@ exports.changeOccupiedPosition = async (id, occupiedPosition) => {
 };
 
 exports.changeProfilePicture = async (id, imagePath) => {
-  try {
-    const imageData = fs.readFileSync(imagePath);
-  
-    const base64Image = imageData.toString('base64');
-  
-    const client = await pool.connect();
-    const query = {
-      text: 'UPDATE users SET profile_picture = $1 WHERE id = $2',
-      values: [base64Image, id],
-    };
-    
-    await client.query(query);
-    client.release();
-  } catch (err) {
-    console.error('Error executing query', err);
-  }
+    try {
+        const imageData = fs.readFileSync(imagePath);
+
+        const base64Image = imageData.toString('base64');
+
+        const client = await pool.connect();
+        const query = {
+            text: 'UPDATE users SET profile_picture = $1 WHERE id = $2',
+            values: [base64Image, id],
+        };
+
+        await client.query(query);
+        client.release();
+    } catch (err) {
+        console.error('Error executing query', err);
+    }
 };

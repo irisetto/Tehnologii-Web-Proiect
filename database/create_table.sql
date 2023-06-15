@@ -8,6 +8,7 @@ CREATE TABLE users (
     occupied_position VARCHAR(100),
     profile_picture BYTEA,
     is_admin BOOLEAN DEFAULT false,
+    mode_preference VARCHAR(10) NOT NULL DEFAULT 'light',
     created_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP
 );
 

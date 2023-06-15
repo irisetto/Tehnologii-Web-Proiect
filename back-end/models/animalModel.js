@@ -13,6 +13,19 @@ exports.getAllAni = async () => {
   }
 };
 
+exports.getAllAniNames = async () => {
+  try {
+    const client = await pool.connect();
+    const result = await client.query("SELECT common_name FROM animals");
+    client.release();
+
+    const animalNamesArray = result.rows.map((row) => row);
+    return animalNamesArray;
+  } catch (err) {
+    console.error("Error execution querry", err);
+  }
+}
+
 exports.getAniParameters = async (filters) => {
   try {
     const client = await pool.connect();

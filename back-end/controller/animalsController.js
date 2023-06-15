@@ -11,6 +11,16 @@ const getAllAnimals = async (req, res) => {
   res.end(JSON.stringify(animals));
 };
 
+const getAllAnimalNames = async (req, res) => {
+  const animals = await AnimalsModel.getAllAni();
+  if (!animals) {
+    res.end("Ai belit carasu, nu merge sa ia animalele din baza de date");
+    return;
+  }
+  res.statusCode = 200;
+  res.end(JSON.stringify(animals));
+};
+
 const getAnimalById = async (req, res) => {
   const id = req.url.split("/")[3];
   const animal = await AnimalsModel.getAnimalById(id);
@@ -49,6 +59,8 @@ const animalsController = async (req, res) => {
     getAllAnimals(req, res);
   } else if (req.url.match(/\/api\/animals\/([0-9]+)/)) {
     getAnimalById(req, res);
+  } else if (req.url === "/api/animalNames") {
+    getAllAnimalNames(req, res);
   } else if (req.url == "/api/animals/filter") {
     getFilteredAnimals(req, res);
   } else {

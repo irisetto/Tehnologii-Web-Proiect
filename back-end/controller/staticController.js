@@ -57,6 +57,7 @@ const handleStaticRequest = (req, res) => {
     });
   }
 };
+
 const serveView = (req, res, filePath) => {
   res.statusCode = 200;
   res.setHeader("Content-Type", "text/html");

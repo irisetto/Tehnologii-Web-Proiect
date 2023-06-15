@@ -69,6 +69,35 @@ const getLoggedInUser = async (req, res) => {
   }
 }
 
+const getLoggedInTheme = async (req, res) => {
+  try {
+    const token = req.headers.authorization.split(' ')[1];
+    const decoded = jwt.decode(token);
+
+    if (!decoded) {
+      res.statusCode = 401;
+      res.end('Invalid or expired JWT');
+      return;
+    }
+
+    const email = decoded.email;
+    const theme = await usersModel.getPrefferedMode(email);
+
+    if (!theme) {
+      res.statusCode = 404;
+      res.end('User not found');
+      return;
+    }
+
+    res.statusCode = 200;
+    res.end(JSON.stringify(theme));
+  } catch (err) {
+    console.error('Error decoding JWT or retrieving user', err);
+    res.statusCode = 500;
+    res.end('Internal Server Error');
+  }
+
+}
 
 const usersController = async (req, res) => {
   if (req.url === "/api/users") {
@@ -77,9 +106,12 @@ const usersController = async (req, res) => {
     getUserById(req, res);
   else if (req.url === "/api/logUser") {
     getLoggedInUser(req, res);
+  } else if (req.url === "/api/logUserTheme") {
+    getLoggedInTheme(req, res);
   } else {
     res.end("nu exista api pentru acest request");
   }
 };
+
 
 module.exports = usersController;

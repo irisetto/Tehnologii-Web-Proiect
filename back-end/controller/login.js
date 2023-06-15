@@ -35,7 +35,9 @@ const handleLogin = (req, res) => {
         res.end(JSON.stringify({ error: "Invalid password" }));
         return;
       } else {
-        const token = jwt.sign({ email }, "SuperSecretKey124", {
+
+        const theme = userLog.mode_preference;
+        const token = jwt.sign({ email, theme }, "SuperSecretKey124", {
           expiresIn: "1h",
         });
         res.writeHead(200, { "Content-Type": "application/json" });

@@ -59,8 +59,12 @@ settings
   .body--dark--mode {
     background-color: rgb(0, 63, 5);
   }
-  .font--dark--mode{
-    color: white !important;
+   
+  .body--dark--mode h2 {
+    color: antiquewhite;
+  }
+  .body--dark--mode h1 {
+    color: antiquewhite;
   }
 .container {
     margin-top: 10px;

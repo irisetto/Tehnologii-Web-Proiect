@@ -1,10 +1,14 @@
-// // Bunch of Variables
 
 const body = document.querySelector('body'),
-  //       title         = document.querySelector('.title'),
-  //       icon          = document.querySelectorAll('.fas'),
   toggleWrapper = document.querySelector('.toggle__wrapper'),
   toggleButton = document.querySelector('.toggle__button');
+
+  const savedTheme = localStorage.getItem('theme');
+  if (savedTheme === 'dark') {
+    toggleButton.classList.add('toogle--movement');
+    body.classList.add('body--dark--mode');
+  }
+  
 
 // // Event Listeners
 

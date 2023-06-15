@@ -6,7 +6,19 @@ body {
   padding: 0;
   margin: 0;
 }
+.body--dark--mode {
+  background-color: rgb(0, 63, 5);
+}
+.body--dark--mode label{
+  color: antiquewhite;
+}
+.body--dark--mode h2{
+  color: antiquewhite;
+}
+.body--dark--mode div.q-a{
+background-color: #167508;
 
+}
 :root {
   --color1: #232323;
   --color2: #fff;
@@ -30,6 +42,7 @@ body {
 span,
 h2 {
   font-family: "Viga";
+
 }
 .card {
   background-color: var(--color1);
@@ -102,9 +115,9 @@ h2 {
   transition: top var(--transitionDuration);
 
   position: absolute;
-  left: 50%;
+  
   top: 83%;
-  transform: translateX(-50%);
+
 }
 
 .card:hover .card__title {
@@ -223,6 +236,7 @@ h2 {
 }
 .animals__left__container {
   width: 20%;
+  margin-top: 30px;
 }
 .animals__right__container {
   width: 70%;
@@ -285,6 +299,7 @@ h2 {
   padding: 15px;
   margin: 15px;
   font-size: 1.3rem;
+ 
 }
 
 input[type="checkbox"] {

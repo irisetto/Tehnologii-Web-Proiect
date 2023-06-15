@@ -11,6 +11,9 @@ const { handleChangePass } = require("./forgotPass");
 const authenticateJWT = require("../utils/authenticateJWT");
 const { handleChangePasswordProfile } = require("./profileController.js");
 const { handleSaveInfo } = require("./profileController.js");
+const { handleUpdateProfilePicture} = require("./profileController.js");
+
+
 
 exports.handleApiRequest = (req, res) => {
   if (req.method === "POST") {
@@ -29,6 +32,10 @@ exports.handleApiRequest = (req, res) => {
     }else if (req.url.startsWith("/api/saveInfo")) {
       authenticateJWT(req, res, () => {
         handleSaveInfo(req, res);
+      });
+    }  else if (req.url.startsWith("/api/updateProfilePicture")) {
+      authenticateJWT(req, res, () => {
+        handleUpdateProfilePicture(req, res);
       });
     }  
     else if (req.url.startsWith("/api/help")) {

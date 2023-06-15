@@ -96,6 +96,8 @@ exports.insertUser = async (user) => {
     }
 };
 
+
+
 exports.deleteUserById = async (userId) => {
     try {
         const client = await pool.connect();
@@ -251,22 +253,38 @@ exports.changeOccupiedPosition = async (id, occupiedPosition) => {
         console.error("Error executing query", err);
     }
 };
-
-exports.changeProfilePicture = async (id, imagePath) => {
+exports.changeProfilePicture = async (imageData,userId) => {
     try {
-        const imageData = fs.readFileSync(imagePath);
-
-        const base64Image = imageData.toString('base64');
-
+       
         const client = await pool.connect();
-        const query = {
-            text: 'UPDATE users SET profile_picture = $1 WHERE id = $2',
-            values: [base64Image, id],
+        const querry = {
+            text: "UPDATE users SET profile_picture=$1 WHERE id=$2",
+            values: [imageData,userId]
         };
 
-        await client.query(query);
-        client.release();
+        await client.query(querry);
+        client.release;
+
     } catch (err) {
-        console.error('Error executing query', err);
+        console.error("Error executing query", err);
     }
 };
+
+// exports.changeProfilePicture = async (id, imagePath) => {
+//     try {
+//         const imageData = fs.readFileSync(imagePath);
+
+//         const base64Image = imageData.toString('base64');
+
+//         const client = await pool.connect();
+//         const query = {
+//             text: 'UPDATE users SET profile_picture = $1 WHERE id = $2',
+//             values: [base64Image, id],
+//         };
+
+//         await client.query(query);
+//         client.release();
+//     } catch (err) {
+//         console.error('Error executing query', err);
+//     }
+// };

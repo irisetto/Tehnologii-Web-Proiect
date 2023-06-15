@@ -7,6 +7,7 @@ const {
   changeEmail,
   changePhoneNumber,
   changeOccupiedPosition,
+  changeProfilePicture,
 } = require("../models/userModel");
 const jwt = require("jsonwebtoken");
 
@@ -75,6 +76,7 @@ const handleSaveInfo = (req, res) => {
       const email = jsonBody.email;
       const phone_number = jsonBody.phone;
       const occupied_position = jsonBody.position;
+      
       //alta metoda de a prelua userul autentificat
       const authHeader = req.headers.authorization;
       const token = authHeader.split(" ")[1];
@@ -82,19 +84,9 @@ const handleSaveInfo = (req, res) => {
       const userEmail = decodedToken.email;
       const user = await getUserWithEmail(userEmail);
       //
-
-      console.log(
-        first_name.length +
-          " " +
-          last_name.length +
-          " " +
-          phone_number.length +
-          " " +
-          email.length +
-          " " +
-          occupied_position.length
-      );
-
+     // const formData = jsonBody.formData;
+    //  await changeProfilePicture(imageBuffer,user.id);
+  
       if (first_name.length>0) {
         changeFirstName(user.id, first_name);
       }
@@ -119,5 +111,29 @@ const handleSaveInfo = (req, res) => {
     });
   }
 };
+
+const handleUpdateProfilePicture = (req, res) => {
+  const chunks = [];
+
+  req.on("data", (chunk) => {
+    chunks.push(chunk);
+  });
+
+  req.on("end", async () => {
+    const byteArray = Buffer.concat(chunks);
+    const authHeader = req.headers.authorization;
+    const token = authHeader.split(" ")[1];
+    const decodedToken = jwt.decode(token);
+    const userEmail = decodedToken.email;
+    const user = await getUserWithEmail(userEmail);
+    await changeProfilePicture(byteArray,user.id);
+
+    res.statusCode = 200;
+    res.end("Image received and processed successfully");
+  });
+}
+
 exports.handleChangePasswordProfile = handleChangePasswordProfile;
 exports.handleSaveInfo = handleSaveInfo;
+exports.handleUpdateProfilePicture = handleUpdateProfilePicture;
+

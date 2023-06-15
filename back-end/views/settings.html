@@ -91,27 +91,30 @@
       <div id="export-panel" class="hidden">
         <h2 class="setting-title">Export Animals</h2>
         <span class="span"></span>
-        <p>Select a file format:</p>
-        <div>
-          <input type="radio" id="xml" name="format" value="xml" />
-          <label for="xml">XML</label>
-        </div>
-        <div>
-          <input type="radio" id="json" name="format" value="json" />
-          <label for="json">JSON</label>
-        </div>
-        <div class="section">
-          <label for="animal-select">Choose Animal:</label>
-          <select id="animal-select" name="animal">
-            <option value="dog">Dog</option>
-            <option value="cat">Cat</option>
-            <option value="bird">Bird</option>
-            <option value="fish">Fish</option>
-          </select>
-        </div>
+        <form id="export-form">
+          <p>Select a file format:</p>
+          <div>
+            <input type="radio" id="xml" name="format" value="xml" />
+            <label for="xml">XML</label>
+          </div>
+          <div>
+            <input type="radio" id="json" name="format" value="json" />
+            <label for="json">JSON</label>
+          </div>
+          <div class="section">
+            <label for="animal-select">Choose Animal:</label>
+            <select id="animal-select" name="animal">
+              <option value="dog">Dog</option>
+              <option value="cat">Cat</option>
+              <option value="bird">Bird</option>
+              <option value="fish">Fish</option>
+            </select>
+          </div>
 
-        <button class="button">Export</button>
+          <button type="submit" class="button">Export</button>
+        </form>
       </div>
+
     </div>
     <div class="section">
       <h2 class="setting-title">Theme</h2>

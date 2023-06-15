@@ -9,7 +9,7 @@ const { handleInsertCode } = require("./forgotPass");
 const authenticateJWT = require("../utils/authenticateJWT");
 const { handleChangePass } = require("./forgotPass");
 const { handleChangePasswordProfile } = require("./profileController.js");
-const { logUserPass } = require("./profileController.js");
+const { handleSaveInfo } = require("./profileController.js");
 
 exports.handleApiRequest = (req, res) => {
   if (req.method === "POST") {
@@ -25,7 +25,12 @@ exports.handleApiRequest = (req, res) => {
       authenticateJWT(req, res, () => {
         handleChangePasswordProfile(req, res);
       });
-    } else if (req.url.startsWith("/api/help")) {
+    }else if (req.url.startsWith("/api/saveInfo")) {
+      authenticateJWT(req, res, () => {
+        handleSaveInfo(req, res);
+      });
+    }  
+    else if (req.url.startsWith("/api/help")) {
       authenticateJWT(req, res, () => {
         handleHelp(req, res);
       });

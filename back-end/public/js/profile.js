@@ -1,10 +1,12 @@
-
-const submitButton = document.getElementById("submit_button_pass");
+//pt butoanele de submit sa nu dea textul pe afara
 const submitInputs = document.querySelectorAll('input[type="submit"]');
 submitInputs.forEach(input => {
   const textWidth = input.scrollWidth+parseInt(getComputedStyle(input).paddingRight);
   input.style.width = `${textWidth}px`;
 });
+
+//submit button change password
+const submitButton = document.getElementById("submit_button_pass");
 
 submitButton.addEventListener("click", async (event) => {
   event.preventDefault();
@@ -44,27 +46,38 @@ getLoggedUser()
       });
 
 };
-  // async function changePassword (){
-  //   const currentPasswordInput = document.querySelector('input[name="current-password"]');
-  // const currentPasswordValue = currentPasswordInput.value;
-  // let userPass;
-  // console.log(currentPasswordValue);
-  // // getLoggedUser()
-  // //     .then((user) => {
-  // //       console.log('User:', user);
-  // //   userPass = user.password;
-  // //   })
-  // //     .catch(error => {
-  // //       console.error('Request failed:', error);
-  // //     });
-  // // const token = localStorage.getItem("token");
-  // //  fetch(`/api/logUserPass/${userPass}`, {
-  // //   method: "POST",
-  // //   headers: { Authorization: `Bearer ${token}` },
-  // // });
+//submit button save information
+const submitButtonInfo = document.getElementById("submit_button_info");
 
-  // }
+submitButtonInfo.addEventListener("click", async (event) => {
+  event.preventDefault();
+  await validateSaveInfoForm();
+});
 
+const validateSaveInfoForm = async () => {
+  let first_name = document.forms["info_form"]["first-name"].value;
+  let last_name = document.forms["info_form"]["last-name"].value;
+  let phone = document.forms["info_form"]["phone-number"].value;
+  let email = document.forms["info_form"]["email"].value;
+  let position = document.forms["info_form"]["occupied-position"].value;
+
+  let data = { first_name,last_name,phone,email,position };
+  const token = localStorage.getItem("token");
+
+  const response = await fetch("/api/saveInfo", {
+    method: "POST",
+    headers: { Authorization: `Bearer ${token}` },
+    body: JSON.stringify(data),
+  });
+
+  if (response.ok) {
+    const responseData = await response.json();
+    alert(JSON.stringify(responseData));
+   
+  } 
+window.location.reload();
+};
+//preia userul logat
   const getLoggedUser = async() =>{
     const token = localStorage.getItem("token");
 
@@ -78,6 +91,8 @@ getLoggedUser()
           throw new Error('Error: ' + response.status);
         }
   }
+
+  //afisarea informatiilor dinamic despre user
   function getUserFromServer() {
     getLoggedUser()
       .then((user) => {

@@ -5,7 +5,7 @@ exports.generateAnimalJson = (animal) => {
   const jsonContent = JSON.stringify(animal, null, 2);
 
   return {
-    fileName: `${animal.name}.json`,
+    fileName: `${animal.common_name}.json`,
     fileContent: jsonContent,
   };
 };

@@ -2,10 +2,10 @@ const jwt = require("jsonwebtoken");
 
 const authenticateJWT = (req, res, next) => {
   const authHeader = req.headers.authorization;
-  console.log(authHeader);
+  //console.log(authHeader);
   if (authHeader) {
     const token = authHeader.split(" ")[1];
-    console.log(token);
+    //console.log(token);
 
     if (!token || token === "") {
       console.error("Empty token");
@@ -18,7 +18,7 @@ const authenticateJWT = (req, res, next) => {
           res.writeHead(403, { "Content-Type": "application/json" });
           res.end(JSON.stringify({ error: "Forbidden" }));
         } else {
-          console.log("JWT verified successfully-:");
+          //console.log("JWT verified successfully-:");
           const decodedToken = jwt.decode(token);
 
           if (!decodedToken || !Object.prototype.hasOwnProperty.call(decodedToken, "email")) {

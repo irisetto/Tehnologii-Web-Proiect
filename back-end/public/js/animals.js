@@ -17,7 +17,7 @@ const animalHtmlCard = (animal) => `<div class="card">
   <div class="card__colorContainer">
     <p class="card__colorTitle">Class:</p>
     <span class="card__colorCircle" style="background-color: #fff"
-      >${animal.class}</span
+      >${animal.animal_class}</span
     >
   </div>
 </div>

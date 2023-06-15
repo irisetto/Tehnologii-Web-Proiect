@@ -86,7 +86,9 @@
     <div class="section">
       <h2 class="setting-title">Animals Import/Export</h2>
       <span class="span"></span>
-      <button class="button">Import Animals</button>
+      <button class="button" id="import-toggle">Import Animals</button>
+      <input type="file" id="file-input" accept=".json, .xml" style="display: none;" />
+
       <button class="button" id="export-toggle">Export Animals</button>
       <div id="export-panel" class="hidden">
         <h2 class="setting-title">Export Animals</h2>
@@ -104,10 +106,6 @@
           <div class="section">
             <label for="animal-select">Choose Animal:</label>
             <select id="animal-select" name="animal">
-              <option value="dog">Dog</option>
-              <option value="cat">Cat</option>
-              <option value="bird">Bird</option>
-              <option value="fish">Fish</option>
             </select>
           </div>
 

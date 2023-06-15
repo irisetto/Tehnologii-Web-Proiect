@@ -4,16 +4,17 @@ const nodemailer = require("nodemailer");
 const handleHelp = (req, res) => {
   if (req.url === "/api/help") {
     let body = "";
-
-    req.on("data", (data) => {
-      body += data;
+    let jsonBody = "";
+    req.on("data", (chunk) => {
+      body += chunk;
+      jsonBody = JSON.parse(body);
     });
-
-    req.on("end", () => {
-      const formData = new URLSearchParams(body);
-      const email = formData.get("email");
-      const problem = formData.get("problem");
-
+  
+    req.on("end", async () => {
+      const email = jsonBody.email;
+      const problem = jsonBody.problema;
+      console.log(email, problem, "EMAIL+PROBLEMA");
+  
       fs.appendFile(
         path.join(__dirname, "submissions.txt"),
         `Email: ${email}, Problem: ${problem}\n`,
@@ -45,7 +46,7 @@ const handleHelp = (req, res) => {
               }
             });
 
-            res.writeHead(302, { Location: "/help" });
+            res.writeHead(200, { Location: "/help" });
             res.end();
           }
         }

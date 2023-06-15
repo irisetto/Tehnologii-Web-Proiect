@@ -1,5 +1,6 @@
 const usersModel = require("../models/userModel");
 const jwt = require("jsonwebtoken");
+const bcrypt = require('bcrypt');
 
 
 const getAllUsers = async (req, res) => {
@@ -77,7 +78,8 @@ const usersController = async (req, res) => {
     getUserById(req, res);
   else if (req.url === "/api/logUser") {
     getLoggedInUser(req, res);
-  } else {
+  } 
+  else {
     res.end("nu exista api pentru acest request");
   }
 };

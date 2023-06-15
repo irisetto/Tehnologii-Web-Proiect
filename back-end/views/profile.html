@@ -12,6 +12,8 @@
   <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Viga" />
   <script src="js/authorization.js"></script>
+  <script src="js/profile.js" defer></script>
+
   <style>
     body {
       font-family: "Montserrat", sans-serif;
@@ -22,38 +24,6 @@
       text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.8);
     }
   </style>
-  <script>
-    function getUserFromServer() {
-      const token = localStorage.getItem("token");
-
-      fetch('/api/logUser', {
-        method: 'GET',
-        headers: { Authorization: `Bearer ${token}` },
-      })
-        .then(response => {
-          if (response.ok) {
-            return response.json();
-          } else {
-            throw new Error('Error: ' + response.status);
-          }
-        })
-        .then(user => {
-          console.log('User:', user);
-          document.getElementById('current-first-name').textContent = user.first_name;
-          document.getElementById('current-last-name').textContent = user.last_name;
-          document.getElementById('current-phone-number').textContent = user.phone_number;
-          document.getElementById('current-email').textContent = user.email;
-          document.getElementById('current-occupied-position').textContent = user.occupied_position;
-        })
-        .catch(error => {
-          console.error('Request failed:', error);
-        });
-    }
-    window.onload = function () {
-      getUserFromServer();
-    };
-  </script>
-
   <title>Profile</title>
 </head>
 
@@ -161,7 +131,7 @@
       </div>
     </form>
 
-    <form>
+    <form name="changepass_form">
       <div class="information-container">
         <div class="change-password-container">
           <h2>Change Password</h2>
@@ -170,32 +140,32 @@
           <input type="password" id="current-password" name="current-password" required />
 
           <label for="new-password">New Password:</label>
-          <input type="password" id="new-password" name="new-password" required />
+          <input type="password" id="new-password" name="new-password"  required/>
 
           <label for="confirm-new-password">Confirm New Password:</label>
           <input type="password" id="confirm-new-password" name="confirm-new-password" required />
           <div class="sub-container">
-            <button type="submit">Change Password</button>
+            <input type="submit" id="submit_button_pass" value="Change Password"/>
           </div>
         </div>
       </div>
     </form>
 
-    <form>
+    <form >
       <div class="information-container">
         <div class="submit-ticket-container">
           <h2>Submit Ticket</h2>
 
-          <label for="current-password">Section:</label>
-          <input type="text" id="current-password1" name="current-password" required />
+          <label for="section">Section:</label>
+          <input type="text" id="section" name="section" required />
 
-          <label for="new-password">Manager:</label>
-          <input type="text" id="new-password1" name="new-password" required />
+          <label for="manager">Manager:</label>
+          <input type="text" id="manager" name="manager" required />
 
-          <label for="confirm-new-password">Short Description:</label>
-          <input type="text" id="confirm-new-password1" name="confirm-new-password" required />
+          <label for="desc">Short Description:</label>
+          <input type="text" id="desc" name="desc" required />
           <div class="sub-container">
-            <button type="submit">Submit</button>
+            <input type="submit" id="submit_button_ticket" value="Submit Ticket"/>
           </div>
         </div>
       </div>

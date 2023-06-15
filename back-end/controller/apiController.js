@@ -9,9 +9,10 @@ const { handleSendCode } = require("./forgotPass");
 const { handleInsertCode } = require("./forgotPass");
 const { handleChangePass } = require("./forgotPass");
 const authenticateJWT = require("../utils/authenticateJWT");
+const { handleChangePasswordProfile } = require("./profileController.js");
+const { logUserPass } = require("./profileController.js");
 
 exports.handleApiRequest = (req, res) => {
-
   if (req.method === "POST") {
     if (req.url.startsWith("/api/login")) {
       handleLogin(req, res);
@@ -21,14 +22,21 @@ exports.handleApiRequest = (req, res) => {
       handleInsertCode(req, res);
     } else if (req.url.startsWith("/api/code")) {
       handleSendCode(req, res);
-    } else if (req.url.startsWith("/api/changePass")) {
+    } else if (req.url.startsWith("/api/changePasswordProfile")) {
+      authenticateJWT(req, res, () => {
+        handleChangePasswordProfile(req, res);
+      });
+    } else if (req.url.startsWith("/api/help")) {
+      authenticateJWT(req, res, () => {
+        handleHelp(req, res);
+      });
+    } else if (req.url === "/api/changePass") {
       handleChangePass(req, res);
     } else if (req.url.startsWith("/api/theme")) {
       authenticateJWT(req, res, () => {
         settingsController(req, res);
       });
-    }
-    else {
+    } else {
       res.statusCode = 404;
       res.setHeader("Content-Type", "text/plain");
       res.end("Not Found");
@@ -42,8 +50,7 @@ exports.handleApiRequest = (req, res) => {
       authenticateJWT(req, res, () => {
         handleHelp(req, res);
       });
-    }
-    else if (req.url.startsWith("/api/users")) {
+    } else if (req.url.startsWith("/api/users")) {
       authenticateJWT(req, res, () => {
         usersController(req, res);
       });
@@ -51,17 +58,15 @@ exports.handleApiRequest = (req, res) => {
       authenticateJWT(req, res, () => {
         usersController(req, res);
       });
-    } else
-      if (req.url === "/api/logUserTheme") {
-        authenticateJWT(req, res, () => {
-          usersController(req, res);
-        });
-      }
-      else {
-        res.statusCode = 404;
-        res.setHeader("Content-Type", "text/plain");
-        res.end("Not Found");
-      }
+    } else if (req.url === "/api/logUserTheme") {
+      authenticateJWT(req, res, () => {
+        usersController(req, res);
+      });
+    } else {
+      res.statusCode = 404;
+      res.setHeader("Content-Type", "text/plain");
+      res.end("Not Found");
+    }
   } else if (req.method === "DELETE") {
     if (req.url.startsWith("/api/users")) {
       authenticateJWT(req, res, () => {
@@ -72,7 +77,6 @@ exports.handleApiRequest = (req, res) => {
       res.setHeader("Content-Type", "text/plain");
       res.end("Not Found");
     }
-
   } else if (req.method === "PUT") {
     res.statusCode = 404;
     res.setHeader("Content-Type", "text/plain");
@@ -81,7 +85,5 @@ exports.handleApiRequest = (req, res) => {
     res.statusCode = 404;
     res.setHeader("Content-Type", "text/plain");
     res.end("Not Found");
-
   }
-
 };

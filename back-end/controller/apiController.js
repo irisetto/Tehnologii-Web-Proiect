@@ -9,9 +9,7 @@ const { handleInsertCode } = require("./forgotPass");
 const authenticateJWT = require("../utils/authenticateJWT");
 const { handleChangePass } = require("./forgotPass");
 
-
 exports.handleApiRequest = (req, res) => {
-
   if (req.method === "POST") {
     if (req.url.startsWith("/api/login")) {
       handleLogin(req, res);
@@ -23,6 +21,8 @@ exports.handleApiRequest = (req, res) => {
       handleSendCode(req, res);
     } else if (req.url.startsWith("/api/changePass")) {
       handleChangePass(req, res);
+    } else if (req.url == "/api/animals/filter") {
+      animalsController(req, res);
     } else {
       res.statusCode = 404;
       res.setHeader("Content-Type", "text/plain");
@@ -37,8 +37,7 @@ exports.handleApiRequest = (req, res) => {
       authenticateJWT(req, res, () => {
         handleHelp(req, res);
       });
-    }
-    else if (req.url.startsWith("/api/users")) {
+    } else if (req.url.startsWith("/api/users")) {
       authenticateJWT(req, res, () => {
         usersController(req, res);
       });
@@ -61,7 +60,6 @@ exports.handleApiRequest = (req, res) => {
       res.setHeader("Content-Type", "text/plain");
       res.end("Not Found");
     }
-
   } else if (req.method === "PUT") {
     res.statusCode = 404;
     res.setHeader("Content-Type", "text/plain");
@@ -70,7 +68,5 @@ exports.handleApiRequest = (req, res) => {
     res.statusCode = 404;
     res.setHeader("Content-Type", "text/plain");
     res.end("Not Found");
-
   }
-
 };

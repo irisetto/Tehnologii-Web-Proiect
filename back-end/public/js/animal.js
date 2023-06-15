@@ -83,7 +83,6 @@ const animalHtmlCard = (animal) => `<section class="axolotl">
 
 const createAnimalCardFromTemplate = (animal) => {
   animalContainer.insertAdjacentHTML("beforeend", animalHtmlCard(animal));
-  console.log(animal);
 };
 
 function renderAnimalPage() {

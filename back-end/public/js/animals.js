@@ -27,17 +27,38 @@ const animalHtmlCard = (animal) => `<div class="card">
 const createAnimalCardFromTemplate = (animal) => {
   animalsContainer.insertAdjacentHTML("beforeend", animalHtmlCard(animal));
 };
-
-function renderAnimalCards() {
-  let animalList = [];
+let filters = {};
+const renderAnimalCards = async (filters) => {
+  let currentAnimalList = await getAllAnimals();
   animalsContainer.innerHTML = "";
-  getAllAnimals().then((data) => {
-    animalList = data;
-    animalList.forEach((animal) => {
-      createAnimalCardFromTemplate(animal);
-    });
+  if (filters) {
+    if (Object.keys(filters).length > 0) {
+      currentAnimalList = await getFilteredAnimals(filters);
+    }
+  }
+  currentAnimalList.forEach((animal) => {
+    createAnimalCardFromTemplate(animal);
   });
-}
+};
+
+const filterContainer = document.querySelector(".animals__left__container");
+filterContainer.addEventListener("change", function (e) {
+  filters = {};
+  if (e.target.type === "checkbox") {
+    let qaElems = document.querySelectorAll(".q-a");
+
+    qaElems.forEach(function (qaElem) {
+      let key = qaElem.querySelector(".toggle-box + label").textContent;
+      let values = Array.from(
+        qaElem.querySelectorAll('input[name="' + key + '"]:checked')
+      ).map((input) => input.nextElementSibling.textContent.trim());
+      if (values.length > 0) {
+        filters[key] = values;
+      }
+    });
+    renderAnimalCards(filters);
+  }
+});
 
 const getAllAnimals = async () => {
   const token = localStorage.getItem("token");
@@ -47,38 +68,6 @@ const getAllAnimals = async () => {
   });
   return await response.json();
 };
-
-renderAnimalCards();
-
-let filters = {};
-const labels = document.querySelectorAll(".q-a>input");
-labels.forEach((label) => {
-  label.addEventListener("change", () => {
-    const myNodeList = label.parentElement.querySelectorAll("input");
-    const myLabelList = label.parentElement.querySelectorAll("label");
-    const [categoryName, ..._2] = myLabelList;
-    const [_, ...checkedRawInputs] = myNodeList;
-    const checkedInputs = Array.from(checkedRawInputs).filter(
-      (input) => input.checked
-    );
-    const labelNames = checkedInputs
-      .map(function (input) {
-        let associatedLabel;
-        if (input.parentElement.tagName.toLowerCase() === "label") {
-          associatedLabel = input.parentElement;
-        } else {
-          associatedLabel = document.querySelector(`label[for="${input.id}"]`);
-        }
-        return associatedLabel ? associatedLabel.textContent : null;
-      })
-      .filter(Boolean);
-    filters[`${categoryName.textContent}`] = labelNames.map((item) =>
-      item.trim()
-    );
-    console.log(filters);
-    // renderFilteredAnimals(filters);
-  });
-});
 
 const getFilteredAnimals = async (filters) => {
   const token = localStorage.getItem("token");
@@ -91,12 +80,7 @@ const getFilteredAnimals = async (filters) => {
     body: JSON.stringify(filters),
   });
   const result = await response.json();
-  console.log(result);
   return result;
 };
 
-const renderFilteredAnimals = async (filters) => {
-  console.log("filters", filters);
-  const result = await getFilteredAnimals(filters);
-  console.log("resultat", result);
-};
+renderAnimalCards(filters);

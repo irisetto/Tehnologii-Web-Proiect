@@ -24,31 +24,23 @@ exports.getAniParameters = async (filters) => {
       const filterKeys = Object.keys(filters);
       if (filterKeys.length > 0) {
         query += " WHERE";
-        var BreakException = {};
-        try {
-          filterKeys.forEach((key, index) => {
-            if (filters[key].length < 1) {
-              throw BreakException;
-            }
-            if (Array.isArray(filters[key])) {
-              const paramNames = filters[key]
-                .map(() => `$${paramIndex++}`)
-                .join(", ");
-              params.push(...filters[key]);
-              query += ` ${key} = ANY(ARRAY[${paramNames}])`;
-            } else {
-              params.push(filters[key]);
-              query += ` ${key} = $${paramIndex++}`;
-            }
 
-            if (index < filterKeys.length - 1) {
-              query += " AND";
-            }
-          });
-        } catch (e) {
-          if (e !== BreakException) throw e;
-          return [];
-        }
+        filterKeys.forEach((key, index) => {
+          if (Array.isArray(filters[key])) {
+            const paramNames = filters[key]
+              .map(() => `$${paramIndex++}`)
+              .join(", ");
+            params.push(...filters[key]);
+            query += ` ${key} = ANY(ARRAY[${paramNames}])`;
+          } else {
+            params.push(filters[key]);
+            query += ` ${key} = $${paramIndex++}`;
+          }
+
+          if (index < filterKeys.length - 1) {
+            query += " AND";
+          }
+        });
       }
     }
     const result = await client.query(query, params);
@@ -65,7 +57,7 @@ exports.getAniParameters = async (filters) => {
 exports.getAniWithId = async (animalId) => {
   try {
     const client = await pool.connect();
-    const query = "SELECT * FROM animals WHERE id = $1";
+    const query = 'SELECT * FROM animals WHERE id = $1';
     const values = [animalId];
     const result = await client.query(query, values);
     client.release();
@@ -73,7 +65,7 @@ exports.getAniWithId = async (animalId) => {
     const animal = result.rows[0];
     return animal;
   } catch (err) {
-    console.error("Error executing query", err);
+    console.error('Error executing query', err);
     throw err;
   }
 };

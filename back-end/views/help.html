@@ -130,7 +130,7 @@
           You don’t find your problem here? Fill in the form and we’ll reach out
           to you!
         </h3>
-        <form name="help_form">
+        <form action="/api/help" method="post">
           <div class="inputs">
             <div class="txt_field">
               <input type="email" name="email" required />
@@ -141,7 +141,7 @@
               <input type="text" name="problem" required />
               <label>Type your problem here...</label>
             </div>
-            <input type="submit" id="submit_button" value="Submit" />
+            <input type="submit" value="Submit" />
           </div>
         </form>
       </div>

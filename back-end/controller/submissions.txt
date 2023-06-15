@@ -7,9 +7,3 @@ Email: tcohman@yahoo.ro, Problem: gg
 Email: null, Problem: null
 Email: tcohman@yahoo.ro, Problem: alo
 Email: universul@gmail.com, Problem: problema e dan
-Email: tcohman@yahoo.ro, Problem: aaa
-Email: tcohman@yahoo.ro, Problem: abcc
-Email: tcohman@yahoo.ro, Problem: ddddd
-Email: tcohman@yahoo.ro, Problem: fff
-Email: cohmanteodora@gmail.coma, Problem: da
-Email: cohmanteodora@gmail.com, Problem: ada

@@ -133,18 +133,7 @@ input {
   max-width: 95%;
   box-sizing: border-box;
 }
-input[type="submit"] {
-  margin-top: 20px;
-  padding: 10px 10px;
-  width: 30%;
-text-align: center;
-  background-color: #0ded14;
-  color: white;
-  
-  border-radius: 5px;
-  border: none;
-  cursor: pointer;
-}
+
 label {
   margin-left: 10px;
   font-weight: bold;
@@ -243,7 +232,7 @@ h2 {
     background-color: #1a8f07 !important;
     padding: 20px;
     border-radius: 10px;
-    margin-top: -240px;
+    margin-top: -250px;
     
    
   }

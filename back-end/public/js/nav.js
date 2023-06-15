@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 const burgerMenu = document.getElementById("burger");
 const navMenu = document.getElementById("main-nav");
 burgerMenu.addEventListener("click", (e) => {

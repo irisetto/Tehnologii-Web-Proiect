@@ -11,7 +11,7 @@ const animalHtmlCard = (animal) => `<section class="axolotl">
 <div class="tag_area">
   <div class="tag">
     CLASS:
-    <p>${animal.class}</p>
+    <p>${animal.animal_class}</p>
   </div>
   <div class="tag">
     DIET:

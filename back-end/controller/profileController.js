@@ -9,6 +9,9 @@ const {
   changeOccupiedPosition,
   changeProfilePicture,
 } = require("../models/userModel");
+const {
+  insertTicket
+} = require("../models/ticketModel");
 const jwt = require("jsonwebtoken");
 
 const handleChangePasswordProfile = (req, res) => {
@@ -133,7 +136,45 @@ const handleUpdateProfilePicture = (req, res) => {
   });
 }
 
+const handleSubmitTicket= (req, res) => {
+  if (req.url === "/api/submitTicket") {
+    let body = "";
+    let jsonBody = "";
+    req.on("data", (chunk) => {
+      body += chunk;
+      jsonBody = JSON.parse(body);
+    });
+
+    req.on("end", async () => {
+      const section = jsonBody.section;
+      const manager = jsonBody.manager;
+      const desc = jsonBody.desc;
+      //alta metoda de a prelua userul autentificat
+      const authHeader = req.headers.authorization;
+      const token = authHeader.split(" ")[1];
+      const decodedToken = jwt.decode(token);
+      const userEmail = decodedToken.email;
+      const user = await getUserWithEmail(userEmail);
+      //
+     // const formData = jsonBody.formData;
+    //  await changeProfilePicture(imageBuffer,user.id);
+  
+      
+    insertTicket({
+      section: section,
+      manager: manager,
+      desc: desc,
+      userId: user.id
+  });
+      
+      res.writeHead(200, { "Content-Type": "application/json" });
+      res.end(JSON.stringify("Informațiile au fost actualizate cu succes"));
+    });
+  }
+};
+
 exports.handleChangePasswordProfile = handleChangePasswordProfile;
 exports.handleSaveInfo = handleSaveInfo;
 exports.handleUpdateProfilePicture = handleUpdateProfilePicture;
+exports.handleSubmitTicket = handleSubmitTicket;
 

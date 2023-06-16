@@ -13,6 +13,7 @@ const authenticateJWT = require("../utils/authenticateJWT");
 const { handleChangePasswordProfile } = require("./profileController.js");
 const { handleSaveInfo } = require("./profileController.js");
 const { handleUpdateProfilePicture } = require("./profileController.js");
+const { handleSubmitTicket } = require("./profileController.js");
 
 
 
@@ -37,6 +38,10 @@ exports.handleApiRequest = (req, res) => {
     } else if (req.url.startsWith("/api/updateProfilePicture")) {
       authenticateJWT(req, res, () => {
         handleUpdateProfilePicture(req, res);
+      });
+    } else if (req.url.startsWith("/api/submitTicket")) {
+      authenticateJWT(req, res, () => {
+        handleSubmitTicket(req, res);
       });
     }
     else if (req.url.startsWith("/api/help")) {

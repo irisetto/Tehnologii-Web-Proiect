@@ -43,3 +43,11 @@ CREATE TABLE animal_images (
   image2 BYTEA,
   image3 BYTEA
 );
+
+CREATE TABLE tickets (
+  id SERIAL PRIMARY KEY,
+  zoo_section VARCHAR(100),
+  manager VARCHAR(100),
+  description TEXT,
+  id_user INT
+);

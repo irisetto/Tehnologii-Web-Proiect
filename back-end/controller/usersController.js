@@ -101,7 +101,8 @@ const getLoggedInTheme = async (req, res) => {
 const usersController = async (req, res) => {
   if (req.url === "/api/users") {
     getAllUsers(req, res);
-  } else if (req.url.startsWith("/api/users/")) getUserById(req, res);
+  } else if (req.url.startsWith("/api/users/"))
+   getUserById(req, res);
   else if (req.url === "/api/logUser") {
     getLoggedInUser(req, res);
   } else if (req.url === "/api/logUserTheme") {

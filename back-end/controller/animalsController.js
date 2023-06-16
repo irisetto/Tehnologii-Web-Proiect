@@ -1,6 +1,6 @@
 // const getDynamicAnimalsPage()
 const AnimalsModel = require("../models/animalModel");
-const { generateAnimalJson } = require("../utils/generateJSON")
+const { generateAnimalJson } = require("../utils/generateJSON");
 
 const getAllAnimals = async (req, res) => {
   const animals = await AnimalsModel.getAllAni();
@@ -33,6 +33,23 @@ const getAnimalById = async (req, res) => {
   }
   res.statusCode = 200;
   res.end(JSON.stringify(animal));
+};
+
+const getAnimalCategories = async (req, res) => {
+  const diet = await AnimalsModel.getDistinctDiets();
+  const habitat = await AnimalsModel.getDistinctHabitats();
+  const lifestyle = await AnimalsModel.getDistinctLifestyles();
+  const region = await AnimalsModel.getDistinctRegions();
+  const skin_type = await AnimalsModel.getDistinctSkinTypes();
+
+  const data = { diet, habitat, lifestyle, region, skin_type };
+
+  if (!diet || !habitat || !lifestyle || !region || !skin_type) {
+    res.end("Ai belit carasu, nu merge sa ia categoriile din baza de date");
+    return;
+  }
+  res.statusCode = 200;
+  res.end(JSON.stringify(data));
 };
 
 const getFilteredAnimals = async (req, res) => {
@@ -68,8 +85,8 @@ const getJSONAnimal = async (req, res) => {
   const generatedJson = generateAnimalJson(animal);
   const { fileName, fileContent } = generatedJson;
 
-  res.setHeader('Content-Type', 'application/json');
-  res.setHeader('Content-Disposition', `attachment; filename="${fileName}"`);
+  res.setHeader("Content-Type", "application/json");
+  res.setHeader("Content-Disposition", `attachment; filename="${fileName}"`);
   res.statusCode = 200;
   res.end(JSON.stringify({ fileName, fileContent }));
 };
@@ -105,7 +122,6 @@ const insertA = async (req, res) => {
   }
 };
 
-
 const animalsController = async (req, res) => {
   if (req.url === "/api/animals") {
     getAllAnimals(req, res);
@@ -115,16 +131,16 @@ const animalsController = async (req, res) => {
     //console.log("Animals")
     getAllAnimalNames(req, res);
   } else if (req.url == "/api/animals/filter") {
-    console.log('asdasdasd')
     getFilteredAnimals(req, res);
+  } else if (req.url == "/api/animals/categories") {
+    getAnimalCategories(req, res);
   } else if (req.url.match(/\/api\/animalJSON\/([0-9]+)/)) {
     console.log("animal json");
     getJSONAnimal(req, res);
   } else if (req.url === "/api/insertAni") {
     console.log("insertAni");
     insertA(req, res);
-  }
-  else {
+  } else {
     res.end("nu exista api pentru acest request");
   }
 };

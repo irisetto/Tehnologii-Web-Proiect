@@ -91,6 +91,37 @@ const validateSaveInfoForm = async () => {
   }
   window.location.reload();
 };
+
+//submit button submit ticket
+const submitButtonTicket = document.getElementById("submit_button_ticket");
+
+submitButtonTicket.addEventListener("click", async (event) => {
+  event.preventDefault();
+  await validateSubmitTicketForm();
+});
+
+const validateSubmitTicketForm = async () => {
+
+  let section = document.forms["tickets_form"]["section"].value;
+  let manager = document.forms["tickets_form"]["manager"].value;
+  let desc = document.forms["tickets_form"]["desc"].value;
+  
+  let data = { section, manager, desc };
+  const token = localStorage.getItem("token");
+
+  const response = await fetch("/api/submitTicket", {
+    method: "POST",
+    headers: { Authorization: `Bearer ${token}` },
+    body: JSON.stringify(data),
+  });
+  
+  if (response.ok) {
+    const responseData = await response.json();
+    alert(JSON.stringify(responseData));
+  }
+  window.location.reload();
+};
+
 //preia userul logat
 const getLoggedUser = async () => {
   const token = localStorage.getItem("token");

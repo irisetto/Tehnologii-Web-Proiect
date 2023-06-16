@@ -32,3 +32,10 @@ CREATE TABLE animals (
 
 
 --select * from animals;
+CREATE TABLE tickets (
+  id SERIAL PRIMARY KEY,
+  zoo_section VARCHAR(100),
+  manager VARCHAR(100),
+  description TEXT,
+  id_user INT
+);

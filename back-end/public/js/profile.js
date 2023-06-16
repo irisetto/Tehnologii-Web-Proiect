@@ -14,6 +14,7 @@ submitButton.addEventListener("click", async (event) => {
   await validateChangePassForm();
 });
 let userPass;
+let userEmail;
 const validateChangePassForm = async () => {
   let currentPass = document.forms["changepass_form"]["current-password"].value;
   let newPass = document.forms["changepass_form"]["new-password"].value;

@@ -4,7 +4,7 @@ const handleVerifyRequest = (req, res) => {
   const authHeader = req.headers.authorization;
   if (authHeader) {
     const token = authHeader.split(" ")[1];
-    console.log("token", token);
+    //console.log("token", token);
     if (token === "null") {
       res.writeHead(401, { "Content-Type": "application/json" });
       res.end(JSON.stringify({ result: false }));

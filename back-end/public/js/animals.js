@@ -29,6 +29,13 @@ const createAnimalCardFromTemplate = (animal) => {
 };
 let filters = {};
 const renderAnimalCards = async (filters) => {
+  const pickedAnimalCategory = new URLSearchParams(window.location.search).get(
+    "category"
+  );
+  if (pickedAnimalCategory) {
+    window.history.replaceState({}, document.title, "/animals");
+    filters = { animal_class: pickedAnimalCategory };
+  }
   let currentAnimalList = await getAllAnimals();
   animalsContainer.innerHTML = "";
   if (filters) {

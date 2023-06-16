@@ -57,11 +57,7 @@ submitButtonInfo.addEventListener("click", async (event) => {
 });
 
 const validateSaveInfoForm = async () => {
-  const fileInput = document.getElementById("profile-picture");
-  const file = fileInput.files[0];
-  const byteArray = await imageToByteArray(file);
-  console.log(byteArray);
-
+ 
   let first_name = document.forms["info_form"]["first-name"].value;
   let last_name = document.forms["info_form"]["last-name"].value;
   let phone = document.forms["info_form"]["phone-number"].value;
@@ -76,6 +72,12 @@ const validateSaveInfoForm = async () => {
     headers: { Authorization: `Bearer ${token}` },
     body: JSON.stringify(data),
   });
+  const fileInput = document.getElementById("profile-picture");
+  const file = fileInput.files[0];
+  if( file !== undefined) {
+  const byteArray = await imageToByteArray(file);
+  console.log(byteArray);
+
   const responseImage = await fetch("/api/updateProfilePicture", {
     method: "POST",
     headers: {
@@ -84,7 +86,7 @@ const validateSaveInfoForm = async () => {
     },
     body: byteArray,
   });
-
+  }
   if (response.ok) {
     const responseData = await response.json();
     alert(JSON.stringify(responseData));

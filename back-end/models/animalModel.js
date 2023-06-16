@@ -37,33 +37,42 @@ exports.getAniParameters = async (filters) => {
       const filterKeys = Object.keys(filters);
       if (filterKeys.length > 0) {
         query += " WHERE";
-        var BreakException = {};
-        try {
-          filterKeys.forEach((key, index) => {
-            if (filters[key].length < 1) {
-              throw BreakException;
-            }
-            if (Array.isArray(filters[key])) {
-              const paramNames = filters[key]
-                .map(() => `$${paramIndex++}`)
-                .join(", ");
-              params.push(...filters[key]);
-              query += ` ${key} = ANY(ARRAY[${paramNames}])`;
-            } else {
-              params.push(filters[key]);
-              query += ` ${key} = $${paramIndex++}`;
+
+        filterKeys.forEach((key, index) => {
+          if (Array.isArray(filters[key]) && filters[key].length > 0) {
+            const paramNames = filters[key]
+              .map(() => `$${paramIndex++}`)
+              .join(", ");
+            params.push(...filters[key]);
+            query += ` ${key} = ANY(ARRAY[${paramNames}])`;
+
+          } else if (key === "weight" || key === "height" || key === "lifespan") {
+            const rangeFilter = filters[key];
+            if (rangeFilter.min !== undefined) {
+              params.push(rangeFilter.min);
+              query += ` ${key} >= $${paramIndex++}`;
+
+              if(rangeFilter.max !== undefined) {
+                query +=  " AND";
+              }
             }
 
-            if (index < filterKeys.length - 1) {
-              query += " AND";
+            if (rangeFilter.max !== undefined) {
+              params.push(rangeFilter.max);
+              query += ` ${key} <= $${paramIndex++}`;
             }
-          });
-        } catch (e) {
-          if (e !== BreakException) throw e;
-          return [];
-        }
+          } else if (filters[key]) {
+            params.push(filters[key]);
+            query += ` ${key} = $${paramIndex++}`;
+          }
+
+          if (index < filterKeys.length - 1) {
+            query += " AND";
+          }
+        });
       }
     }
+
     const result = await client.query(query, params);
     client.release();
 
@@ -74,8 +83,10 @@ exports.getAniParameters = async (filters) => {
     throw err;
   }
 };
+
 // const filters = {
-//     animal_class: ["Mammal", "Reptile"]
+//     "animal_class" : ["Mammal", "Reptile"],
+//     "weight": { "max" : 1000 , "min":0}
 // };
 // const animals = await animale.getAniParameters(filters);
 // console.log(animals);

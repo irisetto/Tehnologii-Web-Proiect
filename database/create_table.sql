@@ -27,8 +27,19 @@ CREATE TABLE animals (
   region VARCHAR(100),
   lifespan INTEGER,
   skin_type VARCHAR(100),
+  animal_status VARCHAR(100),
+  fun_fact1 TEXT,
+  fun_fact2 TEXT,
   about_text TEXT
 );
 
 
 --select * from animals;
+
+CREATE TABLE animal_images (
+  id SERIAL PRIMARY KEY,
+  animal_id INTEGER REFERENCES animals(id),
+  image1 BYTEA,
+  image2 BYTEA,
+  image3 BYTEA
+);

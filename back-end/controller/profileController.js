@@ -156,10 +156,7 @@ const handleSubmitTicket= (req, res) => {
       const userEmail = decodedToken.email;
       const user = await getUserWithEmail(userEmail);
       //
-     // const formData = jsonBody.formData;
-    //  await changeProfilePicture(imageBuffer,user.id);
-  
-      
+   
     insertTicket({
       section: section,
       manager: manager,
@@ -168,7 +165,7 @@ const handleSubmitTicket= (req, res) => {
   });
       
       res.writeHead(200, { "Content-Type": "application/json" });
-      res.end(JSON.stringify("Informațiile au fost actualizate cu succes"));
+      res.end(JSON.stringify("Ticket-ul dumneavoastra a fost trimis."));
     });
   }
 };

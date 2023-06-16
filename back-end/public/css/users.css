@@ -30,3 +30,11 @@ table {
     background-color: #a60000;
     cursor: pointer;
   }
+  .ok-button{
+    width: 80%;
+    line-height: 30px;
+    color: rgb(0, 0, 0);
+    font-family: 'Montserrat';
+    background-color: #07db3f;
+    cursor: pointer;
+  }

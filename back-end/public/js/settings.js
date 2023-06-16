@@ -13,7 +13,7 @@ const getLoggedUser = async () => {
   };
           const seeUsersButton = document.getElementById("see_users");
          seeUsersButton.addEventListener("click", handleSeeUsers);
-  //afisarea informatiilor dinamic despre user
+
   function handleSeeUsers() {
     getLoggedUser()
       .then(async (user) => {
@@ -28,3 +28,21 @@ const getLoggedUser = async () => {
         console.error("Request failed:", error);
       });
   }
+
+  const seeTicketsButton = document.getElementById("see_tickets");
+  seeTicketsButton.addEventListener("click", handleSeeTickets);
+
+function handleSeeTickets() {
+getLoggedUser()
+.then(async (user) => {
+ if(user.is_admin === true)
+ window.location.href = "./tickets";
+else {
+alert("Only admins can access this feature.");
+}
+ 
+})
+.catch((error) => {
+ console.error("Request failed:", error);
+});
+}

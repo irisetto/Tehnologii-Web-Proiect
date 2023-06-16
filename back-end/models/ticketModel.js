@@ -29,3 +29,39 @@ exports.insertTicket = async (ticket) => {
         console.error("Error executing query", err);
     }
 };
+
+exports.getTicketById = async (id) => {
+    try {
+        const client = await pool.connect();
+        const query = {
+            text: "SELECT * FROM tickets WHERE id = $1",
+            values: [id],
+        };
+        const result = await client.query(query);
+        client.release();
+
+        if (result.rows.length > 0) {
+            const ticket = result.rows[0];
+            return ticket;
+        } else {
+            return null;
+        }
+    } catch (err) {
+        console.error("Error executing query", err);
+    }
+};
+exports.deleteTicketById = async (id) => {
+    try {
+        const client = await pool.connect();
+        const querry = {
+            text: "DELETE FROM tickets WHERE id = $1",
+            values: [id]
+        };
+
+        await client.query(querry);
+        client.release;
+
+    } catch (err) {
+        console.error("Error executing query", err);
+    }
+};

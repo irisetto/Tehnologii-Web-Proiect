@@ -1,6 +1,7 @@
 const animalsController = require("./animalsController");
 const usersController = require("./usersController");
 const settingsController = require("./settingsController");
+const ticketsController = require("./ticketsController");
 
 
 const { handleHelp } = require("./helpController");
@@ -77,7 +78,12 @@ exports.handleApiRequest = (req, res) => {
       authenticateJWT(req, res, () => {
         usersController(req, res);
       });
-    } else if (req.url.startsWith("/api/logUser")) {
+    } else if (req.url.startsWith("/api/tickets")) {
+      authenticateJWT(req, res, () => {
+        ticketsController(req, res);
+      });
+    } 
+    else if (req.url.startsWith("/api/logUser")) {
       authenticateJWT(req, res, () => {
         usersController(req, res);
       });
@@ -109,7 +115,12 @@ exports.handleApiRequest = (req, res) => {
       authenticateJWT(req, res, () => {
         usersController(req, res);
       });
-    } else {
+    }else  if (req.url.startsWith("/api/tickets")) {
+      authenticateJWT(req, res, () => {
+        ticketsController(req, res);
+      });
+    }  
+    else {
       res.statusCode = 404;
       res.setHeader("Content-Type", "text/plain");
       res.end("Not Found");

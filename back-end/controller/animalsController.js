@@ -1,5 +1,6 @@
 // const getDynamicAnimalsPage()
 const AnimalsModel = require("../models/animalModel");
+const AnimalImages = require("../models/animalImageModel");
 const { generateAnimalJson } = require("../utils/generateJSON")
 
 const getAllAnimals = async (req, res) => {
@@ -105,6 +106,70 @@ const insertA = async (req, res) => {
   }
 };
 
+const getAniImage1 = async (req, res) => {
+  try {
+    const animalId = req.url.split('/')[3];
+    const animalImage = await AnimalImages.getAnimalImage1(animalId);
+    //console.log(animalImage);
+    if (animalImage !== null) {
+      const image = Buffer.from(animalImage, 'base64');
+
+      res.writeHead(200, {
+        'Content-Type': 'image/jpeg',
+        'Content-Length': image.length
+      });
+      res.end(image);
+    } else {
+      res.writeHead(404, { 'Content-Type': 'text/plain' });
+      res.end('Image not found');
+    }
+
+  } catch (err) {
+    console.error('Error retrieving image', err);
+    res.writeHead(500, { 'Content-Type': 'text/plain' });
+    res.end('Internal Server Error');
+  }
+}
+
+const setAnimalImage1 = async (req, res) => {
+  try {
+    const chunks = [];
+
+    req.on("data", (chunk) => {
+      chunks.push(chunk);
+    });
+
+    req.on("end", async () => {
+      const animalId = req.url.split('/')[3];
+      const imageData = Buffer.concat(chunks);
+
+      console.log(animalId, imageData);
+
+      if (imageData.length === 0) {
+        res.writeHead(400, { 'Content-Type': 'text/plain' });
+        res.end('Empty request body');
+        return;
+      }
+
+      const existingImage = await AnimalImages.getAnimalImage1(animalId);
+      if (existingImage) {
+        res.writeHead(409, { 'Content-Type': 'text/plain' });
+        res.end('Animal image already exists');
+        return;
+      }
+
+      await AnimalImages.insertAnimalImage1(animalId, imageData);
+
+      res.writeHead(200, { 'Content-Type': 'text/plain' });
+      res.end('Animal image updated successfully');
+    });
+  } catch (err) {
+    console.error('Error updating animal image', err);
+    res.writeHead(500, { 'Content-Type': 'text/plain' });
+    res.end('Internal Server Error');
+  }
+};
+
 
 const animalsController = async (req, res) => {
   if (req.url === "/api/animals") {
@@ -123,6 +188,13 @@ const animalsController = async (req, res) => {
   } else if (req.url === "/api/insertAni") {
     console.log("insertAni");
     insertA(req, res);
+  } else if (req.url.match(/\/api\/getAnimalImage1\/([0-9]+)/)) {
+    //console.log("get animal animalImage1");
+    getAniImage1(req, res);
+  }
+  else if (req.url.match(/\/api\/setAnimalImage1\/([0-9]+)/)) {
+    console.log("insert animal animalImage1");
+    setAnimalImage1(req, res);
   }
   else {
     res.end("nu exista api pentru acest request");

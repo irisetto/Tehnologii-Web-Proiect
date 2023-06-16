@@ -76,6 +76,9 @@ function validateAnimalDataJSON(animalData) {
         "region",
         "lifespan",
         "skin_type",
+        "animal_status",
+        "fun_fact1",
+        "fun_fact2",
         "about_text"
     ];
 
@@ -201,7 +204,7 @@ function downloadAnimalJson(animalId) {
             if (!response.ok) {
                 throw new Error('Failed to fetch animal JSON');
             }
-            return response.json(); // Parse response body as JSON
+            return response.json(); 
         })
         .then(exportedData => {
             const { fileName, fileContent } = exportedData;

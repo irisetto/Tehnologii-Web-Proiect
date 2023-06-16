@@ -2,6 +2,7 @@ const animalsController = require("./animalsController");
 const usersController = require("./usersController");
 const settingsController = require("./settingsController");
 
+
 const { handleHelp } = require("./helpController");
 const { handleLogin } = require("./login");
 const { handleRegister } = require("./register");
@@ -11,7 +12,7 @@ const { handleChangePass } = require("./forgotPass");
 const authenticateJWT = require("../utils/authenticateJWT");
 const { handleChangePasswordProfile } = require("./profileController.js");
 const { handleSaveInfo } = require("./profileController.js");
-const { handleUpdateProfilePicture} = require("./profileController.js");
+const { handleUpdateProfilePicture } = require("./profileController.js");
 
 
 
@@ -29,15 +30,15 @@ exports.handleApiRequest = (req, res) => {
       authenticateJWT(req, res, () => {
         handleChangePasswordProfile(req, res);
       });
-    }else if (req.url.startsWith("/api/saveInfo")) {
+    } else if (req.url.startsWith("/api/saveInfo")) {
       authenticateJWT(req, res, () => {
         handleSaveInfo(req, res);
       });
-    }  else if (req.url.startsWith("/api/updateProfilePicture")) {
+    } else if (req.url.startsWith("/api/updateProfilePicture")) {
       authenticateJWT(req, res, () => {
         handleUpdateProfilePicture(req, res);
       });
-    }  
+    }
     else if (req.url.startsWith("/api/help")) {
       authenticateJWT(req, res, () => {
         handleHelp(req, res);
@@ -88,6 +89,11 @@ exports.handleApiRequest = (req, res) => {
       authenticateJWT(req, res, () => {
         animalsController(req, res);
       });
+    } else if (req.url.match(/\/api\/getAnimalImage1\/([0-9]+)/)) {
+      console.log("animal animalImage1");
+      authenticateJWT(req, res, () => {
+        animalsController(req, res);
+      });
     } else {
       res.statusCode = 404;
       res.setHeader("Content-Type", "text/plain");
@@ -107,6 +113,11 @@ exports.handleApiRequest = (req, res) => {
     if (req.url === "/api/insertAni") {
       authenticateJWT(req, res, () => {
         console.log("Insert Ani")
+        animalsController(req, res);
+      });
+    } else if (req.url.match(/\/api\/setAnimalImage1\/([0-9]+)/)) {
+      console.log("animal animalImage1");
+      authenticateJWT(req, res, () => {
         animalsController(req, res);
       });
     }

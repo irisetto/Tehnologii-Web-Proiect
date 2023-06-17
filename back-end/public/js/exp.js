@@ -78,6 +78,58 @@ function handleJsonFile(file) {
 
 function handleXmlFile(file) {
     // xml file parse
+    const reader = new FileReader();
+    reader.onload = function (event) {
+        try {
+            const xmlString = event.target.result;
+            const parser = new DOMParser();
+            const xmlDoc = parser.parseFromString(xmlString, "text/xml");
+            //validateAnimalDataXML(xmlDoc);
+            //importAnimalDataXML(xmlDoc);
+            console.log('Imported animal');
+            alert('Imported animal XML.');
+        } catch (error) {
+            console.error("Error parsing XML file:", error);
+            alert('Couldn\'t import animal XML.');
+        }
+    };
+
+
+}
+
+function validateAnimalDataXML(animalData) {
+    const requiredColumns = [
+        "id",
+        "animal_class",
+        "common_name",
+        "scientific_name",
+        "habitat",
+        "lifestyle",
+        "diet",
+        "weight",
+        "height",
+        "region",
+        "lifespan",
+        "skin_type",
+        "animal_status",
+        "fun_fact1",
+        "fun_fact2",
+        "about_text"
+    ];
+
+    const missingColumns = [];
+
+    for (const column of requiredColumns) {
+        if (!Object.prototype.hasOwnProperty.call(animalData, column)) {
+            missingColumns.push(column);
+        }
+    }
+
+    if (missingColumns.length > 0) {
+        throw new Error(
+            `Missing required columns in animal data: ${missingColumns.join(", ")}`
+        );
+    }
 }
 
 function validateAnimalDataJSON(animalData) {

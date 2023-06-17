@@ -36,7 +36,29 @@ const getAnimalById = async (req, res) => {
   res.statusCode = 200;
   res.end(JSON.stringify(animal));
 };
-
+const deleteAnimalById = async (req, res) => {
+  const id = req.url.split("/")[3];
+  const animal = await AnimalsModel.getAnimalById(id);
+  if (!animal) {
+    res.end(
+      `Ai belit carasu, nu merge sa ia animalul cu id-ul ${id} din baza de date`
+    );
+    return;
+  }
+ 
+    AnimalsModel
+      .deleteAnimal(id)
+      .then(() => {
+        res.statusCode = 200;
+        res.end("Animal deleted successfully");
+      })
+      .catch((err) => {
+        console.error("Error deleting animal", err);
+        res.statusCode = 500;
+        res.end("Internal Server Error");
+      });
+ 
+};
 const getAnimalCategories = async (req, res) => {
   const diet = await AnimalsModel.getDistinctDiets();
   const habitat = await AnimalsModel.getDistinctHabitats();
@@ -311,7 +333,10 @@ const animalsController = async (req, res) => {
     getAllAnimals(req, res);
   } else if (req.url.match(/\/api\/animals\/([0-9]+)/)) {
     getAnimalById(req, res);
-  } else if (req.url === "/api/animalNames") {
+  } else if (req.url.startsWith("/api/deleteAnimal/")) {
+    deleteAnimalById(req, res);
+  }
+  else if (req.url === "/api/animalNames") {
     //console.log("Animals")
     getAllAnimalNames(req, res);
   } else if (req.url == "/api/animals/filter") {

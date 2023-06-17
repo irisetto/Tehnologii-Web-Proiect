@@ -9,29 +9,35 @@ const createAnimalRowFromTemplate = (animal) => {
   animalIdCell.textContent = animal.id;
   row.appendChild(animalIdCell);
 
-  const sectionCell = document.createElement("td");
-  sectionCell.textContent = animal.zoo_section;
-  row.appendChild(sectionCell);
+  const nameCell = document.createElement("td");
+  nameCell.textContent = animal.common_name;
+  row.appendChild(nameCell);
 
-  const managerCell = document.createElement("td");
-  managerCell.textContent = animal.manager;
-  row.appendChild(managerCell);
+  const image1ButtonCell = document.createElement("td");
+  const image1Button = document.createElement("button");
+  image1Button.textContent = "Image 1";
+  image1ButtonCell.appendChild(image1Button);
+  row.appendChild(image1ButtonCell);
 
-  const descCell = document.createElement("td");
-  descCell.textContent = animal.description;
-  row.appendChild(descCell);
+  
+  const image2ButtonCell = document.createElement("td");
+  const image2Button = document.createElement("button");
+  image2Button.textContent = "Image 2";
+  image2ButtonCell.appendChild(image2Button);
+  row.appendChild(image2ButtonCell);
 
+ 
 
   const deleteButtonCell = document.createElement("td");
   const deleteButton = document.createElement("button");
-  deleteButton.textContent = "Resolved";
+  deleteButton.textContent = "Delete";
   deleteButtonCell.classList.add("no-border");
-  deleteButton.classList.add("ok-button");
+  deleteButton.classList.add("fire-button");
 
   deleteButton.addEventListener("click", async () => {
     const token = localStorage.getItem("token");
 
-    const response = await fetch(`http://localhost:3000/api/animals/${animal.id}`, {
+    const response = await fetch(`http://localhost:3000/api/deleteAnimal/${animal.id}`, {
       method: "DELETE",
       headers: { Authorization: `Bearer ${token}` },
     });
@@ -47,10 +53,10 @@ const createAnimalRowFromTemplate = (animal) => {
   animalsContainer.appendChild(row);
 };
 
-function renderanimalCards() {
+function renderAnimalCards() {
   let animalList = [];
   animalsContainer.innerHTML = "";
-  getAllanimals().then((data) => {
+  getAllAnimals().then((data) => {
     animalList = data;
     animalList.forEach((animal) => {
       createAnimalRowFromTemplate(animal);
@@ -59,7 +65,7 @@ function renderanimalCards() {
   console.log(animalsContainer);
 }
 
-const getAllanimals = async () => {
+const getAllAnimals = async () => {
   const token = localStorage.getItem("token");
   const response = await fetch("http://localhost:3000/api/animals", {
     method: "GET",
@@ -68,4 +74,4 @@ const getAllanimals = async () => {
   return await response.json();
 };
 
-renderanimalCards();
+renderAnimalCards();

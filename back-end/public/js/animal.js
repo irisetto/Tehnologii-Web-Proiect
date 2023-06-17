@@ -82,9 +82,12 @@ const getAboutImage = async (animalId) => {
   }
 };
 
-const title  = document.querySelector("title");
-const animalHtmlCard = (animal) => `<section class="axolotl">
-<div class="animal__tag">ENDANGERED</div>
+const title = document.querySelector("title");
+const animalHtmlCard = (animal) => {
+  const animalTagVisibility = animal.animal_status === "endangered" ? "" : "hidden";
+
+  return `<section class="axolotl">
+  <div class="animal__tag" style="visibility: ${animalTagVisibility}">ENDANGERED</div>
 
 <div class="headline">
   <div class="export-buttons-container">
@@ -171,9 +174,10 @@ const animalHtmlCard = (animal) => `<section class="axolotl">
   </div>
 </section>
 </section>`;
+};
 
 const createAnimalCardFromTemplate = (animal) => {
-  title.textContent=animal.common_name;
+  title.textContent = animal.common_name;
   animalContainer.insertAdjacentHTML("beforeend", animalHtmlCard(animal));
   attachExportButtonListeners();
   getAboutImage(animalId);

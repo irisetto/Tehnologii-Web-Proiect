@@ -89,3 +89,7 @@ SET
   fun_fact1 = 'Axolotls can breathe through their skin, which makes them especially susceptible to water pollution.',
   fun_fact2 = 'In their natural habitat, axolotls are critically endangered due to habitat loss and the introduction of non-native species.'
 WHERE common_name = 'Axolotl';
+
+UPDATE animals
+SET animal_status = 'endangered'
+WHERE common_name IN ('Elephant', 'Clownfish', 'Giant Panda', 'Emperor Penguin', 'Leatherback Sea Turtle', 'Great White Shark', 'Axolotl');

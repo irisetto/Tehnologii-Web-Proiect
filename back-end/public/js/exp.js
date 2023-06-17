@@ -132,6 +132,7 @@ function validateAnimalDataXML(animalData) {
     }
 }
 
+
 function validateAnimalDataJSON(animalData) {
     const requiredColumns = [
         "id",

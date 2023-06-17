@@ -193,6 +193,16 @@ const getCategoryHtml = (categoryName, labels) => {
   </div>`;
 };
 
+
+const getSearchHtml = () => {
+  return `
+  <div class="q-a">
+   
+    <input type="text" class="search-animals" placeholder="Search..." />
+    
+  </div>`;
+};
+
 function toReadableString(input) {
   let words = input.split("_");
 
@@ -221,6 +231,11 @@ const renderFilteringMenu = async () => {
   const filteringMenuNode = document.querySelector(".animals__left__container");
   filteringMenuNode.innerHTML = "";
   const categories = await getAnimalCategories();
+
+  filteringMenuNode.insertAdjacentHTML(
+    "beforeend",
+    getSearchHtml()
+  );
 
   for (const [key, value] of Object.entries(categories)) {
     filteringMenuNode.insertAdjacentHTML(

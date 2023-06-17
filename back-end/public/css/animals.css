@@ -29,24 +29,19 @@ background-color: #167508;
   align-items: center;
 }
 
-input[type="range"] {
-  -webkit-appearance: none;
-  width: 200px;
-  height: 5px;
-  background: #ddd;
+.search-animals{
+  border: none;
+  background-color: transparent;
+  font-family: 'Viga';
+  font-size: medium;
+}
+.search-animals:focus{
+  border: none;
+  background-color: transparent;
+  font-family: 'Viga';
+  font-size: medium;
   outline: none;
-  margin: 0 10px;
 }
-
-input[type="range"]::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 10px;
-  height: 20px;
-  background: #888;
-  cursor: pointer;
-}
-
 /* Reset Default Settings */
 
 body {
@@ -282,11 +277,14 @@ h2 {
   font-weight: bold;
   line-height: 21px;
   margin-bottom: 5px;
+  font-family: 'Viga';
 }
 
 .toggle-box + label + div {
   display: none;
   margin-bottom: 10px;
+  font-family: 'Montserrat';
+
 }
 
 .toggle-box:checked + label + div {

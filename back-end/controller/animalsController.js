@@ -60,15 +60,16 @@ const deleteAnimalById = async (req, res) => {
 
 };
 const getAnimalCategories = async (req, res) => {
+  const animal_class = await AnimalsModel.getDistinctClass();
   const diet = await AnimalsModel.getDistinctDiets();
   const habitat = await AnimalsModel.getDistinctHabitats();
   const lifestyle = await AnimalsModel.getDistinctLifestyles();
   const region = await AnimalsModel.getDistinctRegions();
   const skin_type = await AnimalsModel.getDistinctSkinTypes();
 
-  const data = { diet, habitat, lifestyle, region, skin_type };
+  const data = {animal_class, diet, habitat, lifestyle, region, skin_type };
 
-  if (!diet || !habitat || !lifestyle || !region || !skin_type) {
+  if (!animal_class || !diet || !habitat || !lifestyle || !region || !skin_type) {
     res.end("Ai belit carasu, nu merge sa ia categoriile din baza de date");
     return;
   }

@@ -82,7 +82,7 @@ const getAboutImage = async (animalId) => {
   }
 };
 
-
+const title  = document.querySelector("title");
 const animalHtmlCard = (animal) => `<section class="axolotl">
 <div class="animal__tag">ENDANGERED</div>
 
@@ -149,7 +149,6 @@ const animalHtmlCard = (animal) => `<section class="axolotl">
 
     <div class="animal__charateristic__text">
       ${animal.about_text}
-      ADD ABOUT TEXT HERE
     </div>
    
   </div>
@@ -164,16 +163,17 @@ const animalHtmlCard = (animal) => `<section class="axolotl">
   <div class="animal__side__note__text">
     <h3>FUN FACTS</h3>
     <p>
-      FUN FACT 1
+      ${animal.fun_fact1}
     </p>
     <p>
-      FUN FACT 2
+    ${animal.fun_fact2}
     </p>
   </div>
 </section>
 </section>`;
 
 const createAnimalCardFromTemplate = (animal) => {
+  title.textContent=animal.common_name;
   animalContainer.insertAdjacentHTML("beforeend", animalHtmlCard(animal));
   attachExportButtonListeners();
   getAboutImage(animalId);

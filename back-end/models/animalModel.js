@@ -200,7 +200,19 @@ exports.getAnimalById = async (animalId) => {
     throw err;
   }
 };
+exports.getDistinctClass = async () => {
+  try {
+    const client = await pool.connect();
+    const result = await client.query('SELECT DISTINCT animal_class FROM animals');
+    client.release();
 
+    const distinctClass = result.rows.map((row) => row.animal_class);
+    return distinctClass;
+  } catch (err) {
+    console.error('Error executing query', err);
+    throw err;
+  }
+};
 exports.getDistinctHabitats = async () => {
   try {
     const client = await pool.connect();

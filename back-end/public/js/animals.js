@@ -248,7 +248,7 @@ const renderFilteringMenu = async () => {
   const filteringMenuNode = document.querySelector(".animals__left__container");
   filteringMenuNode.innerHTML = "";
   const categories = await getAnimalCategories();
-
+//searchhh
   filteringMenuNode.insertAdjacentHTML(
     "beforeend",
     getSearchHtml()

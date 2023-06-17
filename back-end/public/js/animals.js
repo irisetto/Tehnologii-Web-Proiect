@@ -25,6 +25,10 @@ const animalHtmlCard = (animal) => `<div class="card">
 </div>`;
 
 const createAnimalCardFromTemplate = (animal) => {
+  const matchingImage = imagePairs.find(image => image.animal_id === animal.id);
+  if (matchingImage) {
+    animal.image = `data:image/jpeg;base64,${matchingImage.image}`;
+  }
   animalsContainer.insertAdjacentHTML("beforeend", animalHtmlCard(animal));
 };
 
@@ -45,6 +49,10 @@ const renderAnimalCards = async (filters) => {
     }
   }
   currentAnimalList.forEach((animal) => {
+    // const matchingImage = imagePairs.find(image => image.animal_id === animal.id);
+    // if (matchingImage) {
+    //   animal.image = `data:image/jpeg;base64,${matchingImage.image}`;
+    // }
     createAnimalCardFromTemplate(animal);
   });
 };
@@ -93,7 +101,7 @@ let imagePairs = [];
 
 const loadImagePairs = async () => {
   imagePairs = await getAllImagePairs();
-  //console.log(imagePairs)
+  console.log(imagePairs)
 };
 
 
@@ -229,7 +237,7 @@ const renderFilteringMenu = async () => {
     );
   }
 
-  
+
 };
 
 loadImagePairs();

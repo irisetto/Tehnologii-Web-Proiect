@@ -36,6 +36,10 @@ const createAnimalCardFromTemplate = (animal) => {
 
 let filters = {};
 const renderAnimalCards = async (filters) => {
+
+  const searchInput = document.querySelector(".search-animals");
+  const searchQuery = searchInput ? searchInput.value.toLowerCase() : '';
+
   const pickedAnimalCategory = new URLSearchParams(window.location.search).get(
     "category"
   );
@@ -55,7 +59,10 @@ const renderAnimalCards = async (filters) => {
     // if (matchingImage) {
     //   animal.image = `data:image/jpeg;base64,${matchingImage.image}`;
     // }
-    createAnimalCardFromTemplate(animal);
+    if (searchQuery === '' || animal.common_name.toLowerCase().includes(searchQuery)) {
+      createAnimalCardFromTemplate(animal);
+    }
+   
   });
 };
 
@@ -208,7 +215,7 @@ const getSearchHtml = () => {
   return `
   <div class="q-a-search">
    
-    <input type="text" class="search-animals" placeholder="Search..." />
+    <input id="search-animals" type="text" class="search-animals" placeholder="Search..." />
     
   </div>`;
 };
@@ -246,6 +253,10 @@ const renderFilteringMenu = async () => {
     "beforeend",
     getSearchHtml()
   );
+const searchInput = document.querySelector("#search-animals");
+searchInput.addEventListener("input", function () {
+  renderAnimalCards(filters);
+});
 
   for (const [key, value] of Object.entries(categories)) {
     filteringMenuNode.insertAdjacentHTML(
@@ -256,6 +267,7 @@ const renderFilteringMenu = async () => {
 
 
 };
+
 //?
 (async() => {
   await loadImagePairs();

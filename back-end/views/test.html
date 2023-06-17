@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Upload Animal Image</title>
+</head>
+
+<body>
+    <input type="file" id="imageInput">
+    <button onclick="uploadAnimalImage()">Upload Image</button>
+
+    <script>
+        function uploadAnimalImage() {
+            const imageInput = document.getElementById('imageInput');
+            const file = imageInput.files[0];
+            if (!file) {
+                console.log('No image selected');
+                return;
+            }
+
+            const reader = new FileReader();
+
+            reader.onload = function () {
+                const arrayBuffer = this.result;
+                const uintArray = new Uint8Array(arrayBuffer);
+
+                const url = '/api/setAnimalImage1/2';
+                const token = localStorage.getItem('token');
+
+                fetch(url, {
+                    method: 'PUT',
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                        'Content-Type': 'application/octet-stream',
+                    },
+                    body: uintArray,
+                })
+                    .then(response => {
+                        if (response.ok) {
+                            console.log('Image uploaded successfully');
+                        } else {
+                            console.error('Error uploading image:', response.status);
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error uploading image:', error);
+                    });
+            };
+
+            reader.readAsArrayBuffer(file);
+        }
+
+    </script>
+</body>
+
+</html>

@@ -1,5 +1,36 @@
 const animalContainer = document.querySelector(".container");
 
+const animalId = new URLSearchParams(window.location.search).get("id");
+//console.log(animalId);
+const imgOverlayDiv = document.querySelector(".imgOverlay");
+const imgElement = imgOverlayDiv.querySelector("img");
+
+
+const getAnimalImage = async (animalId) => {
+  const token = localStorage.getItem("token");
+  const response = await fetch(`http://localhost:3000/api/getAnimalImage1/${animalId}`, {
+    method: "GET",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+  if (response.ok) {
+    const imageData = await response.json();
+    console.log(imageData)
+    const uint8Array = new Uint8Array(imageData.data);
+    const base64String = btoa(String.fromCharCode.apply(null, uint8Array));
+
+    console.log(base64String);
+
+    imgElement.src = `data:image/jpeg;base64,${base64String}`;
+  } else {
+    console.error("Failed to fetch animal image.");
+  }
+};
+getAnimalImage(animalId);
+
+
 const animalHtmlCard = (animal) => `<section class="axolotl">
 <div class="animal__tag">ENDANGERED</div>
 <div class="headline">

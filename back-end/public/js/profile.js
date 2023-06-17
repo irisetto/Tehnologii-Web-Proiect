@@ -158,6 +158,7 @@ function getUserFromServer() {
 
         const imageElement = document.getElementById("profile_img");
         imageElement.src = `data:image/png;base64,${base64String}`;
+        //console.log(imageElement.src);
       } else console.log("n are poza");
     })
     .catch((error) => {

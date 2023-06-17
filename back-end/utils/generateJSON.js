@@ -12,7 +12,7 @@ exports.generateAnimalJson = (animal) => {
 
 exports.generateAnimalXml = (animal) => {
   let xmlString = '<?xml version="1.0" encoding="UTF-8"?>\n';
-  xmlString += `<${animal.name}>\n`;
+  xmlString += `<${animal.common_name}>\n`;
 
   for (const key in animal) {
     if (animal.hasOwnProperty(key)) {
@@ -21,10 +21,10 @@ exports.generateAnimalXml = (animal) => {
     }
   }
 
-  xmlString += `</${animal.name}>\n`;
+  xmlString += `</${animal.common_name}>\n`;
 
   return {
-    fileName: `${animal.name}.xml`,
+    fileName: `${animal.common_name}.xml`,
     fileContent: xmlString,
   };
 };

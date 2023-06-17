@@ -36,6 +36,7 @@ function handleFileSelect(event) {
             handleXmlFile(file);
         } else {
             console.error("Unsupported file format");
+            alert('Unsupported file format');
         }
     }
 }
@@ -49,8 +50,10 @@ function handleJsonFile(file) {
             validateAnimalDataJSON(animalData);
             importAnimalData(animalData);
             console.log('Imported animal');
+            alert('Imported animal JSON.');
         } catch (error) {
             console.error("Error parsing JSON file:", error);
+            alert('Couldn\'t import animal JSON.');
         }
     };
 
@@ -185,8 +188,8 @@ async function handleExportSubmit(event) {
     if (format === 'json') {
         downloadAnimalJson(selectedAnimal);
     } else if (format === 'xml') {
-        console.log('xml file');
-        //downloadXml();
+        //console.log('xml file');
+        downloadAnimalXml(selectedAnimal);
     }
 }
 
@@ -204,7 +207,7 @@ function downloadAnimalJson(animalId) {
             if (!response.ok) {
                 throw new Error('Failed to fetch animal JSON');
             }
-            return response.json(); 
+            return response.json();
         })
         .then(exportedData => {
             const { fileName, fileContent } = exportedData;
@@ -219,13 +222,54 @@ function downloadAnimalJson(animalId) {
                 link.click();
                 URL.revokeObjectURL(link.href);
             }
+            alert('Animal JSON file exported successfully!');
         })
         .catch(error => {
             console.error('Error downloading animal JSON:', error);
+            alert('Error exporting animal JSON. Please try again.');
+
         });
 }
 
-function downloadAnimalXml(data, filename) {
-    // gen XML
-    console.log(`Exporting ${filename}...`);
+function downloadAnimalXml(animalId) {
+    const token = localStorage.getItem('token');
+    const url = `/api/animalXML/${animalId}`;
+
+    return fetch(url, {
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+        }
+    })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Failed to fetch animal XML');
+            }
+            const indexFileName = response.headers.get('Content-Disposition').indexOf('filename=');
+            let fileName = response.headers.get('Content-Disposition').substring(indexFileName + 9).trim();
+            fileName = fileName.substring(1, fileName.length - 1);
+
+            return response.text().then(fileContent => {
+                return { fileName, fileContent };
+            });
+        })
+        .then(({ fileName, fileContent }) => {
+            const blob = new Blob([fileContent], { type: 'application/xml' });
+
+            if (window.navigator && window.navigator.msSaveOrOpenBlob) {
+                window.navigator.msSaveOrOpenBlob(blob, fileName);
+            } else {
+                const link = document.createElement('a');
+                link.href = URL.createObjectURL(blob);
+                link.download = fileName;
+                link.click();
+                URL.revokeObjectURL(link.href);
+            }
+            alert('Animal XML file exported successfully!');
+        })
+        .catch(error => {
+            console.error('Error downloading animal XML:', error);
+            alert('Error exporting animal XML. Please try again.');
+        });
+
 }

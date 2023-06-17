@@ -4,9 +4,9 @@ const inputs = document.querySelectorAll(".q-a>div div input");
 
 const animalHtmlCard = (animal) => `<div class="card">
 <img
-  src="/pictures/indPic/amphibians.jpg"
+  src="${animal.image}"
   class="card__img"
-  alt="amphibian"
+  alt="animal"
 />
 <h2 class="card__title">${animal.common_name}</h2>
 <div class="card__content">
@@ -27,6 +27,7 @@ const animalHtmlCard = (animal) => `<div class="card">
 const createAnimalCardFromTemplate = (animal) => {
   animalsContainer.insertAdjacentHTML("beforeend", animalHtmlCard(animal));
 };
+
 let filters = {};
 const renderAnimalCards = async (filters) => {
   const pickedAnimalCategory = new URLSearchParams(window.location.search).get(
@@ -69,14 +70,51 @@ filterContainer.addEventListener("change", function (e) {
   }
 });
 
+const getAllImagePairs = async () => {
+  const token = localStorage.getItem("token");
+  const response = await fetch("http://localhost:3000/api/getAllImage1", {
+    method: "GET",
+    headers: { Authorization: `Bearer ${token}` },
+  });
+  const imageData = await response.json();
+
+  const imagePairs = imageData.map((image) => {
+    const imageData = Array.from(image.image1.data);
+    const uint8Array = new Uint8Array(imageData);
+    const base64String = btoa(String.fromCharCode.apply(null, uint8Array));
+
+    return { animal_id: image.animal_id, image: base64String };
+  });
+
+  return imagePairs;
+};
+
+let imagePairs = [];
+
+const loadImagePairs = async () => {
+  imagePairs = await getAllImagePairs();
+  //console.log(imagePairs)
+};
+
+
 const getAllAnimals = async () => {
   const token = localStorage.getItem("token");
   const response = await fetch("http://localhost:3000/api/animals", {
     method: "GET",
     headers: { Authorization: `Bearer ${token}` },
   });
-  return await response.json();
+  const result = await response.json();
+  result.forEach(animal => {
+    const matchingImage = imagePairs.find(image => image.animal_id === animal.id);
+    if (matchingImage) {
+      //console.log(matchingImage);
+      animal.image = `data:image/jpeg;base64,${matchingImage.image}`;
+    }
+  });
+  //console.log(JSON.stringify(result, null, 1));
+  return result;
 };
+
 
 const getFilteredAnimals = async (filters) => {
   const token = localStorage.getItem("token");
@@ -88,7 +126,18 @@ const getFilteredAnimals = async (filters) => {
     },
     body: JSON.stringify(filters),
   });
+  //console.log('asdasdasdasd 2')
   const result = await response.json();
+
+  result.forEach(animal => {
+    const matchingImage = imagePairs.find(image => image.animal_id === animal.id);
+    if (matchingImage) {
+      //console.log(matchingImage);
+      animal.image = `data:image/jpeg;base64,${matchingImage.image}`;
+    }
+  });
+  //console.log(JSON.stringify(result, null, 1));
+
   return result;
 };
 
@@ -182,6 +231,8 @@ const renderFilteringMenu = async () => {
 
   
 };
+
+loadImagePairs();
 
 renderFilteringMenu();
 

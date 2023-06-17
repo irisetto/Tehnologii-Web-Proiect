@@ -38,10 +38,10 @@ const handleStaticRequest = (req, res) => {
     serveView(req, res, "users.html");
   } else if (req.url.startsWith("/tickets")) {
     serveView(req, res, "tickets.html");
-  }/*
+  }
   else if (req.url.startsWith("/test")) {
     serveView(req, res, "test.html");
-  }*/
+  }
   else {
     const fileUrl = "/public" + req.url;
 

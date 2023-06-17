@@ -82,7 +82,7 @@ exports.handleApiRequest = (req, res) => {
       authenticateJWT(req, res, () => {
         ticketsController(req, res);
       });
-    } 
+    }
     else if (req.url.startsWith("/api/logUser")) {
       authenticateJWT(req, res, () => {
         usersController(req, res);
@@ -100,7 +100,20 @@ exports.handleApiRequest = (req, res) => {
       authenticateJWT(req, res, () => {
         animalsController(req, res);
       });
-    } else if (req.url.match(/\/api\/getAnimalImage1\/([0-9]+)/)) {
+    } else if (req.url.match(/\/api\/animalXML\/([0-9]+)/)) {
+      authenticateJWT(req, res, () => {
+        animalsController(req, res);
+      });
+    } else if (req.url.match("/api/getAllImage1")) {
+      authenticateJWT(req, res, () => {
+        animalsController(req, res);
+      });
+    } else if (req.url.match(/\/api\/getAnimalImage2\/([0-9]+)/)) {
+      authenticateJWT(req, res, () => {
+        animalsController(req, res);
+      });
+    }
+    else if (req.url.match(/\/api\/getAnimalImage1\/([0-9]+)/)) {
       console.log("animal animalImage1");
       authenticateJWT(req, res, () => {
         animalsController(req, res);
@@ -115,11 +128,11 @@ exports.handleApiRequest = (req, res) => {
       authenticateJWT(req, res, () => {
         usersController(req, res);
       });
-    }else  if (req.url.startsWith("/api/tickets")) {
+    } else if (req.url.startsWith("/api/tickets")) {
       authenticateJWT(req, res, () => {
         ticketsController(req, res);
       });
-    }  
+    }
     else {
       res.statusCode = 404;
       res.setHeader("Content-Type", "text/plain");
@@ -133,6 +146,10 @@ exports.handleApiRequest = (req, res) => {
       });
     } else if (req.url.match(/\/api\/setAnimalImage1\/([0-9]+)/)) {
       console.log("animal animalImage1");
+      authenticateJWT(req, res, () => {
+        animalsController(req, res);
+      });
+    } else if (req.url.match(/\/api\/setAnimalImage2\/([0-9]+)/)) {
       authenticateJWT(req, res, () => {
         animalsController(req, res);
       });

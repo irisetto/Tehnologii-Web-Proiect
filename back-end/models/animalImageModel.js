@@ -1,5 +1,20 @@
 const pool = require("../utils/db");
 
+exports.getAllAnimalImage1 = async () => {
+    try {
+        const client = await pool.connect();
+        const result = await client.query('SELECT animal_id, image1 FROM animal_images');
+        client.release();
+
+        console.log('sadsd' + result.rows);
+
+        return result.rows || [];
+    } catch (err) {
+        console.error('Error executing query', err);
+        throw err;
+    }
+}
+
 exports.getAnimalImage1 = async (animalId) => {
     try {
         const client = await pool.connect();

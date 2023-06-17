@@ -33,10 +33,13 @@ const handleStaticRequest = (req, res) => {
     serveView(req, res, "change_pass.html");
   } else if (req.url.startsWith("/users")) {
     serveView(req, res, "users.html");
-  }else if (req.url.startsWith("/tickets")) {
+  } else if (req.url.startsWith("/tickets")) {
     serveView(req, res, "tickets.html");
-  }
-   else {
+  }/*
+  else if (req.url.startsWith("/test")) {
+    serveView(req, res, "test.html");
+  }*/
+  else {
     const fileUrl = "/public" + req.url;
 
     const filepath = path.resolve("." + fileUrl);

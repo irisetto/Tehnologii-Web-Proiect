@@ -120,7 +120,7 @@ h2 {
   height: 130px;
   z-index: 1;
   transition: top var(--transitionDuration);
-
+  object-fit:cover;
   position: absolute;
   left: 50%;
   top: 40%;

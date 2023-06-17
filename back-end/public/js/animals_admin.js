@@ -14,18 +14,30 @@ const createAnimalRowFromTemplate = (animal) => {
   row.appendChild(nameCell);
 
   const image1ButtonCell = document.createElement("td");
-  const image1Button = document.createElement("button");
+  const image1Button = document.createElement("input");
   image1Button.textContent = "Image 1";
+  image1Button.type = "file";
   image1ButtonCell.appendChild(image1Button);
   row.appendChild(image1ButtonCell);
-
+  
+  image1Button.addEventListener("change", () => {
+    const file = image1Button.files[0];
+    uploadAnimalImage(file,1,animal.id);
+  });
+  
   
   const image2ButtonCell = document.createElement("td");
-  const image2Button = document.createElement("button");
+  const image2Button = document.createElement("input");
   image2Button.textContent = "Image 2";
+  image2Button.type = "file";
+
   image2ButtonCell.appendChild(image2Button);
   row.appendChild(image2ButtonCell);
-
+  image2Button.addEventListener("change", () => {
+    const file = image2Button.files[0];
+    uploadAnimalImage(file,2,animal.id);
+  });
+  
  
 
   const deleteButtonCell = document.createElement("td");
@@ -52,6 +64,47 @@ const createAnimalRowFromTemplate = (animal) => {
 
   animalsContainer.appendChild(row);
 };
+
+function uploadAnimalImage(file,imageNr,animalId) {
+
+  if (!file) {
+      console.log('No image selected');
+      return;
+  }
+
+  const reader = new FileReader();
+
+  reader.onload = function () {
+      const arrayBuffer = this.result;
+      const uintArray = new Uint8Array(arrayBuffer);
+
+      const url = `/api/setAnimalImage${imageNr}/${animalId}`;
+      const token = localStorage.getItem('token');
+
+      fetch(url, {
+          method: 'PUT',
+          headers: {
+              Authorization: `Bearer ${token}`,
+              'Content-Type': 'application/octet-stream',
+          },
+          body: uintArray,
+      })
+          .then(response => {
+              if (response.ok) {
+                  console.log('Image uploaded successfully');
+                  alert('Image uploaded successfully');
+              } else {
+                  console.error('Error uploading image:', response.status);
+              }
+          })
+          .catch(error => {
+              console.error('Error uploading image:', error);
+          });
+  };
+
+  reader.readAsArrayBuffer(file);
+}
+
 
 function renderAnimalCards() {
   let animalList = [];

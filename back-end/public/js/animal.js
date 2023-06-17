@@ -4,7 +4,52 @@ const animalId = new URLSearchParams(window.location.search).get("id");
 //console.log(animalId);
 const imgOverlayDiv = document.querySelector(".imgOverlay");
 const imgElement = imgOverlayDiv.querySelector("img");
+let userLogged;
 
+const logUser = async () => {
+  try {
+    const token = localStorage.getItem("token");
+    const response = await fetch('/api/logUser', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`
+      }
+    });
+
+    if (response.ok) {
+      const user = await response.json();
+      console.log('User:', user);
+      userLogged = user;
+
+    } else {
+      console.error('Error retrieving user');
+    }
+  } catch (err) {
+    console.error('Error logging user', err);
+  }
+};
+
+const getAnimalFrenchText = async (animalId) => {
+  try {
+    const token = localStorage.getItem("token");
+    const response = await fetch(`http://localhost:3000/api/getAniFrench/${animalId}`, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    });
+
+    if (response.ok) {
+      const frenchText = await response.json();
+      //console.log('French Text:', frenchText);
+      return frenchText;
+    } else {
+      console.error('Error retrieving French text');
+    }
+  } catch (err) {
+    console.error('Error getting animal French text', err);
+  }
+};
 
 
 const attachExportButtonListeners = async () => {
@@ -42,11 +87,11 @@ const getAnimalImage = async (animalId) => {
 
   if (response.ok) {
     const imageData = await response.json();
-    console.log(imageData)
+    //console.log(imageData)
     const uint8Array = new Uint8Array(imageData.data);
     const base64String = btoa(String.fromCharCode.apply(null, uint8Array));
 
-    console.log(base64String);
+    //console.log(base64String);
 
     imgElement.src = `data:image/jpeg;base64,${base64String}`;
   } else {
@@ -67,11 +112,11 @@ const getAboutImage = async (animalId) => {
 
   if (response.ok) {
     const imageData = await response.json();
-    console.log(imageData)
+    //console.log(imageData)
     const uint8Array = new Uint8Array(imageData.data);
     const base64String = btoa(String.fromCharCode.apply(null, uint8Array));
 
-    console.log('ehhehe' + base64String);
+    //console.log('ehhehe' + base64String);
 
     //imgElement.src = `data:image/jpeg;base64,${base64String}`;
     const imgElement = document.querySelector(".headline__image img");
@@ -183,12 +228,32 @@ const createAnimalCardFromTemplate = (animal) => {
   getAboutImage(animalId);
 };
 
+//??????
+async function renderAnimalPage() {
+  await logUser();
+  console.log(userLogged.language_setting);
 
-function renderAnimalPage() {
+
+  
   const urlParams = new URLSearchParams(window.location.search);
   const id = urlParams.get("id");
   animalContainer.innerHTML = "";
-  getAnimalById(id).then((animal) => {
+  //bruh
+  getAnimalById(id).then(async (animal) => {
+    if (userLogged.language_setting === 'French') {
+      try {
+        const replaceText = await getAnimalFrenchText(animal.id);
+
+        if (replaceText.id !== null) {
+          animal.about_text = replaceText.about_text;
+          animal.fun_fact1 = replaceText.fun_fact1;
+          animal.fun_fact2 = replaceText.fun_fact2;
+        }
+      } catch (error) {
+        console.error('Error retrieving French text', error);
+      }
+    }
+
     createAnimalCardFromTemplate(animal);
   });
 

@@ -253,6 +253,7 @@ exports.changeOccupiedPosition = async (id, occupiedPosition) => {
         console.error("Error executing query", err);
     }
 };
+
 exports.changeProfilePicture = async (imageData,userId) => {
     try {
        
@@ -269,6 +270,24 @@ exports.changeProfilePicture = async (imageData,userId) => {
         console.error("Error executing query", err);
     }
 };
+
+exports.updateUserLanguageSetting = async (userId, languageSetting) => {
+    try {
+        const client = await pool.connect();
+        const query = {
+            text: "UPDATE users SET language_setting = $1 WHERE id = $2",
+            values: [languageSetting, userId]
+        };
+
+        await client.query(query);
+        client.release();
+
+    } catch (err) {
+        console.error("Error executing query", err);
+    }
+};
+
+
 
 // exports.changeProfilePicture = async (id, imagePath) => {
 //     try {
@@ -288,3 +307,4 @@ exports.changeProfilePicture = async (imageData,userId) => {
 //         console.error('Error executing query', err);
 //     }
 // };
+

@@ -1,3 +1,4 @@
+//:(((
 document.addEventListener("DOMContentLoaded", () => {
 
     //export
@@ -5,7 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const exportPanel = document.getElementById("export-panel");
 
 
-    exportToggle.addEventListener("click", () => {
+    exportToggle.addEventListener("click", async () => {
         exportPanel.classList.toggle("hidden");
         if (!exportPanel.classList.contains("hidden")) {
             initializePage();
@@ -18,8 +19,22 @@ document.addEventListener("DOMContentLoaded", () => {
     //import
     const importToggle = document.getElementById("import-toggle");
     const fileInput = document.getElementById("file-input");
-    importToggle.addEventListener("click", () => {
-        fileInput.click();
+    importToggle.addEventListener("click", async () => {
+        try {
+            //it is defined >:(
+            const loggedUser = await getLoggedUser();
+
+            if (loggedUser.is_admin) {
+                fileInput.click();
+                console.log("welcome admin hehehe");
+            } else {
+                console.error("User does not have admin privileges");
+                alert("You do not have permission to import animal data");
+            }
+        } catch (error) {
+            console.error("Error checking user admin:", error);
+            alert("Error checking user admin. Please try again.");
+        }
     });
 
     fileInput.addEventListener("change", handleFileSelect);

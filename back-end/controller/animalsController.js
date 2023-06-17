@@ -45,19 +45,19 @@ const deleteAnimalById = async (req, res) => {
     );
     return;
   }
- 
-    AnimalsModel
-      .deleteAnimal(id)
-      .then(() => {
-        res.statusCode = 200;
-        res.end("Animal deleted successfully");
-      })
-      .catch((err) => {
-        console.error("Error deleting animal", err);
-        res.statusCode = 500;
-        res.end("Internal Server Error");
-      });
- 
+
+  AnimalsModel
+    .deleteAnimal(id)
+    .then(() => {
+      res.statusCode = 200;
+      res.end("Animal deleted successfully");
+    })
+    .catch((err) => {
+      console.error("Error deleting animal", err);
+      res.statusCode = 500;
+      res.end("Internal Server Error");
+    });
+
 };
 const getAnimalCategories = async (req, res) => {
   const diet = await AnimalsModel.getDistinctDiets();
@@ -233,8 +233,10 @@ const setAnimalImage1 = async (req, res) => {
         return;
       }
 
-      const existingImage = await AnimalImages.getAnimalImage1(animalId);
-      if (existingImage) {
+      const existingImage = await AnimalImages.getAnimImageExist(animalId);
+      //console.log(existingImage);
+      if (existingImage.length > 0) {
+        //console.log('here');
         await AnimalImages.updateAnimalImage1(animalId, imageData);
         res.writeHead(200, { 'Content-Type': 'text/plain' });
         res.end('Animal image already updated');
@@ -304,8 +306,9 @@ const setAnimalImage2 = async (req, res) => {
         return;
       }
 
-      const existingImage = await AnimalImages.getAnimalImage2(animalId);
-      if (existingImage) {
+      const existingImage = await AnimalImages.getAnimImageExist(animalId);
+      //console.log(existingImage);
+      if (existingImage.length > 0) {
         await AnimalImages.updateAnimalImage2(animalId, imageData);
         res.writeHead(200, { 'Content-Type': 'text/plain' });
         res.end('Animal image already updated');

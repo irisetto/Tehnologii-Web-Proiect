@@ -6,6 +6,31 @@ const imgOverlayDiv = document.querySelector(".imgOverlay");
 const imgElement = imgOverlayDiv.querySelector("img");
 
 
+
+const attachExportButtonListeners = async () => {
+  const exportJsonButton = document.getElementById("exportJSON");
+  const exportXmlButton = document.getElementById("exportXML");
+
+  exportJsonButton.addEventListener("click", () => {
+    console.log('Export JSON button clicked');
+    const urlParams = new URLSearchParams(window.location.search);
+    const animalId = urlParams.get('id');
+    if (animalId) {
+      downloadAnimalJson(animalId);
+    }
+  });
+
+  exportXmlButton.addEventListener("click", () => {
+    console.log('Export XML button clicked');
+    const urlParams = new URLSearchParams(window.location.search);
+    const animalId = urlParams.get('id');
+    if (animalId) {
+      downloadAnimalXml(animalId);
+    }
+  });
+};
+
+
 const getAnimalImage = async (animalId) => {
   const token = localStorage.getItem("token");
   const response = await fetch(`http://localhost:3000/api/getAnimalImage1/${animalId}`, {
@@ -31,13 +56,49 @@ const getAnimalImage = async (animalId) => {
 getAnimalImage(animalId);
 
 
+const getAboutImage = async (animalId) => {
+  const token = localStorage.getItem("token");
+  const response = await fetch(`http://localhost:3000/api/getAnimalImage2/${animalId}`, {
+    method: "GET",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+  if (response.ok) {
+    const imageData = await response.json();
+    console.log(imageData)
+    const uint8Array = new Uint8Array(imageData.data);
+    const base64String = btoa(String.fromCharCode.apply(null, uint8Array));
+
+    console.log('ehhehe' + base64String);
+
+    //imgElement.src = `data:image/jpeg;base64,${base64String}`;
+    const imgElement = document.querySelector(".headline__image img");
+    imgElement.src = `data:image/jpeg;base64,${base64String}`;
+
+  } else {
+    console.error("Failed to fetch animal image.");
+  }
+};
+getAboutImage(animalId);
+
 const animalHtmlCard = (animal) => `<section class="axolotl">
 <div class="animal__tag">ENDANGERED</div>
+
 <div class="headline">
-  <h1>${animal.common_name}</h1>
+  <div class="export-buttons-container">
+    <h1>${animal.common_name}</h1>
+
+    <div class="export-buttons">
+      <button class="export-json-button" id = "exportJSON">Export JSON</button>
+      <button class="export-xml-button" id = "exportXML">Export XML</button>
+    </div>
+    
+  </div>
   <h2>${animal.scientific_name}</h2>
 </div>
-<hr />
+
 
 <div class="tag_area">
   <div class="tag">
@@ -114,7 +175,9 @@ const animalHtmlCard = (animal) => `<section class="axolotl">
 
 const createAnimalCardFromTemplate = (animal) => {
   animalContainer.insertAdjacentHTML("beforeend", animalHtmlCard(animal));
+  attachExportButtonListeners();
 };
+
 
 function renderAnimalPage() {
   const urlParams = new URLSearchParams(window.location.search);
@@ -123,6 +186,7 @@ function renderAnimalPage() {
   getAnimalById(id).then((animal) => {
     createAnimalCardFromTemplate(animal);
   });
+
 }
 
 const getAnimalById = async (id) => {
@@ -133,5 +197,86 @@ const getAnimalById = async (id) => {
   });
   return await response.json();
 };
+
+function downloadAnimalJson(animalId) {
+  const token = localStorage.getItem('token');
+  const url = `/api/animalJSON/${animalId}`;
+
+  fetch(url, {
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    }
+  })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Failed to fetch animal JSON');
+      }
+      return response.json();
+    })
+    .then(exportedData => {
+      const { fileName, fileContent } = exportedData;
+      const blob = new Blob([fileContent], { type: 'application/json' });
+
+      if (window.navigator && window.navigator.msSaveOrOpenBlob) {
+        window.navigator.msSaveOrOpenBlob(blob, fileName);
+      } else {
+        const link = document.createElement('a');
+        link.href = URL.createObjectURL(blob);
+        link.download = fileName;
+        link.click();
+        URL.revokeObjectURL(link.href);
+      }
+      alert('Animal JSON file exported successfully!');
+    })
+    .catch(error => {
+      console.error('Error downloading animal JSON:', error);
+      alert('Error exporting animal JSON. Please try again.');
+
+    });
+}
+
+function downloadAnimalXml(animalId) {
+  const token = localStorage.getItem('token');
+  const url = `/api/animalXML/${animalId}`;
+
+  return fetch(url, {
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    }
+  })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Failed to fetch animal XML');
+      }
+      const indexFileName = response.headers.get('Content-Disposition').indexOf('filename=');
+      let fileName = response.headers.get('Content-Disposition').substring(indexFileName + 9).trim();
+      fileName = fileName.substring(1, fileName.length - 1);
+
+      return response.text().then(fileContent => {
+        return { fileName, fileContent };
+      });
+    })
+    .then(({ fileName, fileContent }) => {
+      const blob = new Blob([fileContent], { type: 'application/xml' });
+
+      if (window.navigator && window.navigator.msSaveOrOpenBlob) {
+        window.navigator.msSaveOrOpenBlob(blob, fileName);
+      } else {
+        const link = document.createElement('a');
+        link.href = URL.createObjectURL(blob);
+        link.download = fileName;
+        link.click();
+        URL.revokeObjectURL(link.href);
+      }
+      alert('Animal XML file exported successfully!');
+    })
+    .catch(error => {
+      console.error('Error downloading animal XML:', error);
+      alert('Error exporting animal XML. Please try again.');
+    });
+
+}
 
 renderAnimalPage();

@@ -71,6 +71,7 @@ exports.getAniParameters = async (filters) => {
           }
         });
       }
+      //console.log(query);
     }
 
     const result = await client.query(query, params);

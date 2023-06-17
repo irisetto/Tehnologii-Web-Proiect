@@ -328,3 +328,44 @@ hr.foot {
   }
   
 }
+
+.export-buttons-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+}
+
+.export-buttons {
+  display: flex;
+  gap: 10px;
+  
+}
+.export-json-button , .export-xml-button {
+  border: none;
+  background-color: #10ea17a9;
+  color: #fff;
+  padding: 12px 24px;
+  border-radius: 4px;
+  font-size: 1rem;
+  font-family: 'Montserrat';
+  cursor: pointer;
+  
+  margin-bottom: 10px;
+}
+
+.export-json-button:hover , .export-xml-button:hover {
+  color: #1A8F07;
+  box-shadow: 0 0px 10px rgba(118, 250, 2, 0.732);
+}
+
+
+@media screen and (max-width: 600px) {
+  .export-buttons-container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+

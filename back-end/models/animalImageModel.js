@@ -15,6 +15,21 @@ exports.getAllAnimalImage1 = async () => {
     }
 }
 
+exports.getAnimImageExist = async (animalId) => {
+    try {
+        const client = await pool.connect();
+        const result = await client.query('SELECT animal_id FROM animal_images WHERE animal_id = $1', [animalId]);
+        client.release();
+        
+        //console.log('sadsd' + result.rows);
+
+        return result.rows || [];
+    } catch (err) {
+        console.error('Error executing query', err);
+        throw err;
+    }
+}
+
 exports.getAnimalImage1 = async (animalId) => {
     try {
         const client = await pool.connect();

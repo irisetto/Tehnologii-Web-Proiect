@@ -48,6 +48,7 @@ function handleFileSelect(event) {
         if (extension === "json") {
             handleJsonFile(file);
         } else if (extension === "xml") {
+            console.log("selected xml");
             handleXmlFile(file);
         } else {
             console.error("Unsupported file format");
@@ -77,15 +78,21 @@ function handleJsonFile(file) {
 
 
 function handleXmlFile(file) {
-    // xml file parse
+    // xml file 
+
     const reader = new FileReader();
     reader.onload = function (event) {
         try {
             const xmlString = event.target.result;
             const parser = new DOMParser();
             const xmlDoc = parser.parseFromString(xmlString, "text/xml");
-            //validateAnimalDataXML(xmlDoc);
-            //importAnimalDataXML(xmlDoc);
+            validateAnimalDataXML(xmlDoc);
+            console.log('validated');
+
+            const newJson = convertXmlToJson(xmlDoc);
+            console.log(newJson);
+            importAnimalData(newJson);
+
             console.log('Imported animal');
             alert('Imported animal XML.');
         } catch (error) {
@@ -94,11 +101,12 @@ function handleXmlFile(file) {
         }
     };
 
-
+    reader.readAsText(file);
 }
 
-function validateAnimalDataXML(animalData) {
-    const requiredColumns = [
+
+function validateAnimalDataXML(xmlDoc) {
+    const requiredElements = [
         "id",
         "animal_class",
         "common_name",
@@ -117,21 +125,36 @@ function validateAnimalDataXML(animalData) {
         "about_text"
     ];
 
-    const missingColumns = [];
+    const missingElements = [];
 
-    for (const column of requiredColumns) {
-        if (!Object.prototype.hasOwnProperty.call(animalData, column)) {
-            missingColumns.push(column);
+    for (const element of requiredElements) {
+        console.log(element);
+        const elements = xmlDoc.getElementsByTagName(element);
+        console.log(elements);
+        if (elements.length === 0) {
+            missingElements.push(element);
         }
     }
 
-    if (missingColumns.length > 0) {
+    if (missingElements.length > 0) {
         throw new Error(
-            `Missing required columns in animal data: ${missingColumns.join(", ")}`
+            `Missing required elements in animal data: ${missingElements.join(", ")}`
         );
     }
 }
 
+function convertXmlToJson(xmlDoc) {
+    const json = {};
+
+    const rootElement = xmlDoc.documentElement;
+
+    for (const childElement of rootElement.children) {
+        const elementName = childElement.tagName;
+        const elementText = childElement.textContent;
+        json[elementName] = elementText;
+    }
+    return json;
+}
 
 function validateAnimalDataJSON(animalData) {
     const requiredColumns = [

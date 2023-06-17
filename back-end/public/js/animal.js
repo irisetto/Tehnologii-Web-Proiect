@@ -81,7 +81,7 @@ const getAboutImage = async (animalId) => {
     console.error("Failed to fetch animal image.");
   }
 };
-getAboutImage(animalId);
+
 
 const animalHtmlCard = (animal) => `<section class="axolotl">
 <div class="animal__tag">ENDANGERED</div>
@@ -176,6 +176,7 @@ const animalHtmlCard = (animal) => `<section class="axolotl">
 const createAnimalCardFromTemplate = (animal) => {
   animalContainer.insertAdjacentHTML("beforeend", animalHtmlCard(animal));
   attachExportButtonListeners();
+  getAboutImage(animalId);
 };
 
 

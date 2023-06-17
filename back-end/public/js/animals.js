@@ -204,7 +204,7 @@ const getCategoryHtml = (categoryName, labels) => {
 
 const getSearchHtml = () => {
   return `
-  <div class="q-a">
+  <div class="q-a-search">
    
     <input type="text" class="search-animals" placeholder="Search..." />
     

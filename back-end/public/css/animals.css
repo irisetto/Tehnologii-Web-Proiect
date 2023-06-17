@@ -320,7 +320,14 @@ h2 {
   font-size: 1.3rem;
  
 }
-
+.q-a-search {
+  border: 1px solid #000;
+  border-radius: 10px;
+  padding: 5px;
+  margin: 15px;
+  font-size: 1.3rem;
+ 
+}
 input[type="checkbox"] {
   position: relative;
   border: 2px solid #000;

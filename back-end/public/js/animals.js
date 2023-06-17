@@ -179,6 +179,8 @@ const renderFilteringMenu = async () => {
       getCategoryHtml(key, value)
     );
   }
+
+  
 };
 
 renderFilteringMenu();

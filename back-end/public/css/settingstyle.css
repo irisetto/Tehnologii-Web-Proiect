@@ -19,6 +19,7 @@ settings
 .button__combo {
     display: flex;
     align-items: center;
+  
   }
   
   .fas {
@@ -240,6 +241,12 @@ select:hover {
     #export-panel {
         text-align: left;
     }
+    
+.button__combo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 }
 
 

@@ -46,3 +46,21 @@ alert("Only admins can access this feature.");
  console.error("Request failed:", error);
 });
 }
+
+const seeAnimalsButton = document.getElementById("see_animals");
+seeAnimalsButton.addEventListener("click", handleSeeAnimals);
+
+function handleSeeAnimals() {
+getLoggedUser()
+.then(async (user) => {
+if(user.is_admin === true)
+window.location.href = "./animals_admin";
+else {
+alert("Only admins can access this feature.");
+}
+
+})
+.catch((error) => {
+console.error("Request failed:", error);
+});
+}

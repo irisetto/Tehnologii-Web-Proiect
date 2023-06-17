@@ -25,6 +25,27 @@ background-color: #167508;
   --color3: #1a8f07;
   --transitionDuration: 1s;
 }
+.slider-container {
+  align-items: center;
+}
+
+input[type="range"] {
+  -webkit-appearance: none;
+  width: 200px;
+  height: 5px;
+  background: #ddd;
+  outline: none;
+  margin: 0 10px;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 10px;
+  height: 20px;
+  background: #888;
+  cursor: pointer;
+}
 
 /* Reset Default Settings */
 

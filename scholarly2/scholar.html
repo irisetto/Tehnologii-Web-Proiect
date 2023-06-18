@@ -1,15 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ZoM (Zoo Web Manager)</title>
-  </head>
+</head>
 
-  <body>
+<body>
     <header>
-      <h1>ZoM (Zoo Web Manager)</h1>
+        <h1>ZoM (Zoo Web Manager)</h1>
     </header>
 
     <nav>
@@ -32,13 +33,15 @@
                 <li><a href="#asumptii-dependente">2.7 Asumpții și dependențe</a></li>
             </ul>
             <li><a href="#interfete-externe">3. Interfețe externe</a></p>
-            <ul>
-                <li><a href="#interfata-user">3.1 Interfață utilizator</a></li>
-                <li>
-                    <a href="#interfata-software">3.2 Interfață software</a></li>
-                <li>
-                   <a href="#interfata-comunicare">3.3 Interfață de comunicare</a></li>
-            </ul>
+                <ul>
+                    <li><a href="#interfata-user">3.1 Interfață utilizator</a></li>
+                    <li>
+                        <a href="#interfata-software">3.2 Interfață software</a>
+                    </li>
+                    <li>
+                        <a href="#interfata-comunicare">3.3 Interfață de comunicare</a>
+                    </li>
+                </ul>
         </ul>
     </nav>
 
@@ -218,8 +221,104 @@
         <h2> 3. Interfețe externe</h2>
     </section>
 
-    <section>
 
+
+    <section id="#interfata-software">
+        <h2>3.3 Interfață software</h2>
+        <p>Aplicația noastră utilizează o bază de date PostgreSQL pentru a gestiona și stoca datele referitoare la
+            animale și utilizatori. Baza de date este utilizată pentru a păstra evidența detaliată a acestor date și
+            pentru a facilita funcționalități precum autentificarea și stocarea informațiilor relevante.</p>
+
+        <p>Pentru partea de server, aplicația este dezvoltată folosind Node.js, fără utilizarea de framework-uri
+            suplimentare. Alegerea Node.js ne oferă flexibilitate și control sporit în dezvoltarea logicii de server.
+        </p>
+
+        <p>Pentru funcționalități adiționale, aplicația noastră utilizează trei pachete externe:</p>
+        <ul>
+            <li>Nodemailer: Este utilizat pentru a permite aplicației să trimită e-mailuri pentru functionalitati precum
+                resetarea parolei.</li>
+            <li>Jsonwebtoken: Este utilizat pentru generarea și verificarea tokenurilor JSON Web Tokens (JWT), care sunt
+                folosite pentru autentificare și autorizare în cadrul aplicației noastre.</li>
+            <li>pg: Este utilizat pentru interacțiunea cu baza de date PostgreSQL, oferind funcționalități și metode
+                necesare pentru conectarea, interogarea și manipularea datelor din baza de date.</li>
+        </ul>
+
+
+
+        <h3>3.3.1 Controlere API</h3>
+        <p>Aplicația noastră expune un API RESTful dezvoltat utilizând Node.js, care permite interacțiunea cu diverse
+            resurse și funcționalități. Pentru gestionarea resurselor legate de animale și utilizatori, aplicația
+            noastră utilizează mai mulți controleri, care furnizează endpoint-uri pentru a efectua operații specifice
+            asupra resurselor corespunzătoare.
+        </p>
+        <ul>
+            <li>
+                <p>AnimalController: Furnizează endpoint-uri pentru gestionarea operațiilor legate de animale.</p>
+                <strong>GET:</strong>
+                <ul>
+                    <li>/api/animals: Returnează o listă cu toate animalele stocate.</li>
+                    <li>/api/animals/{id}: Returnează informațiile animalului cu ID-ul specificat.</li>
+                    <li>/api/animalNames: Returnează numele tuturor animalelor.</li>
+                    <li>/api/animals/categories: Returnează categoriile dupa care pot fi filtrate animalele.</li>
+                    <li>/api/animalJSON/{id}: Returnează animalul cu ID-ul specificat în format JSON.</li>
+                    <li>/api/animalXML/{id}: Returnează animalul cu ID-ul specificat în format XML.</li>
+                    <li>/api/getAllImage1: Returnează toate imaginile 1 asociate animalelor.</li>
+                    <li>/api/getAnimalImage1/{id}: Returnează imaginea 1 asociată animalului cu ID-ul specificat.</li>
+                    <li>/api/getAnimalImage2/{id}: Returnează imaginea 2 asociată animalului cu ID-ul specificat.</li>
+                    <li>/api/getAniFrench/{id}: Returnează textul în limba franceză asociat animalului cu ID-ul
+                        specificat.</li>
+                </ul>
+                <strong>POST:</strong>
+                <ul>
+                    <li>/api/animals/filter: Returnează animalele filtrate în funcție de anumite criterii.</li>
+                </ul>
+                <strong>PUT:</strong>
+                <ul>
+                    <li>/api/insertAni: Inserează un animal nou. </li>
+                    <li>/api/setAnimalImage1/{id}: Actualizeaza imaginea 1 pentru animalul cu ID-ul specificat.</li>
+                    <li>/api/setAnimalImage2/{id}: Actualizeaza imaginea 2 pentru animalul cu ID-ul specificat.</li>
+                </ul>
+                <strong>DELETE:</strong>
+                <ul>
+                    <li>/api/animals/{id}: Șterge animalul cu ID-ul specificat din sistem.</li>
+                    <li>/api/setAnimalImage1/{id}: Actualizeaza imaginea 1 pentru animalul cu ID-ul specificat.</li>
+                    <li>/api/setAnimalImage2/{id}: Actualizeaza imaginea 2 pentru animalul cu ID-ul specificat.</li>
+                </ul>
+            </li>
+            <li>
+                HelpController: Furnizează endpoint-uri pentru furnizarea de informații și asistență utilizatorilor.
+            </li>
+            <li>ProfileController: Furnizează endpoint-uri pentru gestionarea profilurilor utilizatorilor.</li>
+            <li>
+                <p>SettingController: Furnizează endpoint-uri pentru gestionarea setărilor aplicației.</p>
+                <strong>POST:</strong>
+                <ul>
+                    <li>/api/theme: Seteaza tema unui utilizator.</li>
+                </ul>
+            </li>
+            <li>TicketsController: Furnizează endpoint-uri pentru gestionarea operațiilor legate de bilete sau tichete.
+            </li>
+            <li>UsersController: Furnizează endpoint-uri pentru gestionarea operațiilor legate de utilizatori.</li>
+            <li>
+                <p>LoginController: Furnizează endpoint-uri pentru gestionarea autentificării utilizatorilor.</p>
+                <strong>POST:</strong>
+                <ul>
+                    <li> /api/login: utentifică un utilizator prin verificarea datelor de autentificare.</li>
+                </ul>
+            </li>
+            <li>
+                <p>registerController: Furnizează endpoint-uri pentru gestionarea înregistrării utilizatorilor.</p>
+                <strong>POST:</strong>
+                <ul>
+                    <li>/api/register: Înregistrează un utilizator prin înregistrarea datelor de autentificare.</li>
+                </ul>
+            </li>
+        </ul>
+    </section>
+
+
+    <section id="#interfata-comunicare">
+        <h2>3.3 Interfață comunicare</h2>
 
     </section>
 

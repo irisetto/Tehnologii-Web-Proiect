@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="css/register.css" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Viga" />
+  <script src="js/register.js" defer></script>
 </head>
 
 <body>
@@ -16,7 +17,7 @@
     <div class="form">
       <img class="logo" src="/pictures/zom.png" alt="logo" />
       <h2>Create account</h2>
-      <form>
+      <form id="register-form">
         <div class="inputs">
           <div class="txt_field">
             <input type="text" name="first_name" required />
@@ -29,7 +30,7 @@
           </div>
 
           <div class="txt_field">
-            <input type="email" name="email" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}" required />
+            <input type="email" name="email" required/>
             <label>Email</label>
           </div>
 
@@ -62,38 +63,6 @@
     <img class="picture" src="/pictures/lemur2.png" alt="lemur" />
   </div>
 
-  <script>
-    const form = document.getElementById('register-form');
-    form.addEventListener('submit', (event) => {
-      event.preventDefault();
-
-      const formData = new FormData(form);
-      const jsonData = {};
-
-      for (const [key, value] of formData.entries()) {
-        jsonData[key] = value;
-      }
-
-      fetch('/api/register', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(jsonData),
-      })
-        .then((response) => {
-          if (response.ok) {
-            console.log('Registration successful');
-          } else {
-            console.error('Registration failed');
-          }
-        })
-        .catch((error) => {
-          console.error('Error:', error);
-
-        });
-    });
-  </script>
 </body>
 
 </html>

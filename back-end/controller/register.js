@@ -20,20 +20,32 @@ const handleRegister = async (req, res) => {
 
         try {
             let existingUser = await user.getUserWithEmail(email);
+
+            if(password != confirmPassword) {
+                console.log("Passwords don't match");
+
+                // res.setHeader("Location", "/register");
+                res.writeHead(400, { "Content-Type": "application/json" });
+                res.end(JSON.stringify("Passwords dont' match!"));
+                return;
+            }
+
             if (existingUser) {
                 console.log("Email already exists");
-                res.statusCode = 302;
-                res.setHeader("Location", "/register");
-                res.end();
+
+                // res.setHeader("Location", "/register");
+                res.writeHead(400, { "Content-Type": "application/json" });
+                res.end(JSON.stringify("Email already exists!"));
                 return;
             }
 
             existingUser = await user.getUserWithPhonenumber(phoneNumber);
             if (existingUser) {
                 console.log("Phone Number already exists");
-                res.statusCode = 302;
-                res.setHeader("Location", "/register");
-                res.end();
+
+                res.writeHead(400, { "Content-Type": "application/json" });
+                //res.setHeader("Location", "/register");
+                res.end(JSON.stringify("Phone number already exists!"));
                 return;
             }
 
@@ -49,12 +61,12 @@ const handleRegister = async (req, res) => {
             });
             console.log("User inserted successfully");
 
-            res.statusCode = 302;
-            res.setHeader("Location", "/login");
-            res.end();
+            res.writeHead(200, { "Content-Type": "application/json" });
+
+            res.end(JSON.stringify("Registration succesfully!"));
         } catch (err) {
             console.error("Error handling registration", err);
-            res.statusCode = 500;
+            res.writeHead(400, { "Content-Type": "application/json" });
             res.end();
         }
     });

@@ -30,9 +30,7 @@
 
       .interface-page img {
         max-width: 100%;
-        /* Ensure the image fits within the grid item */
         height: auto;
-        /* Preserve the aspect ratio of the image */
       }
     </style>
   </head>
@@ -803,13 +801,68 @@
         În acest proiect, comunicarea este efectuată prin intermediul
         protocolului HTTP (Hypertext Transfer Protocol), care este un standard
         pentru transmiterea de informații pe web. Prin utilizarea HTTP,
-        aplicația noastră poate să facă request-uri la server și poate să primească
-        răspunsuri.
+        aplicația noastră poate să facă request-uri la server și poate să
+        primească răspunsuri.
       </p>
       <p>
         Comunicarea dintre client și server se realizează printr-o serie de
         request-uri HTTP, fiecare având asociat un răspuns în format JSON.
       </p>
     </section>
+    <button class="my-button" onclick="scrollToTop()" id="back-to-up">
+      <div class="long-arrow-left"></div>
+    </button>
   </body>
+
+  <style>
+    .my-button {
+      display: inline-block;
+      font-weight: 400;
+      text-align: center;
+      text-decoration: none;
+      vertical-align: middle;
+      cursor: pointer;
+      user-select: none;
+      padding: 1.3rem 1.3rem;
+      border: 1px solid transparent;
+      color: #fff;
+      background-color: #1a8f0740;
+      border-color: #1a8f0740;
+      border-radius: 50%;
+      position: fixed;
+      bottom: 50px;
+      right: 50px;
+      transform: translate(50%, 50%);
+    }
+
+    .long-arrow-left {
+      display: block;
+      width: 15px;
+      height: 15px;
+      border-top: 2px solid #fff;
+      border-left: 2px solid #fff;
+    }
+    .long-arrow-left {
+      transform: rotate(45deg);
+    }
+  </style>
+  <script>
+    window.onscroll = () => {
+      toggleTopButton();
+    };
+    function scrollToTop() {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function toggleTopButton() {
+      if (
+        document.body.scrollTop > 20 ||
+        document.documentElement.scrollTop > 20
+      ) {
+        document.getElementById("back-to-up").classList.remove("d-none");
+      } else {
+        document.getElementById("back-to-up").classList.add("d-none");
+      }
+    }
+  </script>
 </html>

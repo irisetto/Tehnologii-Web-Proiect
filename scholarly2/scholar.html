@@ -16,37 +16,205 @@
     <nav>
         <ul>
             <li><a href="#abstract">Abstract</a></li>
-            <li><a href="#introducere">Introducere</a></li>
-            <li><a href="#scop">1.1 Scop</a></li>
-            <li><a href="#public-tinta">1.2 Publicul Țintă</a></li>
-            <li><a href="#referinte">1.3 Referințe</a></li>
+            <ul>
+                <li><a href="#introducere">1. Introducere</a></li>
+                <li><a href="#scopul-aplicatiei">1.1 Scopul aplicatiei</a></li>
+                <li><a href="#public-tinta">1.2 Publicul Țintă</a></li>
+                <li><a href="#referinte">1.3 Referințe</a></li>
+            </ul>
+            <li><a href="#descriere-generala">2. Descriere generală</a></li>
+            <ul>
+                <li><a href="#perspectiva-produsului">2.1 Perspectiva produsului</a></li>
+                <li><a href="#functii-produs">2.2 Funcții ale produsului</a></li>
+                <li><a href="#clase-utilizatori">2.3 Clase de utilizatori și caracteristici</a></li>
+                <li><a href="#mediu-operare">2.4 Mediu de operare</a></li>
+                <li><a href="#restrictii-proiectare-implemen">2.5 Restricții de proiectare și implementare</a></li>
+                <li><a href="#documentatie-utilizator">2.6 Documentație utilizator</a></li>
+                <li><a href="#asumptii-dependente">2.7 Asumpții și dependențe</a></li>
+            </ul>
+
         </ul>
     </nav>
 
     <section id="abstract">
         <h2>Abstract</h2>
+        <div>
+            Acest raport prezinta proiect web prezentat implementează o aplicație pentru gestionarea informațiilor
+            despre o grădină zoologică.
 
+        </div>
     </section>
 
     <section id="introducere">
         <h2>Introducere</h2>
+        <p>Grădinile zoologice sunt locuri de importanță majoră pentru conservarea speciilor animale și pentru educația
+            publicului cu privire la diversitatea și importanța faunei sălbatice. Însă gestionarea informațiilor despre
+            animalele găzduite într-o grădină zoologică poate fi complexă și necesită un sistem eficient și centralizat.
+        </p>
+        <p>ZoM (Zoo Web Manager)
+            propune implementarea unei aplicații web pentru gestionarea informațiilor referitoare la o grădină
+            zoologică. Aplicația va facilita redarea și managementul datelor despre animalele gazduite, oferind o gamă
+            largă de informații relevante, cum ar fi denumirea populară și științifică a animalelor, descrieri,
+            originea, statutul de conservare, caracteristici specifice (cum ar fi dependența de climă sau proprietăți
+            speciale), imagini de interes, regim alimentar (vegetarian, carnivor, omnivor) și multe
+            altele.</p>
+        <p>Aplicația va oferi mecanisme avansate de căutare, filtrare și prezentare multi-criterială, permițând
+            utilizatorilor să efectueze căutări complexe și să obțină rezultate relevante. Utilizatorii vor avea
+            posibilitatea să filtreze animalele în funcție de criterii specifice, cum ar fi regimul alimentar, regimul
+            de activitate (nocturn sau diurn), originea geografică și altele. De exemplu, utilizatorii pot selecta să
+            afișeze toate mamiferele omnivore nocturne din Africa sau să genereze o listă de păsări și insecte capabile
+            să supraviețuiască în condiții desertice.</p>
+        <p>Pe lângă funcționalitățile oferite prin interfața web, aplicația va permite și importul/exportul datelor prin
+            intermediul fișierelor în formatele JSON și XML, asigurând astfel transferul facil al informațiilor.</p>
+        <p>Un alt aspect important al acestui proiect este furnizarea de funcționalități esențiale prin intermediul unui
+            API REST.</p>
+        <p>În continuare, vom explora în detaliu caracteristicile și funcționalitățile pe care această aplicație web le
+            va oferi pentru gestionarea informațiilor animalelor si angajatilor dintr-o grădină zoologică.</p>
 
     </section>
 
-    <section id="scop">
-        <h2>1.1 Scop</h2>
-
+    <section id="scopul-aplicatiei">
+        <h2>1.1 Scopul aplicatiei</h2>
+        <p>Scopul aplicației Zoo Web Manager (ZoM) este de a facilita și de a usura munca angajaților unei grădini
+            zoologice în gestionarea informațiilor despre animalele gazduite. Aplicația are ca obiectiv principal
+            centralizarea și eficientizarea procesului de management al datelor, oferind un sistem integrat și ușor de
+            utilizat.</p>
+        <p>Prin intermediul ZoM, angajații vor putea introduce și actualiza informațiile despre animale într-o manieră
+            organizată și structurată.</p>
+        <p>De asemenea, aplicația ZoM va oferi funcționalități avansate de căutare, filtrare și prezentare
+            multi-criterială, permițând angajaților să găsească rapid și eficient informațiile de care au nevoie.
+            Angajații vor putea obține liste personalizate de animale care îndeplinesc anumite criterii
+            specifice.</p>
+        <p>Prin ZoM, se urmărește să se reducă timpul și efortul necesar pentru gestionarea informațiilor despre animale
+            și să se ofere un sistem intuitiv și eficient pentru angajați, permițându-le să se concentreze mai mult
+            asupra îngrijirii animalelor și a altor aspecte importante ale grădinii zoologice.</p>
     </section>
 
     <section id="public-tinta">
         <h2>1.2 Publicul Țintă</h2>
-
+        <p>Publicul țintă al aplicației Zoo Web Manager (ZoM) este reprezentat de angajații unei grădini zoologice
+            responsabili de gestionarea informațiilor despre animalele gazduite.</p>
     </section>
 
     <section id="referinte">
         <h2>1.3 Referințe</h2>
-
+        <ul>
+            <li>GitHub Repo: <a href="https://github.com/">https://github.com/</a></li>
+            <li>Google Fonts: <a href="https://fonts.google.com/">https://fonts.google.com/</a></li>
+            <li>PostgreSQL: <a href="https://www.postgresql.org/">https://www.postgresql.org/</a></li>
+            <li>Curs Tehnologii Web: <a
+                    href="https://profs.info.uaic.ro/~busaco/teach/courses/web/web-biblio.html">https://profs.info.uaic.ro/~busaco/teach/courses/web/web-biblio.html</a>
+            </li>
+            <li>W3Schools Node.js: <a href="https://www.w3schools.com/nodejs/">https://www.w3schools.com/nodejs/</a>
+            </li>
+            <li>Tutorial Node.js - YouTube: <a
+                    href="https://www.youtube.com/watch?v=_1xa8Bsho6A">https://www.youtube.com/watch?v=_1xa8Bsho6A</a>
+            </li>
+        </ul>
     </section>
+    <section id="descriere-generala">
+        <h2> 2. Descriere generală</h2>
+    </section>
+
+    <section>
+        <h2>2.1 Perspectiva produsului</h2>
+        <p>Aplicația Zoo Web Manager (ZoM) este un produs nou care are ca scop facilitarea gestionării
+            informațiilor despre animalele gazduite într-o grădină zoologică. Aplicația este concepută pentru a fi
+            utilizată independent, fără a fi parte a unei familii de produse sau a înlocui alte sisteme existente.</p>
+    </section>
+
+    <section id="functii-produs">
+        <h2>2.2 Funcții ale produsului</h2>
+        <p>Principalele funcții pe care utilizatorul le poate poată efectua sunt:</p>
+        <ul>
+            <li>Login/Logout/Register</li>
+            <li>Schimbarea parolei si a informațiilor personale</li>
+            <li>Gestionarea informațiilor despre animalele găzduite în grădina zoologică</li>
+            <li>Gestionarea user-ilor din aplicatie</li>
+            <li>Redarea și managementul datelor despre animale, inclusiv denumire populară și științifică, descrieri,
+                origine, statut de conservare, caracteristici specifice, imagini de interes, regim alimentar etc.</li>
+            <li>Căutare, filtrare și prezentare multi-criterială a animalelor</li>
+            <li>Import și export de date în formatele JSON și XML</li>
+            <li>Submit ticket pentru raportarea problemelor în departamente</li>
+            <li>Trimiterea de e-mailuri cu problemele întâmpinate în aplicație către administrator</li>
+            <li>Schimbarea temei aplicației</li>
+            <li>Schimbarea limbii descrierilor animalelor</li>
+        </ul>
+        <p>Mai multe detalii despre aceste funcții vor fi furnizate în secțiunea 3 a documentului.</p>
+    </section>
+
+    <section id="clase-utilizatori">
+        <h2>2.3 Clase de utilizatori și caracteristici</h2>
+        <p>Produsul este destinat utilizării de către următoarele clase de utilizatori:</p>
+        <ul>
+            <li>Utilizatori normali ai grădinii zoologice</li>
+            <li>Angajați ai grădinii zoologice cu acces de administrator pentru gestionarea informațiilor despre
+                animalele găzduite</li>
+        </ul>
+        <p>Caracteristicile relevante pentru fiecare clasă de utilizatori sunt:</p>
+        <ul>
+            <li>Utilizatori normali ai grădinii zoologice:
+                <ul>
+                    <li>Posibilitatea de a viziona și filtra informațiile despre animale</li>
+                </ul>
+            </li>
+            <li>Angajați ai grădinii zoologice cu acces de administrator:
+                <ul>
+                    <li>Acces privilegiat la sistem</li>
+                    <li>Poate vizualiza, filtra, adauga și șterge informațiile despre animale</li>
+                    <li>Poate "concedia" un user</li>
+                </ul>
+            </li>
+        </ul>
+    </section>
+
+    <section id="mediu-operare">
+        <h2>2.4 Mediu de operare</h2>
+        <p>Produsul functioneaza independent de sistemul de operare. Este o aplicație web ce poate fi accesată și
+            utilizată prin
+            oricare dintre browserele larg răspândite (Chrome, Opera, Firefox, Microsoft Edge).
+        </p>
+    </section>
+
+
+    <section id="restrictii-proiectare-implemen">
+        <h2>2.5 Restricții de proiectare și implementare</h2>
+        <p>Produsul este supus următoarelor restricții și opțiuni tehnologice:</p>
+        <ul>
+            <li>Se utilizează limbajele de programare JavaScript, HTML și CSS pentru partea de frontend.</li>
+            <li>Se utilizează Node.js pentru dezvoltarea backend-ului.</li>
+            <li>Se utilizează o bază de date PostgreSQL pentru stocarea datelor.</li>
+            <li>Se evită utilizarea framework-urilor atât în partea de frontend, cât și în partea de backend.</li>
+        </ul>
+    </section>
+
+    <section id="documentatie-utilizator">
+        <h2>2.6 Documentație utilizator</h2>
+        <p>Acest document poate fi considerat o parte a documentației utilizator și conține informații relevante despre
+            produs. O alta componenta a documentației utilizator care este furnizate împreună cu software-ul este pagina
+            de help</p>
+    </section>
+
+    <section id="asumptii-dependente">
+        <h2>2.7 Asumpții și dependențe</h2>
+        <p>Se iau în considerare următoarele asumpții și dependențe:</p>
+        <ul>
+            <li>Funcționarea corectă a bazei de date PostgreSQL utilizate în cadrul aplicației</li>
+            <li>Disponibilitatea unui mediu de dezvoltare și de operare adecvat pentru software-ul dezvoltat, inclusiv
+                servere și echipamente hardware necesare</li>
+            <li>Cooperarea și furnizarea de informații adecvate din partea grădinii zoologice</li>
+        </ul>
+        <p>Proiectul poate fi afectat în cazul în care aceste asumpții se dovedesc a fi incorecte, sunt partajate sau se
+            modifică.</p>
+    </section>
+
+
+
+
+
+
+
+
 </body>
 
 </html>

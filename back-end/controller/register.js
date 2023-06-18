@@ -26,7 +26,7 @@ const handleRegister = async (req, res) => {
 
                 // res.setHeader("Location", "/register");
                 res.writeHead(400, { "Content-Type": "application/json" });
-                res.end();
+                res.end(JSON.stringify("Passwords dont' match!"));
                 return;
             }
 
@@ -35,7 +35,7 @@ const handleRegister = async (req, res) => {
 
                 // res.setHeader("Location", "/register");
                 res.writeHead(400, { "Content-Type": "application/json" });
-                res.end();
+                res.end(JSON.stringify("Email already exists!"));
                 return;
             }
 
@@ -45,7 +45,7 @@ const handleRegister = async (req, res) => {
 
                 res.writeHead(400, { "Content-Type": "application/json" });
                 //res.setHeader("Location", "/register");
-                res.end();
+                res.end(JSON.stringify("Phone number already exists!"));
                 return;
             }
 
@@ -63,7 +63,7 @@ const handleRegister = async (req, res) => {
 
             res.writeHead(200, { "Content-Type": "application/json" });
 
-            res.end();
+            res.end(JSON.stringify("Registration succesfully!"));
         } catch (err) {
             console.error("Error handling registration", err);
             res.writeHead(400, { "Content-Type": "application/json" });

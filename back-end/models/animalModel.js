@@ -24,7 +24,7 @@ exports.getAllAniNames = async () => {
   } catch (err) {
     console.error("Error execution querry", err);
   }
-}
+};
 
 exports.getAniParameters = async (filters) => {
   try {
@@ -45,15 +45,18 @@ exports.getAniParameters = async (filters) => {
               .join(", ");
             params.push(...filters[key]);
             query += ` ${key} = ANY(ARRAY[${paramNames}])`;
-
-          } else if (key === "weight" || key === "height" || key === "lifespan") {
+          } else if (
+            key === "weight" ||
+            key === "height" ||
+            key === "lifespan"
+          ) {
             const rangeFilter = filters[key];
             if (rangeFilter.min !== undefined) {
               params.push(rangeFilter.min);
               query += ` ${key} >= $${paramIndex++}`;
 
-              if(rangeFilter.max !== undefined) {
-                query +=  " AND";
+              if (rangeFilter.max !== undefined) {
+                query += " AND";
               }
             }
 
@@ -107,7 +110,6 @@ exports.getAniWithId = async (animalId) => {
     throw err;
   }
 };
-
 
 exports.insertAnimal = async (animal) => {
   try {
@@ -203,26 +205,28 @@ exports.getAnimalById = async (animalId) => {
 exports.getDistinctClass = async () => {
   try {
     const client = await pool.connect();
-    const result = await client.query('SELECT DISTINCT animal_class FROM animals');
+    const result = await client.query(
+      "SELECT DISTINCT animal_class FROM animals"
+    );
     client.release();
 
     const distinctClass = result.rows.map((row) => row.animal_class);
     return distinctClass;
   } catch (err) {
-    console.error('Error executing query', err);
+    console.error("Error executing query", err);
     throw err;
   }
 };
 exports.getDistinctHabitats = async () => {
   try {
     const client = await pool.connect();
-    const result = await client.query('SELECT DISTINCT habitat FROM animals');
+    const result = await client.query("SELECT DISTINCT habitat FROM animals");
     client.release();
 
     const distinctHabitats = result.rows.map((row) => row.habitat);
     return distinctHabitats;
   } catch (err) {
-    console.error('Error executing query', err);
+    console.error("Error executing query", err);
     throw err;
   }
 };
@@ -230,63 +234,55 @@ exports.getDistinctHabitats = async () => {
 exports.getDistinctLifestyles = async () => {
   try {
     const client = await pool.connect();
-    const result = await client.query('SELECT DISTINCT lifestyle FROM animals');
+    const result = await client.query("SELECT DISTINCT lifestyle FROM animals");
     client.release();
 
     const distinctLifestyles = result.rows.map((row) => row.lifestyle);
     return distinctLifestyles;
   } catch (err) {
-    console.error('Error executing query', err);
+    console.error("Error executing query", err);
     throw err;
   }
 };
 
-
 exports.getDistinctDiets = async () => {
   try {
     const client = await pool.connect();
-    const result = await client.query('SELECT DISTINCT diet FROM animals');
+    const result = await client.query("SELECT DISTINCT diet FROM animals");
     client.release();
 
     const distinctDiets = result.rows.map((row) => row.diet);
     return distinctDiets;
   } catch (err) {
-    console.error('Error executing query', err);
+    console.error("Error executing query", err);
     throw err;
   }
 };
 
-
 exports.getDistinctRegions = async () => {
   try {
     const client = await pool.connect();
-    const result = await client.query('SELECT DISTINCT region FROM animals');
+    const result = await client.query("SELECT DISTINCT region FROM animals");
     client.release();
 
     const distinctRegions = result.rows.map((row) => row.region);
     return distinctRegions;
   } catch (err) {
-    console.error('Error executing query', err);
+    console.error("Error executing query", err);
     throw err;
   }
 };
 
-
 exports.getDistinctSkinTypes = async () => {
   try {
     const client = await pool.connect();
-    const result = await client.query('SELECT DISTINCT skin_type FROM animals');
+    const result = await client.query("SELECT DISTINCT skin_type FROM animals");
     client.release();
 
     const distinctSkinTypes = result.rows.map((row) => row.skin_type);
     return distinctSkinTypes;
   } catch (err) {
-    console.error('Error executing query', err);
+    console.error("Error executing query", err);
     throw err;
   }
 };
-
-
-
-
-

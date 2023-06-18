@@ -6,7 +6,7 @@ const animalHtmlCard = (animal) => `<div class="card">
 <img
   src="${animal.image}"
   class="card__img"
-  alt="animal"
+  alt="${animal.common_name}"
 />
 <h2 class="card__title">${animal.common_name}</h2>
 <div class="card__content">
@@ -30,15 +30,14 @@ const createAnimalCardFromTemplate = (animal) => {
   //   animal.image = `data:image/jpeg;base64,${matchingImage.image}`;
   // }
   //console.log('lalalall');
-  
+
   animalsContainer.insertAdjacentHTML("beforeend", animalHtmlCard(animal));
 };
 
 let filters = {};
 const renderAnimalCards = async (filters) => {
-
   const searchInput = document.querySelector(".search-animals");
-  const searchQuery = searchInput ? searchInput.value.toLowerCase() : '';
+  const searchQuery = searchInput ? searchInput.value.toLowerCase() : "";
 
   const pickedAnimalCategory = new URLSearchParams(window.location.search).get(
     "category"
@@ -59,10 +58,12 @@ const renderAnimalCards = async (filters) => {
     // if (matchingImage) {
     //   animal.image = `data:image/jpeg;base64,${matchingImage.image}`;
     // }
-    if (searchQuery === '' || animal.common_name.toLowerCase().includes(searchQuery)) {
+    if (
+      searchQuery === "" ||
+      animal.common_name.toLowerCase().includes(searchQuery)
+    ) {
       createAnimalCardFromTemplate(animal);
     }
-   
   });
 };
 
@@ -110,9 +111,7 @@ let imagePairs = [];
 
 const loadImagePairs = async () => {
   imagePairs = await getAllImagePairs();
-  console.log(imagePairs)
 };
-
 
 const getAllAnimals = async () => {
   const token = localStorage.getItem("token");
@@ -121,8 +120,10 @@ const getAllAnimals = async () => {
     headers: { Authorization: `Bearer ${token}` },
   });
   const result = await response.json();
-  result.forEach(animal => {
-    const matchingImage = imagePairs.find(image => image.animal_id === animal.id);
+  result.forEach((animal) => {
+    const matchingImage = imagePairs.find(
+      (image) => image.animal_id === animal.id
+    );
     if (matchingImage) {
       //console.log(matchingImage);
       animal.image = `data:image/jpeg;base64,${matchingImage.image}`;
@@ -132,9 +133,67 @@ const getAllAnimals = async () => {
   return result;
 };
 
+function convertMeasurementUnitRange(weightRange, measurementUnit) {
+  const pattern = `^(\\d+(\\.\\d+)?)-(\\d+(\\.\\d+)?)${measurementUnit}$`;
+  const regex = new RegExp(pattern);
+
+  const matches = weightRange.match(regex);
+
+  if (matches) {
+    const min = parseFloat(matches[1]);
+    const max = parseFloat(matches[3]);
+    return { min, max };
+  } else {
+    return { min: 9999, max: 0 };
+  }
+}
 
 const getFilteredAnimals = async (filters) => {
   const token = localStorage.getItem("token");
+
+  if (filters.weight) {
+    let minimum = 9999;
+    let maximum = 0;
+    filters.weight.forEach((weightRange) => {
+      const { min, max } = convertMeasurementUnitRange(weightRange, "kg");
+      if (min < minimum) {
+        minimum = min;
+      }
+      if (max > maximum) {
+        maximum = max;
+      }
+    });
+    filters.weight = { min: minimum, max: maximum };
+  }
+  if (filters.height) {
+    let minimum = 9999;
+    let maximum = 0;
+    filters.height.forEach((heightRange) => {
+      const { min, max } = convertMeasurementUnitRange(heightRange, "m");
+      if (min < minimum) {
+        minimum = min;
+      }
+      if (max > maximum) {
+        maximum = max;
+      }
+    });
+    filters.height = { min: minimum, max: maximum };
+  }
+  if (filters.lifespan) {
+    let minimum = 9999;
+    let maximum = 0;
+    filters.lifespan.forEach((lifespanRange) => {
+      const { min, max } = convertMeasurementUnitRange(lifespanRange, "years");
+      if (min < minimum) {
+        minimum = min;
+      }
+      if (max > maximum) {
+        maximum = max;
+      }
+    });
+    filters.lifespan = { min: minimum, max: maximum };
+  }
+
   const response = await fetch("http://localhost:3000/api/animals/filter", {
     method: "POST",
     headers: {
@@ -146,8 +205,10 @@ const getFilteredAnimals = async (filters) => {
   //console.log('asdasdasdasd 2')
   const result = await response.json();
 
-  result.forEach(animal => {
-    const matchingImage = imagePairs.find(image => image.animal_id === animal.id);
+  result.forEach((animal) => {
+    const matchingImage = imagePairs.find(
+      (image) => image.animal_id === animal.id
+    );
     if (matchingImage) {
       //console.log(matchingImage);
       animal.image = `data:image/jpeg;base64,${matchingImage.image}`;
@@ -210,7 +271,6 @@ const getCategoryHtml = (categoryName, labels) => {
   </div>`;
 };
 
-
 const getSearchHtml = () => {
   return `
   <div class="q-a-search">
@@ -248,15 +308,12 @@ const renderFilteringMenu = async () => {
   const filteringMenuNode = document.querySelector(".animals__left__container");
   filteringMenuNode.innerHTML = "";
   const categories = await getAnimalCategories();
-//searchhh
-  filteringMenuNode.insertAdjacentHTML(
-    "beforeend",
-    getSearchHtml()
-  );
-const searchInput = document.querySelector("#search-animals");
-searchInput.addEventListener("input", function () {
-  renderAnimalCards(filters);
-});
+  //searchhh
+  filteringMenuNode.insertAdjacentHTML("beforeend", getSearchHtml());
+  const searchInput = document.querySelector("#search-animals");
+  searchInput.addEventListener("input", function () {
+    renderAnimalCards(filters);
+  });
 
   for (const [key, value] of Object.entries(categories)) {
     filteringMenuNode.insertAdjacentHTML(
@@ -264,16 +321,14 @@ searchInput.addEventListener("input", function () {
       getCategoryHtml(key, value)
     );
   }
-
-
 };
 
 //?
-(async() => {
+(async () => {
   await loadImagePairs();
 
   renderFilteringMenu();
-  
+
   renderAnimalCards(filters);
 })();
 

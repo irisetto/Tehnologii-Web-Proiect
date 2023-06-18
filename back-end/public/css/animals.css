@@ -9,15 +9,14 @@ body {
 .body--dark--mode {
   background-color: rgb(0, 63, 5);
 }
-.body--dark--mode label{
+.body--dark--mode label {
   color: antiquewhite;
 }
-.body--dark--mode h2{
+.body--dark--mode h2 {
   color: antiquewhite;
 }
-.body--dark--mode div.q-a{
-background-color: #167508;
-
+.body--dark--mode div.q-a {
+  background-color: #167508;
 }
 :root {
   --color1: #232323;
@@ -29,16 +28,16 @@ background-color: #167508;
   align-items: center;
 }
 
-.search-animals{
+.search-animals {
   border: none;
   background-color: transparent;
-  font-family: 'Viga';
+  font-family: "Viga";
   font-size: medium;
 }
-.search-animals:focus{
+.search-animals:focus {
   border: none;
   background-color: transparent;
-  font-family: 'Viga';
+  font-family: "Viga";
   font-size: medium;
   outline: none;
 }
@@ -58,7 +57,6 @@ body {
 span,
 h2 {
   font-family: "Viga";
-
 }
 .card {
   background-color: var(--color1);
@@ -115,7 +113,7 @@ h2 {
   height: 130px;
   z-index: 1;
   transition: top var(--transitionDuration);
-  object-fit:cover;
+  object-fit: cover;
   position: absolute;
   left: 50%;
   top: 40%;
@@ -131,9 +129,8 @@ h2 {
   transition: top var(--transitionDuration);
 
   position: absolute;
-  
-  top: 83%;
 
+  top: 83%;
 }
 
 .card:hover .card__title {
@@ -279,14 +276,13 @@ h2 {
   font-weight: bold;
   line-height: 21px;
   margin-bottom: 5px;
-  font-family: 'Viga';
+  font-family: "Viga";
 }
 
 .toggle-box + label + div {
   display: none;
   margin-bottom: 10px;
-  font-family: 'Montserrat';
-
+  font-family: "Montserrat";
 }
 
 .toggle-box:checked + label + div {
@@ -320,7 +316,6 @@ h2 {
   padding: 15px;
   margin: 15px;
   font-size: 1.3rem;
- 
 }
 .q-a-search {
   border: 1px solid #000;
@@ -328,7 +323,6 @@ h2 {
   padding: 5px;
   margin: 15px;
   font-size: 1.3rem;
- 
 }
 input[type="checkbox"] {
   position: relative;

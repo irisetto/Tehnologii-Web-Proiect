@@ -1,11 +1,11 @@
-var questions = document.querySelectorAll('.questions li');
+var questions = document.querySelectorAll(".questions li");
 
-questions.forEach(function(question) {
-  var questionEl = question.querySelector('.question');
-  var answerEl = question.querySelector('.answer');
+questions.forEach(function (question) {
+  var questionEl = question.querySelector(".question");
+  var answerEl = question.querySelector(".answer");
 
-  questionEl.addEventListener('click', function() {
-    answerEl.classList.toggle('active');
+  questionEl.addEventListener("click", function () {
+    answerEl.classList.toggle("active");
   });
 });
 
@@ -19,7 +19,7 @@ submitButton.addEventListener("click", async (event) => {
 const validateHelpForm = async () => {
   let email = document.forms["help_form"]["email"].value;
   let problema = document.forms["help_form"]["problem"].value;
-console.log(email+problem);
+  console.log(email + problema);
   let data = { email, problema };
   const token = localStorage.getItem("token");
 
@@ -30,6 +30,6 @@ console.log(email+problem);
   });
 
   if (response.ok) {
-   window.location.reload();
-  } 
+    window.location.reload();
+  }
 };

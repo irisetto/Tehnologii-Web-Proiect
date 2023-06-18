@@ -2,7 +2,7 @@
 const AnimalsModel = require("../models/animalModel");
 const AnimalImages = require("../models/animalImageModel");
 const LanguageModel = require("../models/languageModel");
-const { generateAnimalJson } = require("../utils/generateJSON")
+const { generateAnimalJson } = require("../utils/generateJSON");
 const { generateAnimalXml } = require("../utils/generateJSON");
 
 const getAllAnimals = async (req, res) => {
@@ -47,8 +47,7 @@ const deleteAnimalById = async (req, res) => {
     return;
   }
 
-  AnimalsModel
-    .deleteAnimal(id)
+  AnimalsModel.deleteAnimal(id)
     .then(() => {
       res.statusCode = 200;
       res.end("Animal deleted successfully");
@@ -58,7 +57,6 @@ const deleteAnimalById = async (req, res) => {
       res.statusCode = 500;
       res.end("Internal Server Error");
     });
-
 };
 
 const getAnimalCategories = async (req, res) => {
@@ -68,10 +66,30 @@ const getAnimalCategories = async (req, res) => {
   const lifestyle = await AnimalsModel.getDistinctLifestyles();
   const region = await AnimalsModel.getDistinctRegions();
   const skin_type = await AnimalsModel.getDistinctSkinTypes();
+  const weight = ["0-1kg", "1-15kg", "15-100kg", "100-1000kg", "1000-100000kg"];
+  const height = ["0-0.5m", "0.5-1.5m", "1.5-10m", "10-100m"];
+  const lifespan = ["0-1years", "1-5years", "5-10years", "10-100years"];
 
-  const data = { animal_class, diet, habitat, lifestyle, region, skin_type };
+  const data = {
+    animal_class,
+    diet,
+    habitat,
+    lifestyle,
+    region,
+    skin_type,
+    weight,
+    height,
+    lifespan,
+  };
 
-  if (!animal_class || !diet || !habitat || !lifestyle || !region || !skin_type) {
+  if (
+    !animal_class ||
+    !diet ||
+    !habitat ||
+    !lifestyle ||
+    !region ||
+    !skin_type
+  ) {
     res.end("Ai belit carasu, nu merge sa ia categoriile din baza de date");
     return;
   }
@@ -137,7 +155,7 @@ const getXMLAnimal = async (req, res) => {
   res.setHeader("Content-Disposition", `attachment; filename="${fileName}"`);
   res.statusCode = 200;
   res.end(fileContent);
-}
+};
 
 const insertA = async (req, res) => {
   try {
@@ -190,26 +208,25 @@ const getAllAniImage1 = async (req, res) => {
 
 const getAniImage1 = async (req, res) => {
   try {
-    const animalId = req.url.split('/')[3];
+    const animalId = req.url.split("/")[3];
     const animalImage = await AnimalImages.getAnimalImage1(animalId);
     // console.log(animalImage);
     if (animalImage !== null) {
-      const imageBuffer = Buffer.from(animalImage, 'base64');
+      const imageBuffer = Buffer.from(animalImage, "base64");
       const imageData = Array.from(imageBuffer);
 
       res.writeHead(200, {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       });
       res.end(JSON.stringify({ data: imageData }));
     } else {
-      res.writeHead(404, { 'Content-Type': 'text/plain' });
-      res.end('Image not found');
+      res.writeHead(404, { "Content-Type": "text/plain" });
+      res.end("Image not found");
     }
-
   } catch (err) {
-    console.error('Error retrieving image', err);
-    res.writeHead(500, { 'Content-Type': 'text/plain' });
-    res.end('Internal Server Error');
+    console.error("Error retrieving image", err);
+    res.writeHead(500, { "Content-Type": "text/plain" });
+    res.end("Internal Server Error");
   }
 };
 
@@ -223,7 +240,7 @@ const setAnimalImage1 = async (req, res) => {
 
     req.on("end", async () => {
       //console.log(chunks);
-      const animalId = req.url.split('/')[3];
+      const animalId = req.url.split("/")[3];
       const imageData = Buffer.concat(chunks);
 
       //console.log(animalId, imageData);
@@ -231,8 +248,8 @@ const setAnimalImage1 = async (req, res) => {
       //console.log(uint8Array)
 
       if (imageData.length === 0) {
-        res.writeHead(400, { 'Content-Type': 'text/plain' });
-        res.end('Empty request body');
+        res.writeHead(400, { "Content-Type": "text/plain" });
+        res.end("Empty request body");
         return;
       }
 
@@ -241,8 +258,8 @@ const setAnimalImage1 = async (req, res) => {
       if (existingImage.length > 0) {
         //console.log('here');
         await AnimalImages.updateAnimalImage1(animalId, imageData);
-        res.writeHead(200, { 'Content-Type': 'text/plain' });
-        res.end('Animal image already updated');
+        res.writeHead(200, { "Content-Type": "text/plain" });
+        res.end("Animal image already updated");
         return;
       }
 
@@ -251,38 +268,37 @@ const setAnimalImage1 = async (req, res) => {
 
       await AnimalImages.insertAnimalImage1(animalId, imageData);
 
-      res.writeHead(200, { 'Content-Type': 'text/plain' });
-      res.end('Animal image updated successfully');
+      res.writeHead(200, { "Content-Type": "text/plain" });
+      res.end("Animal image updated successfully");
     });
   } catch (err) {
-    console.error('Error updating animal image', err);
-    res.writeHead(500, { 'Content-Type': 'text/plain' });
-    res.end('Internal Server Error');
+    console.error("Error updating animal image", err);
+    res.writeHead(500, { "Content-Type": "text/plain" });
+    res.end("Internal Server Error");
   }
 };
 
 const getAniImage2 = async (req, res) => {
   try {
-    const animalId = req.url.split('/')[3];
+    const animalId = req.url.split("/")[3];
     const animalImage = await AnimalImages.getAnimalImage2(animalId);
     // console.log(animalImage);
     if (animalImage !== null) {
-      const imageBuffer = Buffer.from(animalImage, 'base64');
+      const imageBuffer = Buffer.from(animalImage, "base64");
       const imageData = Array.from(imageBuffer);
 
       res.writeHead(200, {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       });
       res.end(JSON.stringify({ data: imageData }));
     } else {
-      res.writeHead(404, { 'Content-Type': 'text/plain' });
-      res.end('Image not found');
+      res.writeHead(404, { "Content-Type": "text/plain" });
+      res.end("Image not found");
     }
-
   } catch (err) {
-    console.error('Error retrieving image', err);
-    res.writeHead(500, { 'Content-Type': 'text/plain' });
-    res.end('Internal Server Error');
+    console.error("Error retrieving image", err);
+    res.writeHead(500, { "Content-Type": "text/plain" });
+    res.end("Internal Server Error");
   }
 };
 
@@ -296,7 +312,7 @@ const setAnimalImage2 = async (req, res) => {
 
     req.on("end", async () => {
       //console.log(chunks);
-      const animalId = req.url.split('/')[3];
+      const animalId = req.url.split("/")[3];
       const imageData = Buffer.concat(chunks);
 
       //console.log(animalId, imageData);
@@ -304,8 +320,8 @@ const setAnimalImage2 = async (req, res) => {
       //console.log(uint8Array)
 
       if (imageData.length === 0) {
-        res.writeHead(400, { 'Content-Type': 'text/plain' });
-        res.end('Empty request body');
+        res.writeHead(400, { "Content-Type": "text/plain" });
+        res.end("Empty request body");
         return;
       }
 
@@ -313,8 +329,8 @@ const setAnimalImage2 = async (req, res) => {
       //console.log(existingImage);
       if (existingImage.length > 0) {
         await AnimalImages.updateAnimalImage2(animalId, imageData);
-        res.writeHead(200, { 'Content-Type': 'text/plain' });
-        res.end('Animal image already updated');
+        res.writeHead(200, { "Content-Type": "text/plain" });
+        res.end("Animal image already updated");
         return;
       }
 
@@ -323,19 +339,19 @@ const setAnimalImage2 = async (req, res) => {
 
       await AnimalImages.insertAnimalImage2(animalId, imageData);
 
-      res.writeHead(200, { 'Content-Type': 'text/plain' });
-      res.end('Animal image updated successfully');
+      res.writeHead(200, { "Content-Type": "text/plain" });
+      res.end("Animal image updated successfully");
     });
   } catch (err) {
-    console.error('Error updating animal image', err);
-    res.writeHead(500, { 'Content-Type': 'text/plain' });
-    res.end('Internal Server Error');
+    console.error("Error updating animal image", err);
+    res.writeHead(500, { "Content-Type": "text/plain" });
+    res.end("Internal Server Error");
   }
 };
 
 const getFrenchText = async (req, res) => {
   try {
-    const animalId = req.url.split('/')[3];
+    const animalId = req.url.split("/")[3];
     const text = await LanguageModel.getFrenchText(animalId);
 
     if (!text) {
@@ -354,8 +370,6 @@ const getFrenchText = async (req, res) => {
   }
 };
 
-
-
 const animalsController = async (req, res) => {
   if (req.url === "/api/animals") {
     getAllAnimals(req, res);
@@ -363,8 +377,7 @@ const animalsController = async (req, res) => {
     getAnimalById(req, res);
   } else if (req.url.startsWith("/api/deleteAnimal/")) {
     deleteAnimalById(req, res);
-  }
-  else if (req.url === "/api/animalNames") {
+  } else if (req.url === "/api/animalNames") {
     //console.log("Animals")
     getAllAnimalNames(req, res);
   } else if (req.url == "/api/animals/filter") {
@@ -386,15 +399,13 @@ const animalsController = async (req, res) => {
   } else if (req.url.match(/\/api\/getAnimalImage1\/([0-9]+)/)) {
     //console.log("get animal animalImage1");
     getAniImage1(req, res);
-  }
-  else if (req.url.match(/\/api\/setAnimalImage1\/([0-9]+)/)) {
+  } else if (req.url.match(/\/api\/setAnimalImage1\/([0-9]+)/)) {
     //console.log("insert animal animalImage1");
     setAnimalImage1(req, res);
   } else if (req.url.match(/\/api\/getAnimalImage2\/([0-9]+)/)) {
     //console.log("get animal animalImage1");
     getAniImage2(req, res);
-  }
-  else if (req.url.match(/\/api\/setAnimalImage2\/([0-9]+)/)) {
+  } else if (req.url.match(/\/api\/setAnimalImage2\/([0-9]+)/)) {
     //console.log("insert animal animalImage1");
     setAnimalImage2(req, res);
   } else if (req.url.match(/\/api\/getAniFrench\/([0-9]+)/)) {

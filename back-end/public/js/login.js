@@ -12,9 +12,22 @@ const getTheme = async () => {
     method: "GET",
     headers: { Authorization: `Bearer ${token}` },
   });
-  
+
   const theme = await response.json()
   localStorage.setItem("theme", theme.mode_preference);
+}
+
+const getLanguage = async () => {
+  const token = localStorage.getItem("token");
+
+  const response = await fetch(`http://localhost:3000/api/getLanguage`, {
+    method: "GET",
+    headers: { Authorization: `Bearer ${token}` },
+  });
+
+  const language = await response.json()
+  //console.log(language);
+  localStorage.setItem("language", language.language_setting);
 }
 
 const validateLoginForm = async () => {
@@ -33,8 +46,9 @@ const validateLoginForm = async () => {
 
   if (response.ok) {
     const { token } = await response.json();
-    localStorage.setItem("token", token); 
-    getTheme();
+    localStorage.setItem("token", token);
+    await getTheme();
+    await getLanguage();
     window.location.href = "/home";
   } else {
     const errorData = await response.json();

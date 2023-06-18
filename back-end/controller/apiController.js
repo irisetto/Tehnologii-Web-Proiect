@@ -118,6 +118,14 @@ exports.handleApiRequest = (req, res) => {
       authenticateJWT(req, res, () => {
         animalsController(req, res);
       });
+    } else if (req.url.match(/\/api\/getAniFrench\/([0-9]+)/)) {
+      authenticateJWT(req, res, () => {
+        animalsController(req, res);
+      });
+    } else if (req.url.match("/api/getLanguage")) {
+      authenticateJWT(req, res, () => {
+        usersController(req, res);
+      });
     } else {
       res.statusCode = 404;
       res.setHeader("Content-Type", "text/plain");
@@ -132,7 +140,7 @@ exports.handleApiRequest = (req, res) => {
       authenticateJWT(req, res, () => {
         ticketsController(req, res);
       });
-    }else  if (req.url.startsWith("/api/deleteAnimal")) {
+    } else if (req.url.startsWith("/api/deleteAnimal")) {
       authenticateJWT(req, res, () => {
         animalsController(req, res);
       });
@@ -156,6 +164,11 @@ exports.handleApiRequest = (req, res) => {
     } else if (req.url.match(/\/api\/setAnimalImage2\/([0-9]+)/)) {
       authenticateJWT(req, res, () => {
         animalsController(req, res);
+      });
+    }
+    else if (req.url === "/api/setLanguage") {
+      authenticateJWT(req, res, () => {
+        usersController(req, res);
       });
     }
     else {

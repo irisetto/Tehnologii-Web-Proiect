@@ -1,6 +1,7 @@
 // const getDynamicAnimalsPage()
 const AnimalsModel = require("../models/animalModel");
 const AnimalImages = require("../models/animalImageModel");
+const LanguageModel = require("../models/languageModel");
 const { generateAnimalJson } = require("../utils/generateJSON")
 const { generateAnimalXml } = require("../utils/generateJSON");
 
@@ -59,6 +60,7 @@ const deleteAnimalById = async (req, res) => {
     });
 
 };
+
 const getAnimalCategories = async (req, res) => {
   const animal_class = await AnimalsModel.getDistinctClass();
   const diet = await AnimalsModel.getDistinctDiets();
@@ -67,7 +69,7 @@ const getAnimalCategories = async (req, res) => {
   const region = await AnimalsModel.getDistinctRegions();
   const skin_type = await AnimalsModel.getDistinctSkinTypes();
 
-  const data = {animal_class, diet, habitat, lifestyle, region, skin_type };
+  const data = { animal_class, diet, habitat, lifestyle, region, skin_type };
 
   if (!animal_class || !diet || !habitat || !lifestyle || !region || !skin_type) {
     res.end("Ai belit carasu, nu merge sa ia categoriile din baza de date");
@@ -331,6 +333,28 @@ const setAnimalImage2 = async (req, res) => {
   }
 };
 
+const getFrenchText = async (req, res) => {
+  try {
+    const animalId = req.url.split('/')[3];
+    const text = await LanguageModel.getFrenchText(animalId);
+
+    if (!text) {
+      res.statusCode = 404;
+      res.end("Text not found");
+      return;
+    }
+
+    res.statusCode = 200;
+    res.setHeader("Content-Type", "application/json");
+    res.end(JSON.stringify(text));
+  } catch (err) {
+    console.error("Error retrieving French text", err);
+    res.statusCode = 500;
+    res.end("Internal Server Error");
+  }
+};
+
+
 
 const animalsController = async (req, res) => {
   if (req.url === "/api/animals") {
@@ -373,6 +397,8 @@ const animalsController = async (req, res) => {
   else if (req.url.match(/\/api\/setAnimalImage2\/([0-9]+)/)) {
     //console.log("insert animal animalImage1");
     setAnimalImage2(req, res);
+  } else if (req.url.match(/\/api\/getAniFrench\/([0-9]+)/)) {
+    getFrenchText(req, res);
   } else {
     res.end("nu exista api pentru acest request");
   }

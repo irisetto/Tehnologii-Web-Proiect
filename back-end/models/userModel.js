@@ -148,7 +148,7 @@ exports.setPreferredMode = async (email, mode) => {
 
     } catch (err) {
         console.error("Error executing query", err);
-        return false; 
+        return false;
     }
 }
 
@@ -253,13 +253,14 @@ exports.changeOccupiedPosition = async (id, occupiedPosition) => {
         console.error("Error executing query", err);
     }
 };
-exports.changeProfilePicture = async (imageData,userId) => {
+
+exports.changeProfilePicture = async (imageData, userId) => {
     try {
-       
+
         const client = await pool.connect();
         const querry = {
             text: "UPDATE users SET profile_picture=$1 WHERE id=$2",
-            values: [imageData,userId]
+            values: [imageData, userId]
         };
 
         await client.query(querry);
@@ -269,6 +270,45 @@ exports.changeProfilePicture = async (imageData,userId) => {
         console.error("Error executing query", err);
     }
 };
+
+exports.updateUserLanguageSetting = async (userId, languageSetting) => {
+    try {
+        const client = await pool.connect();
+        const query = {
+            text: "UPDATE users SET language_setting = $1 WHERE id = $2",
+            values: [languageSetting, userId]
+        };
+
+        await client.query(query);
+        client.release();
+
+    } catch (err) {
+        console.error("Error executing query", err);
+    }
+};
+
+exports.getUserLanguageSetting = async (email) => {
+    try {
+        const client = await pool.connect();
+        const querry = {
+            text: "SELECT language_setting FROM users WHERE email = $1",
+            values: [email]
+        };
+        const result = await client.query(querry);
+        client.release();
+
+        if (result.rows.length > 0) {
+            const user = result.rows[0];
+            return user;
+        } else {
+            return null;
+        }
+
+    } catch (err) {
+        console.error("Error execution querry", err);
+    }
+}
+
 
 // exports.changeProfilePicture = async (id, imagePath) => {
 //     try {
@@ -288,3 +328,4 @@ exports.changeProfilePicture = async (imageData,userId) => {
 //         console.error('Error executing query', err);
 //     }
 // };
+

@@ -6,6 +6,38 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ZoM (Zoo Web Manager)</title>
+    <style>
+        body {
+            width: 100vw;
+
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            width: 98%;
+            grid-gap: 10px;
+
+        }
+
+        .interface-page {
+            text-align: center;
+            border: 2px solid;
+            border-color: black;
+        }
+
+        .interface-page p {
+            text-align: justify;
+            padding: 5px;
+        }
+
+        .interface-page img {
+            max-width: 100%;
+            /* Ensure the image fits within the grid item */
+            height: auto;
+            /* Preserve the aspect ratio of the image */
+        }
+    </style>
 </head>
 
 <body>
@@ -32,7 +64,7 @@
                 <li><a href="#documentatie-utilizator">2.6 Documentație utilizator</a></li>
                 <li><a href="#asumptii-dependente">2.7 Asumpții și dependențe</a></li>
             </ul>
-            <li><a href="#interfete-externe">3. Interfețe externe</a></p>
+            <li><a href="#interfete-externe">3. Interfețe externe</a>
                 <ul>
                     <li><a href="#interfata-user">3.1 Interfață utilizator</a></li>
                     <li>
@@ -221,10 +253,135 @@
         <h2> 3. Interfețe externe</h2>
     </section>
 
+    <section id="interfata-user">
+        <h2>3.1 Interfață utilizator</h2>
+        <div class="grid">
+            <div class="interface-page">
+                <img src="screenshots/landing.jpeg" alt="">
+                <p>Aceasta este prima pagina ce întâmpină utilizatorul la deschiderea site-ului web.
+                    De aici putem alege dacă dorim să ne logăm sau să ne creăm un cont nou.
+                </p>
+            </div>
+            <div class="interface-page">
+                <img src="screenshots/login.jpeg" alt="">
+                <p> Aceasta este pagina în care utilizatorii pot introduce datele de autentificare pentru a se conecta
+                    la conturile lor.
+                    De asemenea, pot alege să-și creeze un cont nou dacă nu au sau să-și schimbe parola în caz de au
+                    uitat-o.
+                </p>
 
+            </div>
+            <div class="interface-page">
+                <img src="screenshots/register.jpeg" alt="">
+                <p>Această pagină permite utilizatorilor să își creeze un cont nou. Nu se pot crea conturi cu același
+                    email sau număr de telefon.</p>
+            </div>
+            <div class="interface-page">
+                <img src="screenshots/forgotpass.jpeg" alt="">
+                <p>Prima pagina din parcursul resetării parolei constă în introducerea email-ului cu care te-ai logat
+                    pentru a primi un cod de siguranță.
+                </p>
+
+            </div>
+            <div class="interface-page">
+                <img src="screenshots/code.jpeg" alt="">
+                <p>Al doilea pas din resetarea parolei presupune introducerea codului primit pe email-ul introdus
+                    anterior.</p>
+
+            </div>
+            <div class="interface-page">
+                <img src="screenshots/changepass.jpeg" alt="">
+                <p>Ultimul pas din resetarea parolei reprezintă introducerea noii parole și confirmarea ei. Parola va fi
+                    schimbată cu succes și vă veți putea loga acum.</p>
+
+            </div>
+            <div class="interface-page">
+                <img src="screenshots/home.jpeg" alt="">
+                <p>Aceasta este pagina principală care ne întâmpină după logarea în aplicație. De aici poți naviga în
+                    aplicație sau accesa diferitele
+                    categorii de animale existente în grădina zoologică.
+                </p>
+
+            </div>
+            <div class="interface-page">
+                <img src="screenshots/profile.jpeg" alt="">
+                <p>Această pagină afișează informațiile personale folosite la înregistrare. Panoul din dreapta sus oferă
+                    posibilitatea modificării informațiilor personale și alegerea unei poze de profil.
+                    Panoul din stânga jos permite utilizatorului să-și modifice parola, fiind necesară și introducerea
+                    parolei curente.
+                    Panoul din dreapta jos presupune trimiterea de tickete cu scopul de a raporta problemele fizice din
+                    secțiunile grădinii zoologice.
+                </p>
+
+            </div>
+            <div class="interface-page">
+                <img src="screenshots/animals.jpeg" alt="">
+                <p>Această pagină prezintă colecția existentă de animale și oferă posibilitatea căutării după nume a
+                    unui animal sau
+                    filtrarea acestora real-time în funcție de criterii multiple.
+                </p>
+
+            </div>
+            <div class="interface-page">
+                <img src="screenshots/animalid.jpeg" alt="">
+                <p>Această pagină oferă detalii și informații despre un animal specific, ales din colecția de animale.
+                </p>
+
+            </div>
+            <div class="interface-page">
+                <img src="screenshots/help.jpeg" alt="">
+                <p>Această pagină oferă asistență sau ghidare utilizatorilor, cum ar fi Întrebări frecvente (FAQ) și
+                    existența unui formular pentru a trimite neclarități despre folosirea aplicației către un email al
+                    adminilor aplicației.</p>
+
+            </div>
+            <div class="interface-page">
+                <img src="screenshots/settings.jpeg" alt="">
+                <p>Această pagină reprezintă panoul de control al aplicației și oferă posibilitățile de a importa (numai
+                    pentru userii admini) și exporta animale din colecție, de a schimba tema vizuală (light/dark), de a
+                    schimba limba descrierilor animalelor (english/french)
+                    și 3 meniuri dedicate userilor cu rol de admin ce presupune gestionarea angajaților, tichetelor de
+                    secțiuni și a animalelor.
+                </p>
+
+            </div>
+            <div class="interface-page">
+                <img src="screenshots/users.jpeg" alt="">
+                <p>Acesta este tabelul cu useri valabil doar din rolul de admin în care se pot vedea persoanele
+                    ce au cont pe această aplicație și posibilitatea de a șterge o persoană („a concedia”) din baza de
+                    date.
+                </p>
+
+            </div>
+            <div class="interface-page">
+                <img src="screenshots/tickets.jpeg" alt="">
+                <p>Acesta este tabelul cu tichetele trimise de toți userii ce punctează anumite probleme regăsite sau
+                    observate în grădina zoologică.
+                    Putem, de asemenea, după ce un tichet a fost vizionat și revizuit să fie notat ca „rezolvat” pentru
+                    a-l șterge.
+                </p>
+
+            </div>
+            <div class="interface-page">
+                <img src="screenshots/animals admin.jpeg" alt="">
+                <p>Acesta este ultimul tabel ce poate fi vizionat numai de admini si permite adminilor să vadă
+                    toate animalele din aplicație, să seteze pentru fiecare fotografii noi și să șteargă animale din
+                    baza de date.
+                </p>
+
+            </div>
+            <div class="interface-page">
+                <img src="screenshots/about.jpeg" alt="">
+                <p>Aceasta este pagina în care se prezintă o mică descriere a aplicației și echipa ce a lucrat la
+                    aceasta.</p>
+
+            </div>
+
+        </div>
+    </section>
 
     <section id="#interfata-software">
-        <h2>3.3 Interfață software</h2>
+        <h2>3.2 Interfață software</h2>
         <p>Aplicația noastră utilizează o bază de date PostgreSQL pentru a gestiona și stoca datele referitoare la
             animale și utilizatori. Baza de date este utilizată pentru a păstra evidența detaliată a acestor date și
             pentru a facilita funcționalități precum autentificarea și stocarea informațiilor relevante.</p>
@@ -242,8 +399,6 @@
             <li>pg: Este utilizat pentru interacțiunea cu baza de date PostgreSQL, oferind funcționalități și metode
                 necesare pentru conectarea, interogarea și manipularea datelor din baza de date.</li>
         </ul>
-
-
 
         <h3>3.3.1 Controlere API</h3>
         <p>Aplicația noastră expune un API RESTful dezvoltat utilizând Node.js, care permite interacțiunea cu diverse
@@ -319,12 +474,7 @@
 
     <section id="#interfata-comunicare">
         <h2>3.3 Interfață comunicare</h2>
-
     </section>
-
-
-
-
 
 
 </body>

@@ -152,6 +152,8 @@ function getUserFromServer() {
       document.getElementById("current-email").textContent = user.email;
       document.getElementById("current-occupied-position").textContent =
         user.occupied_position;
+        document.getElementById("current-admin").textContent = user.is_admin ? "Yes" : "No";
+
       if (user.profile_picture) {
         const uint8Array = new Uint8Array(user.profile_picture.data);
         let base64String = btoa(String.fromCharCode.apply(null, uint8Array));

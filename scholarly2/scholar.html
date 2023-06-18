@@ -9,7 +9,6 @@
     <style>
         body {
             width: 100vw;
-
         }
 
         .grid {
@@ -17,7 +16,6 @@
             grid-template-columns: repeat(2, 1fr);
             width: 98%;
             grid-gap: 10px;
-
         }
 
         .interface-page {
@@ -33,9 +31,7 @@
 
         .interface-page img {
             max-width: 100%;
-            /* Ensure the image fits within the grid item */
             height: auto;
-            /* Preserve the aspect ratio of the image */
         }
     </style>
 </head>
@@ -70,8 +66,15 @@
                     <li>
                         <a href="#interfata-software">3.2 Interfață software</a>
                     </li>
+
                     <li>
                         <a href="#interfata-comunicare">3.3 Interfață de comunicare</a>
+                    </li>
+                    <li>
+                        <a href="#api">3.3.1 Controlere Api</a>
+                    </li>
+                    <li>
+                        <a href="#multi-page-application">3.3.2 Multi Page Application (MPA)</a>
                     </li>
                 </ul>
             </li>
@@ -95,134 +98,213 @@
 
             <li><a href="#autori">6. Autori</a></li>
         </ul>
+
     </nav>
 
     <section id="abstract">
         <h2>Abstract</h2>
         <div>
-            Acest raport prezinta proiect web prezentat implementează o aplicație pentru gestionarea informațiilor
-            despre o grădină zoologică.
-
+            Acest raport prezinta proiect web prezentat implementează o aplicație
+            pentru gestionarea informațiilor despre o grădină zoologică.
         </div>
     </section>
 
     <section id="introducere">
         <h2>Introducere</h2>
-        <p>Grădinile zoologice sunt locuri de importanță majoră pentru conservarea speciilor animale și pentru educația
-            publicului cu privire la diversitatea și importanța faunei sălbatice. Însă gestionarea informațiilor despre
-            animalele găzduite într-o grădină zoologică poate fi complexă și necesită un sistem eficient și centralizat.
+        <p>
+            Grădinile zoologice sunt locuri de importanță majoră pentru conservarea
+            speciilor animale și pentru educația publicului cu privire la
+            diversitatea și importanța faunei sălbatice. Însă gestionarea
+            informațiilor despre animalele găzduite într-o grădină zoologică poate
+            fi complexă și necesită un sistem eficient și centralizat.
         </p>
-        <p>ZoM (Zoo Web Manager)
-            propune implementarea unei aplicații web pentru gestionarea informațiilor referitoare la o grădină
-            zoologică. Aplicația va facilita redarea și managementul datelor despre animalele gazduite, oferind o gamă
-            largă de informații relevante, cum ar fi denumirea populară și științifică a animalelor, descrieri,
-            originea, statutul de conservare, caracteristici specifice (cum ar fi dependența de climă sau proprietăți
-            speciale), imagini de interes, regim alimentar (vegetarian, carnivor, omnivor) și multe
-            altele.</p>
-        <p>Aplicația va oferi mecanisme avansate de căutare, filtrare și prezentare multi-criterială, permițând
-            utilizatorilor să efectueze căutări complexe și să obțină rezultate relevante. Utilizatorii vor avea
-            posibilitatea să filtreze animalele în funcție de criterii specifice, cum ar fi regimul alimentar, regimul
-            de activitate (nocturn sau diurn), originea geografică și altele. De exemplu, utilizatorii pot selecta să
-            afișeze toate mamiferele omnivore nocturne din Africa sau să genereze o listă de păsări și insecte capabile
-            să supraviețuiască în condiții desertice.</p>
-        <p>Pe lângă funcționalitățile oferite prin interfața web, aplicația va permite și importul/exportul datelor prin
-            intermediul fișierelor în formatele JSON și XML, asigurând astfel transferul facil al informațiilor.</p>
-        <p>Un alt aspect important al acestui proiect este furnizarea de funcționalități esențiale prin intermediul unui
-            API REST.</p>
-        <p>În continuare, vom explora în detaliu caracteristicile și funcționalitățile pe care această aplicație web le
-            va oferi pentru gestionarea informațiilor animalelor si angajatilor dintr-o grădină zoologică.</p>
-
+        <p>
+            ZoM (Zoo Web Manager) propune implementarea unei aplicații web pentru
+            gestionarea informațiilor referitoare la o grădină zoologică. Aplicația
+            va facilita redarea și managementul datelor despre animalele gazduite,
+            oferind o gamă largă de informații relevante, cum ar fi denumirea
+            populară și științifică a animalelor, descrieri, originea, statutul de
+            conservare, caracteristici specifice (cum ar fi dependența de climă sau
+            proprietăți speciale), imagini de interes, regim alimentar (vegetarian,
+            carnivor, omnivor) și multe altele.
+        </p>
+        <p>
+            Aplicația va oferi mecanisme avansate de căutare, filtrare și prezentare
+            multi-criterială, permițând utilizatorilor să efectueze căutări complexe
+            și să obțină rezultate relevante. Utilizatorii vor avea posibilitatea să
+            filtreze animalele în funcție de criterii specifice, cum ar fi regimul
+            alimentar, regimul de activitate (nocturn sau diurn), originea
+            geografică și altele. De exemplu, utilizatorii pot selecta să afișeze
+            toate mamiferele omnivore nocturne din Africa sau să genereze o listă de
+            păsări și insecte capabile să supraviețuiască în condiții desertice.
+        </p>
+        <p>
+            Pe lângă funcționalitățile oferite prin interfața web, aplicația va
+            permite și importul/exportul datelor prin intermediul fișierelor în
+            formatele JSON și XML, asigurând astfel transferul facil al
+            informațiilor.
+        </p>
+        <p>
+            Un alt aspect important al acestui proiect este furnizarea de
+            funcționalități esențiale prin intermediul unui API REST.
+        </p>
+        <p>
+            În continuare, vom explora în detaliu caracteristicile și
+            funcționalitățile pe care această aplicație web le va oferi pentru
+            gestionarea informațiilor animalelor si angajatilor dintr-o grădină
+            zoologică.
+        </p>
     </section>
 
     <section id="scopul-aplicatiei">
         <h2>1.1 Scopul aplicatiei</h2>
-        <p>Scopul aplicației Zoo Web Manager (ZoM) este de a facilita și de a usura munca angajaților unei grădini
-            zoologice în gestionarea informațiilor despre animalele gazduite. Aplicația are ca obiectiv principal
-            centralizarea și eficientizarea procesului de management al datelor, oferind un sistem integrat și ușor de
-            utilizat.</p>
-        <p>Prin intermediul ZoM, angajații vor putea introduce și actualiza informațiile despre animale într-o manieră
-            organizată și structurată.</p>
-        <p>De asemenea, aplicația ZoM va oferi funcționalități avansate de căutare, filtrare și prezentare
-            multi-criterială, permițând angajaților să găsească rapid și eficient informațiile de care au nevoie.
-            Angajații vor putea obține liste personalizate de animale care îndeplinesc anumite criterii
-            specifice.</p>
-        <p>Prin ZoM, se urmărește să se reducă timpul și efortul necesar pentru gestionarea informațiilor despre animale
-            și să se ofere un sistem intuitiv și eficient pentru angajați, permițându-le să se concentreze mai mult
-            asupra îngrijirii animalelor și a altor aspecte importante ale grădinii zoologice.</p>
+        <p>
+            Scopul aplicației Zoo Web Manager (ZoM) este de a facilita și de a usura
+            munca angajaților unei grădini zoologice în gestionarea informațiilor
+            despre animalele gazduite. Aplicația are ca obiectiv principal
+            centralizarea și eficientizarea procesului de management al datelor,
+            oferind un sistem integrat și ușor de utilizat.
+        </p>
+        <p>
+            Prin intermediul ZoM, angajații vor putea introduce și actualiza
+            informațiile despre animale într-o manieră organizată și structurată.
+        </p>
+        <p>
+            De asemenea, aplicația ZoM va oferi funcționalități avansate de căutare,
+            filtrare și prezentare multi-criterială, permițând angajaților să
+            găsească rapid și eficient informațiile de care au nevoie. Angajații vor
+            putea obține liste personalizate de animale care îndeplinesc anumite
+            criterii specifice.
+        </p>
+        <p>
+            Prin ZoM, se urmărește să se reducă timpul și efortul necesar pentru
+            gestionarea informațiilor despre animale și să se ofere un sistem
+            intuitiv și eficient pentru angajați, permițându-le să se concentreze
+            mai mult asupra îngrijirii animalelor și a altor aspecte importante ale
+            grădinii zoologice.
+        </p>
     </section>
 
     <section id="public-tinta">
         <h2>1.2 Publicul Țintă</h2>
-        <p>Publicul țintă al aplicației Zoo Web Manager (ZoM) este reprezentat de angajații unei grădini zoologice
-            responsabili de gestionarea informațiilor despre animalele gazduite.</p>
+        <p>
+            Publicul țintă al aplicației Zoo Web Manager (ZoM) este reprezentat de
+            angajații unei grădini zoologice responsabili de gestionarea
+            informațiilor despre animalele gazduite.
+        </p>
     </section>
 
     <section id="referinte">
         <h2>1.3 Referințe</h2>
         <ul>
-            <li>GitHub Repo: <a href="https://github.com/">https://github.com/</a></li>
-            <li>Google Fonts: <a href="https://fonts.google.com/">https://fonts.google.com/</a></li>
-            <li>PostgreSQL: <a href="https://www.postgresql.org/">https://www.postgresql.org/</a></li>
-            <li>Curs Tehnologii Web: <a
+            <li>
+                GitHub Repo: <a href="https://github.com/">https://github.com/</a>
+            </li>
+            <li>
+                Google Fonts:
+                <a href="https://fonts.google.com/">https://fonts.google.com/</a>
+            </li>
+            <li>
+                PostgreSQL:
+                <a href="https://www.postgresql.org/">https://www.postgresql.org/</a>
+            </li>
+            <li>
+                Curs Tehnologii Web:
+                <a
                     href="https://profs.info.uaic.ro/~busaco/teach/courses/web/web-biblio.html">https://profs.info.uaic.ro/~busaco/teach/courses/web/web-biblio.html</a>
             </li>
-            <li>W3Schools Node.js: <a href="https://www.w3schools.com/nodejs/">https://www.w3schools.com/nodejs/</a>
+            <li>
+                W3Schools Node.js:
+                <a href="https://www.w3schools.com/nodejs/">https://www.w3schools.com/nodejs/</a>
             </li>
-            <li>Tutorial Node.js - YouTube: <a
-                    href="https://www.youtube.com/watch?v=_1xa8Bsho6A">https://www.youtube.com/watch?v=_1xa8Bsho6A</a>
+            <li>
+                Tutorial Node.js - YouTube:
+                <a href="https://www.youtube.com/watch?v=_1xa8Bsho6A">https://www.youtube.com/watch?v=_1xa8Bsho6A</a>
             </li>
         </ul>
     </section>
     <section id="descriere-generala">
-        <h2> 2. Descriere generală</h2>
+        <h2>2. Descriere generală</h2>
     </section>
 
-    <section id="perspectiva-produsului">
+    <section>
         <h2>2.1 Perspectiva produsului</h2>
-        <p>Aplicația Zoo Web Manager (ZoM) este un produs nou care are ca scop facilitarea gestionării
-            informațiilor despre animalele gazduite într-o grădină zoologică. Aplicația este concepută pentru a fi
-            utilizată independent, fără a fi parte a unei familii de produse sau a înlocui alte sisteme existente.</p>
+        <p>
+            Aplicația Zoo Web Manager (ZoM) este un produs nou care are ca scop
+            facilitarea gestionării informațiilor despre animalele gazduite într-o
+            grădină zoologică. Aplicația este concepută pentru a fi utilizată
+            independent, fără a fi parte a unei familii de produse sau a înlocui
+            alte sisteme existente.
+        </p>
     </section>
 
     <section id="functii-produs">
         <h2>2.2 Funcții ale produsului</h2>
-        <p>Principalele funcții pe care utilizatorul le poate poată efectua sunt:</p>
+        <p>
+            Principalele funcții pe care utilizatorul le poate poată efectua sunt:
+        </p>
         <ul>
             <li>Login/Logout/Register</li>
             <li>Schimbarea parolei si a informațiilor personale</li>
-            <li>Gestionarea informațiilor despre animalele găzduite în grădina zoologică</li>
+            <li>
+                Gestionarea informațiilor despre animalele găzduite în grădina
+                zoologică
+            </li>
             <li>Gestionarea user-ilor din aplicatie</li>
-            <li>Redarea și managementul datelor despre animale, inclusiv denumire populară și științifică, descrieri,
-                origine, statut de conservare, caracteristici specifice, imagini de interes, regim alimentar etc.</li>
+            <li>
+                Redarea și managementul datelor despre animale, inclusiv denumire
+                populară și științifică, descrieri, origine, statut de conservare,
+                caracteristici specifice, imagini de interes, regim alimentar etc.
+            </li>
             <li>Căutare, filtrare și prezentare multi-criterială a animalelor</li>
             <li>Import și export de date în formatele JSON și XML</li>
             <li>Submit ticket pentru raportarea problemelor în departamente</li>
-            <li>Trimiterea de e-mailuri cu problemele întâmpinate în aplicație către administrator</li>
+            <li>
+                Trimiterea de e-mailuri cu problemele întâmpinate în aplicație către
+                administrator
+            </li>
             <li>Schimbarea temei aplicației</li>
             <li>Schimbarea limbii descrierilor animalelor</li>
         </ul>
-        <p>Mai multe detalii despre aceste funcții vor fi furnizate în secțiunea 3 a documentului.</p>
+        <p>
+            Mai multe detalii despre aceste funcții vor fi furnizate în secțiunea 3
+            a documentului.
+        </p>
     </section>
 
     <section id="clase-utilizatori">
         <h2>2.3 Clase de utilizatori și caracteristici</h2>
-        <p>Produsul este destinat utilizării de către următoarele clase de utilizatori:</p>
+        <p>
+            Produsul este destinat utilizării de către următoarele clase de
+            utilizatori:
+        </p>
         <ul>
             <li>Utilizatori normali ai grădinii zoologice</li>
-            <li>Angajați ai grădinii zoologice cu acces de administrator pentru gestionarea informațiilor despre
-                animalele găzduite</li>
+            <li>
+                Angajați ai grădinii zoologice cu acces de administrator pentru
+                gestionarea informațiilor despre animalele găzduite
+            </li>
         </ul>
-        <p>Caracteristicile relevante pentru fiecare clasă de utilizatori sunt:</p>
+        <p>
+            Caracteristicile relevante pentru fiecare clasă de utilizatori sunt:
+        </p>
         <ul>
-            <li>Utilizatori normali ai grădinii zoologice:
+            <li>
+                Utilizatori normali ai grădinii zoologice:
                 <ul>
-                    <li>Posibilitatea de a viziona și filtra informațiile despre animale</li>
+                    <li>
+                        Posibilitatea de a viziona și filtra informațiile despre animale
+                    </li>
                 </ul>
             </li>
-            <li>Angajați ai grădinii zoologice cu acces de administrator:
+            <li>
+                Angajați ai grădinii zoologice cu acces de administrator:
                 <ul>
                     <li>Acces privilegiat la sistem</li>
-                    <li>Poate vizualiza, filtra, adauga și șterge informațiile despre animale</li>
+                    <li>
+                        Poate vizualiza, filtra, adauga și șterge informațiile despre
+                        animale
+                    </li>
                     <li>Poate "concedia" un user</li>
                 </ul>
             </li>
@@ -231,280 +313,516 @@
 
     <section id="mediu-operare">
         <h2>2.4 Mediu de operare</h2>
-        <p>Produsul functioneaza independent de sistemul de operare. Este o aplicație web ce poate fi accesată și
-            utilizată prin
-            oricare dintre browserele larg răspândite (Chrome, Opera, Firefox, Microsoft Edge).
+        <p>
+            Produsul functioneaza independent de sistemul de operare. Este o
+            aplicație web ce poate fi accesată și utilizată prin oricare dintre
+            browserele larg răspândite (Chrome, Opera, Firefox, Microsoft Edge).
         </p>
     </section>
-
 
     <section id="restrictii-proiectare-implemen">
         <h2>2.5 Restricții de proiectare și implementare</h2>
         <p>Produsul este supus următoarelor restricții și opțiuni tehnologice:</p>
         <ul>
-            <li>Se utilizează limbajele de programare JavaScript, HTML și CSS pentru partea de frontend.</li>
+            <li>
+                Se utilizează limbajele de programare JavaScript, HTML și CSS pentru
+                partea de frontend.
+            </li>
             <li>Se utilizează Node.js pentru dezvoltarea backend-ului.</li>
-            <li>Se utilizează o bază de date PostgreSQL pentru stocarea datelor.</li>
-            <li>Se evită utilizarea framework-urilor atât în partea de frontend, cât și în partea de backend.</li>
+            <li>
+                Se utilizează o bază de date PostgreSQL pentru stocarea datelor.
+            </li>
+            <li>
+                Se evită utilizarea framework-urilor atât în partea de frontend, cât
+                și în partea de backend.
+            </li>
         </ul>
     </section>
 
     <section id="documentatie-utilizator">
         <h2>2.6 Documentație utilizator</h2>
-        <p>Acest document poate fi considerat o parte a documentației utilizator și conține informații relevante despre
-            produs. O alta componenta a documentației utilizator care este furnizate împreună cu software-ul este pagina
-            de help</p>
+        <p>
+            Acest document poate fi considerat o parte a documentației utilizator și
+            conține informații relevante despre produs. O alta componenta a
+            documentației utilizator care este furnizate împreună cu software-ul
+            este pagina de help
+        </p>
     </section>
 
     <section id="asumptii-dependente">
         <h2>2.7 Asumpții și dependențe</h2>
         <p>Se iau în considerare următoarele asumpții și dependențe:</p>
         <ul>
-            <li>Funcționarea corectă a bazei de date PostgreSQL utilizate în cadrul aplicației</li>
-            <li>Disponibilitatea unui mediu de dezvoltare și de operare adecvat pentru software-ul dezvoltat, inclusiv
-                servere și echipamente hardware necesare</li>
-            <li>Cooperarea și furnizarea de informații adecvate din partea grădinii zoologice</li>
+            <li>
+                Funcționarea corectă a bazei de date PostgreSQL utilizate în cadrul
+                aplicației
+            </li>
+            <li>
+                Disponibilitatea unui mediu de dezvoltare și de operare adecvat pentru
+                software-ul dezvoltat, inclusiv servere și echipamente hardware
+                necesare
+            </li>
+            <li>
+                Cooperarea și furnizarea de informații adecvate din partea grădinii
+                zoologice
+            </li>
         </ul>
-        <p>Proiectul poate fi afectat în cazul în care aceste asumpții se dovedesc a fi incorecte, sunt partajate sau se
-            modifică.</p>
+        <p>
+            Proiectul poate fi afectat în cazul în care aceste asumpții se dovedesc
+            a fi incorecte, sunt partajate sau se modifică.
+        </p>
     </section>
 
     <section id="interfete-externe">
-        <h2> 3. Interfețe externe</h2>
+        <h2>3. Interfețe externe</h2>
     </section>
 
     <section id="interfata-user">
         <h2>3.1 Interfață utilizator</h2>
         <div class="grid">
             <div class="interface-page">
-                <img src="screenshots/landing.jpeg" alt="">
-                <p>Aceasta este prima pagina ce întâmpină utilizatorul la deschiderea site-ului web.
-                    De aici putem alege dacă dorim să ne logăm sau să ne creăm un cont nou.
+                <img src="screenshots/landing.jpeg" alt="" />
+                <p>
+                    Aceasta este prima pagina ce întâmpină utilizatorul la deschiderea
+                    site-ului web. De aici putem alege dacă dorim să ne logăm sau să ne
+                    creăm un cont nou.
                 </p>
             </div>
             <div class="interface-page">
-                <img src="screenshots/login.jpeg" alt="">
-                <p> Aceasta este pagina în care utilizatorii pot introduce datele de autentificare pentru a se conecta
-                    la conturile lor.
-                    De asemenea, pot alege să-și creeze un cont nou dacă nu au sau să-și schimbe parola în caz de au
-                    uitat-o.
+                <img src="screenshots/login.jpeg" alt="" />
+                <p>
+                    Aceasta este pagina în care utilizatorii pot introduce datele de
+                    autentificare pentru a se conecta la conturile lor. De asemenea, pot
+                    alege să-și creeze un cont nou dacă nu au sau să-și schimbe parola
+                    în caz de au uitat-o.
                 </p>
-
             </div>
             <div class="interface-page">
-                <img src="screenshots/register.jpeg" alt="">
-                <p>Această pagină permite utilizatorilor să își creeze un cont nou. Nu se pot crea conturi cu același
-                    email sau număr de telefon.</p>
-            </div>
-            <div class="interface-page">
-                <img src="screenshots/forgotpass.jpeg" alt="">
-                <p>Prima pagina din parcursul resetării parolei constă în introducerea email-ului cu care te-ai logat
-                    pentru a primi un cod de siguranță.
+                <img src="screenshots/register.jpeg" alt="" />
+                <p>
+                    Această pagină permite utilizatorilor să își creeze un cont nou. Nu
+                    se pot crea conturi cu același email sau număr de telefon.
                 </p>
-
             </div>
             <div class="interface-page">
-                <img src="screenshots/code.jpeg" alt="">
-                <p>Al doilea pas din resetarea parolei presupune introducerea codului primit pe email-ul introdus
-                    anterior.</p>
-
+                <img src="screenshots/forgotpass.jpeg" alt="" />
+                <p>
+                    Prima pagina din parcursul resetării parolei constă în introducerea
+                    email-ului cu care te-ai logat pentru a primi un cod de siguranță.
+                </p>
             </div>
             <div class="interface-page">
-                <img src="screenshots/changepass.jpeg" alt="">
-                <p>Ultimul pas din resetarea parolei reprezintă introducerea noii parole și confirmarea ei. Parola va fi
-                    schimbată cu succes și vă veți putea loga acum.</p>
-
+                <img src="screenshots/code.jpeg" alt="" />
+                <p>
+                    Al doilea pas din resetarea parolei presupune introducerea codului
+                    primit pe email-ul introdus anterior.
+                </p>
             </div>
             <div class="interface-page">
-                <img src="screenshots/home.jpeg" alt="">
-                <p>Aceasta este pagina principală care ne întâmpină după logarea în aplicație. De aici poți naviga în
-                    aplicație sau accesa diferitele
+                <img src="screenshots/changepass.jpeg" alt="" />
+                <p>
+                    Ultimul pas din resetarea parolei reprezintă introducerea noii
+                    parole și confirmarea ei. Parola va fi schimbată cu succes și vă
+                    veți putea loga acum.
+                </p>
+            </div>
+            <div class="interface-page">
+                <img src="screenshots/home.jpeg" alt="" />
+                <p>
+                    Aceasta este pagina principală care ne întâmpină după logarea în
+                    aplicație. De aici poți naviga în aplicație sau accesa diferitele
                     categorii de animale existente în grădina zoologică.
                 </p>
-
             </div>
             <div class="interface-page">
-                <img src="screenshots/profile.jpeg" alt="">
-                <p>Această pagină afișează informațiile personale folosite la înregistrare. Panoul din dreapta sus oferă
-                    posibilitatea modificării informațiilor personale și alegerea unei poze de profil.
-                    Panoul din stânga jos permite utilizatorului să-și modifice parola, fiind necesară și introducerea
-                    parolei curente.
-                    Panoul din dreapta jos presupune trimiterea de tickete cu scopul de a raporta problemele fizice din
-                    secțiunile grădinii zoologice.
+                <img src="screenshots/profile.jpeg" alt="" />
+                <p>
+                    Această pagină afișează informațiile personale folosite la
+                    înregistrare. Panoul din dreapta sus oferă posibilitatea modificării
+                    informațiilor personale și alegerea unei poze de profil. Panoul din
+                    stânga jos permite utilizatorului să-și modifice parola, fiind
+                    necesară și introducerea parolei curente. Panoul din dreapta jos
+                    presupune trimiterea de tickete cu scopul de a raporta problemele
+                    fizice din secțiunile grădinii zoologice.
                 </p>
-
             </div>
             <div class="interface-page">
-                <img src="screenshots/animals.jpeg" alt="">
-                <p>Această pagină prezintă colecția existentă de animale și oferă posibilitatea căutării după nume a
-                    unui animal sau
-                    filtrarea acestora real-time în funcție de criterii multiple.
+                <img src="screenshots/animals.jpeg" alt="" />
+                <p>
+                    Această pagină prezintă colecția existentă de animale și oferă
+                    posibilitatea căutării după nume a unui animal sau filtrarea
+                    acestora real-time în funcție de criterii multiple.
                 </p>
-
             </div>
             <div class="interface-page">
-                <img src="screenshots/animalid.jpeg" alt="">
-                <p>Această pagină oferă detalii și informații despre un animal specific, ales din colecția de animale.
+                <img src="screenshots/animalid.jpeg" alt="" />
+                <p>
+                    Această pagină oferă detalii și informații despre un animal
+                    specific, ales din colecția de animale.
                 </p>
-
             </div>
             <div class="interface-page">
-                <img src="screenshots/help.jpeg" alt="">
-                <p>Această pagină oferă asistență sau ghidare utilizatorilor, cum ar fi Întrebări frecvente (FAQ) și
-                    existența unui formular pentru a trimite neclarități despre folosirea aplicației către un email al
-                    adminilor aplicației.</p>
-
-            </div>
-            <div class="interface-page">
-                <img src="screenshots/settings.jpeg" alt="">
-                <p>Această pagină reprezintă panoul de control al aplicației și oferă posibilitățile de a importa (numai
-                    pentru userii admini) și exporta animale din colecție, de a schimba tema vizuală (light/dark), de a
-                    schimba limba descrierilor animalelor (english/french)
-                    și 3 meniuri dedicate userilor cu rol de admin ce presupune gestionarea angajaților, tichetelor de
-                    secțiuni și a animalelor.
+                <img src="screenshots/help.jpeg" alt="" />
+                <p>
+                    Această pagină oferă asistență sau ghidare utilizatorilor, cum ar fi
+                    Întrebări frecvente (FAQ) și existența unui formular pentru a
+                    trimite neclarități despre folosirea aplicației către un email al
+                    adminilor aplicației.
                 </p>
-
             </div>
             <div class="interface-page">
-                <img src="screenshots/users.jpeg" alt="">
-                <p>Acesta este tabelul cu useri valabil doar din rolul de admin în care se pot vedea persoanele
-                    ce au cont pe această aplicație și posibilitatea de a șterge o persoană („a concedia”) din baza de
+                <img src="screenshots/settings.jpeg" alt="" />
+                <p>
+                    Această pagină reprezintă panoul de control al aplicației și oferă
+                    posibilitățile de a importa (numai pentru userii admini) și exporta
+                    animale din colecție, de a schimba tema vizuală (light/dark), de a
+                    schimba limba descrierilor animalelor (english/french) și 3 meniuri
+                    dedicate userilor cu rol de admin ce presupune gestionarea
+                    angajaților, tichetelor de secțiuni și a animalelor.
+                </p>
+            </div>
+            <div class="interface-page">
+                <img src="screenshots/users.jpeg" alt="" />
+                <p>
+                    Acesta este tabelul cu useri valabil doar din rolul de admin în care
+                    se pot vedea persoanele ce au cont pe această aplicație și
+                    posibilitatea de a șterge o persoană („a concedia”) din baza de
                     date.
                 </p>
-
             </div>
             <div class="interface-page">
-                <img src="screenshots/tickets.jpeg" alt="">
-                <p>Acesta este tabelul cu tichetele trimise de toți userii ce punctează anumite probleme regăsite sau
-                    observate în grădina zoologică.
-                    Putem, de asemenea, după ce un tichet a fost vizionat și revizuit să fie notat ca „rezolvat” pentru
-                    a-l șterge.
+                <img src="screenshots/tickets.jpeg" alt="" />
+                <p>
+                    Acesta este tabelul cu tichetele trimise de toți userii ce punctează
+                    anumite probleme regăsite sau observate în grădina zoologică. Putem,
+                    de asemenea, după ce un tichet a fost vizionat și revizuit să fie
+                    notat ca „rezolvat” pentru a-l șterge.
                 </p>
-
             </div>
             <div class="interface-page">
-                <img src="screenshots/animals admin.jpeg" alt="">
-                <p>Acesta este ultimul tabel ce poate fi vizionat numai de admini si permite adminilor să vadă
-                    toate animalele din aplicație, să seteze pentru fiecare fotografii noi și să șteargă animale din
-                    baza de date.
+                <img src="screenshots/animals admin.jpeg" alt="" />
+                <p>
+                    Acesta este ultimul tabel ce poate fi vizionat numai de admini si
+                    permite adminilor să vadă toate animalele din aplicație, să seteze
+                    pentru fiecare fotografii noi și să șteargă animale din baza de
+                    date.
                 </p>
-
             </div>
             <div class="interface-page">
-                <img src="screenshots/about.jpeg" alt="">
-                <p>Aceasta este pagina în care se prezintă o mică descriere a aplicației și echipa ce a lucrat la
-                    aceasta.</p>
-
+                <img src="screenshots/about.jpeg" alt="" />
+                <p>
+                    Aceasta este pagina în care se prezintă o mică descriere a
+                    aplicației și echipa ce a lucrat la aceasta.
+                </p>
             </div>
-
         </div>
     </section>
 
     <section id="interfata-software">
         <h2>3.2 Interfață software</h2>
-        <p>Aplicația noastră utilizează o bază de date PostgreSQL pentru a gestiona și stoca datele referitoare la
-            animale și utilizatori. Baza de date este utilizată pentru a păstra evidența detaliată a acestor date și
-            pentru a facilita funcționalități precum autentificarea și stocarea informațiilor relevante.</p>
-
-        <p>Pentru partea de server, aplicația este dezvoltată folosind Node.js, fără utilizarea de framework-uri
-            suplimentare. Alegerea Node.js ne oferă flexibilitate și control sporit în dezvoltarea logicii de server.
+        <p>
+            Aplicația noastră utilizează o bază de date PostgreSQL pentru a gestiona
+            și stoca datele referitoare la animale și utilizatori. Baza de date este
+            utilizată pentru a păstra evidența detaliată a acestor date și pentru a
+            facilita funcționalități precum autentificarea și stocarea informațiilor
+            relevante.
         </p>
 
-        <p>Pentru funcționalități adiționale, aplicația noastră utilizează trei pachete externe:</p>
-        <ul>
-            <li>Nodemailer: Este utilizat pentru a permite aplicației să trimită e-mailuri pentru functionalitati precum
-                resetarea parolei.</li>
-            <li>Jsonwebtoken: Este utilizat pentru generarea și verificarea tokenurilor JSON Web Tokens (JWT), care sunt
-                folosite pentru autentificare și autorizare în cadrul aplicației noastre.</li>
-            <li>pg: Este utilizat pentru interacțiunea cu baza de date PostgreSQL, oferind funcționalități și metode
-                necesare pentru conectarea, interogarea și manipularea datelor din baza de date.</li>
-        </ul>
+        <p>
+            Pentru partea de server, aplicația este dezvoltată folosind Node.js,
+            fără utilizarea de framework-uri suplimentare. Alegerea Node.js ne oferă
+            flexibilitate și control sporit în dezvoltarea logicii de server.
+        </p>
 
-        <h3>3.2.1 Controlere API</h3>
-        <p>Aplicația noastră expune un API RESTful dezvoltat utilizând Node.js, care permite interacțiunea cu diverse
-            resurse și funcționalități. Pentru gestionarea resurselor legate de animale și utilizatori, aplicația
-            noastră utilizează mai mulți controleri, care furnizează endpoint-uri pentru a efectua operații specifice
-            asupra resurselor corespunzătoare.
+        <p>
+            Pentru funcționalități adiționale, aplicația noastră utilizează trei
+            pachete externe:
         </p>
         <ul>
             <li>
-                <p>AnimalController: Furnizează endpoint-uri pentru gestionarea operațiilor legate de animale.</p>
+                Nodemailer: Este utilizat pentru a permite aplicației să trimită
+                e-mailuri pentru functionalitati precum resetarea parolei.
+            </li>
+            <li>
+                Jsonwebtoken: Este utilizat pentru generarea și verificarea
+                tokenurilor JSON Web Tokens (JWT), care sunt folosite pentru
+                autentificare și autorizare în cadrul aplicației noastre.
+            </li>
+            <li>
+                pg: Este utilizat pentru interacțiunea cu baza de date PostgreSQL,
+                oferind funcționalități și metode necesare pentru conectarea,
+                interogarea și manipularea datelor din baza de date.
+            </li>
+        </ul>
+
+        <h3 id="api">3.3.1 Controlere API</h3>
+        <p>
+            Aplicația noastră expune un API RESTful dezvoltat utilizând Node.js,
+            care permite interacțiunea cu diverse resurse și funcționalități. Pentru
+            gestionarea resurselor legate de animale și utilizatori, aplicația
+            noastră utilizează mai mulți controleri, care furnizează endpoint-uri
+            pentru a efectua operații specifice asupra resurselor corespunzătoare.
+        </p>
+        <ul>
+            <li>
+                <p>
+                    AnimalController: Furnizează endpoint-uri pentru gestionarea
+                    operațiilor legate de animale.
+                </p>
                 <strong>GET:</strong>
                 <ul>
-                    <li>/api/animals: Returnează o listă cu toate animalele stocate.</li>
-                    <li>/api/animals/{id}: Returnează informațiile animalului cu ID-ul specificat.</li>
+                    <li>
+                        /api/animals: Returnează o listă cu toate animalele stocate.
+                    </li>
+                    <li>
+                        /api/animals/{id}: Returnează informațiile animalului cu ID-ul
+                        specificat.
+                    </li>
                     <li>/api/animalNames: Returnează numele tuturor animalelor.</li>
-                    <li>/api/animals/categories: Returnează categoriile dupa care pot fi filtrate animalele.</li>
-                    <li>/api/animalJSON/{id}: Returnează animalul cu ID-ul specificat în format JSON.</li>
-                    <li>/api/animalXML/{id}: Returnează animalul cu ID-ul specificat în format XML.</li>
-                    <li>/api/getAllImage1: Returnează toate imaginile 1 asociate animalelor.</li>
-                    <li>/api/getAnimalImage1/{id}: Returnează imaginea 1 asociată animalului cu ID-ul specificat.</li>
-                    <li>/api/getAnimalImage2/{id}: Returnează imaginea 2 asociată animalului cu ID-ul specificat.</li>
-                    <li>/api/getAniFrench/{id}: Returnează textul în limba franceză asociat animalului cu ID-ul
-                        specificat.</li>
+                    <li>
+                        /api/animals/categories: Returnează categoriile dupa care pot fi
+                        filtrate animalele.
+                    </li>
+                    <li>
+                        /api/animalJSON/{id}: Returnează animalul cu ID-ul specificat în
+                        format JSON.
+                    </li>
+                    <li>
+                        /api/animalXML/{id}: Returnează animalul cu ID-ul specificat în
+                        format XML.
+                    </li>
+                    <li>
+                        /api/getAllImage1: Returnează toate imaginile 1 asociate
+                        animalelor.
+                    </li>
+                    <li>
+                        /api/getAnimalImage1/{id}: Returnează imaginea 1 asociată
+                        animalului cu ID-ul specificat.
+                    </li>
+                    <li>
+                        /api/getAnimalImage2/{id}: Returnează imaginea 2 asociată
+                        animalului cu ID-ul specificat.
+                    </li>
+                    <li>
+                        /api/getAniFrench/{id}: Returnează textul în limba franceză
+                        asociat animalului cu ID-ul specificat.
+                    </li>
                 </ul>
+
+
                 <strong>POST:</strong>
                 <ul>
-                    <li>/api/animals/filter: Returnează animalele filtrate în funcție de anumite criterii.</li>
+                    <li>
+                        /api/animals/filter: Returnează animalele filtrate în funcție de
+                        anumite criterii.
+                    </li>
                 </ul>
                 <strong>PUT:</strong>
                 <ul>
-                    <li>/api/insertAni: Inserează un animal nou. </li>
-                    <li>/api/setAnimalImage1/{id}: Actualizeaza imaginea 1 pentru animalul cu ID-ul specificat.</li>
-                    <li>/api/setAnimalImage2/{id}: Actualizeaza imaginea 2 pentru animalul cu ID-ul specificat.</li>
+                    <li>/api/insertAni: Inserează un animal nou.</li>
+                    <li>
+                        /api/setAnimalImage1/{id}: Actualizeaza imaginea 1 pentru animalul
+                        cu ID-ul specificat.
+                    </li>
+                    <li>
+                        /api/setAnimalImage2/{id}: Actualizeaza imaginea 2 pentru animalul
+                        cu ID-ul specificat.
+                    </li>
                 </ul>
                 <strong>DELETE:</strong>
                 <ul>
-                    <li>/api/animals/{id}: Șterge animalul cu ID-ul specificat din sistem.</li>
-                    <li>/api/setAnimalImage1/{id}: Actualizeaza imaginea 1 pentru animalul cu ID-ul specificat.</li>
-                    <li>/api/setAnimalImage2/{id}: Actualizeaza imaginea 2 pentru animalul cu ID-ul specificat.</li>
+                    <li>
+                        /api/animals/{id}: Șterge animalul cu ID-ul specificat din sistem.
+                    </li>
+                    <li>
+                        /api/setAnimalImage1/{id}: Actualizeaza imaginea 1 pentru animalul
+                        cu ID-ul specificat.
+                    </li>
+                    <li>
+                        /api/setAnimalImage2/{id}: Actualizeaza imaginea 2 pentru animalul
+                        cu ID-ul specificat.
+                    </li>
                 </ul>
             </li>
             <li>
-                HelpController: Furnizează endpoint-uri pentru furnizarea de informații și asistență utilizatorilor.
+                <p>
+                    HelpController: Furnizează endpoint-uri pentru furnizarea de
+                    informații și asistență utilizatorilor.
+                </p>
+                <strong>POST:</strong>
+                <ul>
+                    <li>
+                        /api/help: Primește email-ul și problema introdusă și le trimite
+                        pe email-ul administratorului.
+                    </li>
+                </ul>
             </li>
-            <li>ProfileController: Furnizează endpoint-uri pentru gestionarea profilurilor utilizatorilor.</li>
             <li>
-                <p>SettingController: Furnizează endpoint-uri pentru gestionarea setărilor aplicației.</p>
+                <p>
+                    ProfileController: Furnizează endpoint-uri pentru gestionarea
+                    profilurilor utilizatorilor.
+                </p>
+                <strong>POST:</strong>
+                <ul>
+                    <li>/api/changePasswordProfile: Trimiterea parolei noi.</li>
+                    <li>/api/saveInfo: Trimiterea noilor informații despre user.</li>
+                    <li>/api/updateProfilePicture: Adăugarea unei poze de profil.</li>
+                    <li>
+                        /api/submitTicket: Trimiterea datelor unui ticket spre baza de
+                        date.
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <p>
+                    ForgotPasswordController: Furnizează endpoint-uri pentru gestionarea
+                    resetării parolei.
+                </p>
+                <strong>POST:</strong>
+                <ul>
+                    <li>
+                        /api/code: Preia email-ul introdus de utilizator și îi trimite
+                        mail cu un cod unic.
+                    </li>
+                    <li>
+                        /api/insertCode: Preia codul introdus de user și îl compară cu cel
+                        generat la pasul anterior.
+                    </li>
+                    <li>/api/changePass: Trimite și modifică noua parolă introdusă.</li>
+                </ul>
+            </li>
+            <li>
+                <p>
+                    SettingController: Furnizează endpoint-uri pentru gestionarea
+                    setărilor aplicației.
+                </p>
                 <strong>POST:</strong>
                 <ul>
                     <li>/api/theme: Seteaza tema unui utilizator.</li>
                 </ul>
             </li>
-            <li>TicketsController: Furnizează endpoint-uri pentru gestionarea operațiilor legate de bilete sau tichete.
-            </li>
-            <li>UsersController: Furnizează endpoint-uri pentru gestionarea operațiilor legate de utilizatori.</li>
             <li>
-                <p>LoginController: Furnizează endpoint-uri pentru gestionarea autentificării utilizatorilor.</p>
-                <strong>POST:</strong>
+                <p>
+                    TicketsController: Furnizează endpoint-uri pentru gestionarea
+                    operațiilor legate de tichete.
+                </p>
+                <strong>GET:</strong>
                 <ul>
-                    <li> /api/login: utentifică un utilizator prin verificarea datelor de autentificare.</li>
+                    <li>/api/tickets: Returnează toate informațiile despre tickete.</li>
+                </ul>
+                <strong>DELETE:</strong>
+                <ul>
+                    <li>
+                        /api/tickets/{id}: Această rută șterge ticket-ul specificat prin
+                        ID-ul său.
+                    </li>
                 </ul>
             </li>
             <li>
-                <p>registerController: Furnizează endpoint-uri pentru gestionarea înregistrării utilizatorilor.</p>
+                <p>
+                    UsersController: Furnizează endpoint-uri pentru gestionarea
+                    operațiilor legate de utilizatori.
+                </p>
+                <strong>GET:</strong>
+                <ul>
+                    <li>/api/users: Returnează toți utilizatorii din aplicație.</li>
+                    <li>
+                        /api/logUser: Returnează informații despre utilizatorul
+                        autentificat.
+                    </li>
+                    <li>
+                        /api/logUserTheme: Returnează tema preferată a utilizatorului
+                        autentificat.
+                    </li>
+                    <li>
+                        /api/getLanguage: Returnează setarea de limbă a utilizatorului
+                        autentificat.
+                    </li>
+                </ul>
+                <strong>PUT:</strong>
+                <ul>
+                    <li>
+                        /api/setLanguage: Modifică setarea de limbă aleasă de utilizator.
+                    </li>
+                </ul>
+                <strong>DELETE:</strong>
+                <ul>
+                    <li>
+                        api/users/{id}: Această rută șterge utilizatorul specificat prin
+                        ID-ul său.
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <p>
+                    LoginController: Furnizează endpoint-uri pentru gestionarea
+                    autentificării utilizatorilor.
+                </p>
                 <strong>POST:</strong>
                 <ul>
-                    <li>/api/register: Înregistrează un utilizator prin înregistrarea datelor de autentificare.</li>
+                    <li>
+                        /api/login: utentifică un utilizator prin verificarea datelor de
+                        autentificare.
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <p>
+                    RegisterController: Furnizează endpoint-uri pentru gestionarea
+                    înregistrării utilizatorilor.
+                </p>
+                <strong>POST:</strong>
+                <ul>
+                    <li>
+                        /api/register: Înregistrează un utilizator prin înregistrarea
+                        datelor de autentificare.
+                    </li>
                 </ul>
             </li>
         </ul>
-
-
-
 
         <p>API-ul nostru este securizat cu JSON Web Tokens (JWT) pentru a asigura autentificarea și autorizarea în
             cadrul aplicației noastre. Fiecare cerere către API trebuie să includă un token JWT valid în antetul
             autorizare pentru a permite accesul la resursele protejate. Această măsură de securitate ajută la prevenirea
             accesului neautorizat și asigură că doar utilizatorii autentificați și autorizați pot interacționa cu API-ul
             și resursele asociate.</p>
+
     </section>
 
+
+    <section id="multi-page-application">
+        <h3>3.3.2 Multi Page Application (MPA)</h3>
+        <p>
+            O aplicație multi-page (MPA - Multi Page Application) este un model
+            tradițional de dezvoltare web în care fiecare pagină a site-ului este
+            trimisă de server ca un nou document HTML. Acest lucru duce la
+            reîncărcarea completă a paginii de fiecare dată când este vizitată o
+            nouă pagină.
+        </p>
+        <p>
+            Fiecare pagină poate fi accesată direct prin propriul URL. Într-o MPA,
+            serverul determină ce HTML să trimită înapoi la browser în funcție de
+            cerere. Aceasta se opune modelului de Single Page Application (SPA),
+            unde majoritatea resurselor (HTML/CSS/JS) sunt încărcate o singură dată,
+            iar schimbarea conținutului este gestionată prin JavaScript pe partea de
+            client.
+        </p>
+    </section>
 
     <section id="interfata-comunicare">
         <h2>3.3 Interfață comunicare</h2>
+        <p>
+            În acest proiect, comunicarea este efectuată prin intermediul
+            protocolului HTTP (Hypertext Transfer Protocol), care este un standard
+            pentru transmiterea de informații pe web. Prin utilizarea HTTP,
+            aplicația noastră poate să facă request-uri la server și poate să
+            primească răspunsuri.
+        </p>
+        <p>
+            Comunicarea dintre client și server se realizează printr-o serie de
+            request-uri HTTP, fiecare având asociat un răspuns în format JSON.
+        </p>
     </section>
-
 
     <section id="caracteristici-sistem">
         <h2>4. Caracteristici sistem</h2>
@@ -603,7 +921,7 @@
         </p>
     </section>
 
-    <section id="non-func">
+    <section id="non-functional">
         <h2>5. Cerinte non-functionale</h2>
     </section>
 
@@ -625,8 +943,63 @@
         </ul>
     </section>
 
-
-
+    <button class="my-button" onclick="scrollToTop()" id="back-to-up">
+        <div class="long-arrow-left"></div>
+    </button>
 </body>
+
+<style>
+    .my-button {
+        display: inline-block;
+        font-weight: 400;
+        text-align: center;
+        text-decoration: none;
+        vertical-align: middle;
+        cursor: pointer;
+        user-select: none;
+        padding: 1.3rem 1.3rem;
+        border: 1px solid transparent;
+        color: #fff;
+        background-color: #1a8f0740;
+        border-color: #1a8f0740;
+        border-radius: 50%;
+        position: fixed;
+        bottom: 50px;
+        right: 50px;
+        transform: translate(50%, 50%);
+    }
+
+
+    .long-arrow-left {
+        display: block;
+        width: 15px;
+        height: 15px;
+        border-top: 2px solid #fff;
+        border-left: 2px solid #fff;
+    }
+
+    .long-arrow-left {
+        transform: rotate(45deg);
+    }
+</style>
+<script>
+    window.onscroll = () => {
+        toggleTopButton();
+    };
+    function scrollToTop() {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function toggleTopButton() {
+        if (
+            document.body.scrollTop > 20 ||
+            document.documentElement.scrollTop > 20
+        ) {
+            document.getElementById("back-to-up").classList.remove("d-none");
+        } else {
+            document.getElementById("back-to-up").classList.add("d-none");
+        }
+    }
+</script>
 
 </html>

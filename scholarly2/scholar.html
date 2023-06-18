@@ -74,6 +74,26 @@
                         <a href="#interfata-comunicare">3.3 Interfață de comunicare</a>
                     </li>
                 </ul>
+            </li>
+            <li><a href="#caracteristici-sistem">4. Caracteristici ale sistemului</a>
+                <ul>
+                    <li><a href="#caracteristici-login">4.1 Login/Logout/Register</a></li>
+                    <li><a href="#caracteristici-forgot">4.2 Forgot Password</a></li>
+                    <li><a href="#filtrare-animale">4.3 Filtrare animale</a></li>
+                    <li><a href="#caracteristici-forgot">4.4 Vizionare animale</a></li>
+                    <li><a href="#caracteristici-forgot">4.5 Import/Export JSON și XML</a></li>
+                    <li><a href="#caracteristici-forgot">4.6 Ștergere animale și utilizatori</a></li>
+                    <li><a href="#caracteristici-forgot">4.7 Tickets</a></li>
+                </ul>
+            </li>
+            <li><a href="#non-functional">5. Cerințe non-funcționale</a>
+                <ul>
+                    <li><a href="#cerinte-securitate">5.1 Cerinte de securitate</a></li>
+                </ul>
+            </li>
+
+
+            <li><a href="#autori">6. Autori</a></li>
         </ul>
     </nav>
 
@@ -157,7 +177,7 @@
         <h2> 2. Descriere generală</h2>
     </section>
 
-    <section>
+    <section id="perspectiva-produsului">
         <h2>2.1 Perspectiva produsului</h2>
         <p>Aplicația Zoo Web Manager (ZoM) este un produs nou care are ca scop facilitarea gestionării
             informațiilor despre animalele gazduite într-o grădină zoologică. Aplicația este concepută pentru a fi
@@ -380,7 +400,7 @@
         </div>
     </section>
 
-    <section id="#interfata-software">
+    <section id="interfata-software">
         <h2>3.2 Interfață software</h2>
         <p>Aplicația noastră utilizează o bază de date PostgreSQL pentru a gestiona și stoca datele referitoare la
             animale și utilizatori. Baza de date este utilizată pentru a păstra evidența detaliată a acestor date și
@@ -400,7 +420,7 @@
                 necesare pentru conectarea, interogarea și manipularea datelor din baza de date.</li>
         </ul>
 
-        <h3>3.3.1 Controlere API</h3>
+        <h3>3.2.1 Controlere API</h3>
         <p>Aplicația noastră expune un API RESTful dezvoltat utilizând Node.js, care permite interacțiunea cu diverse
             resurse și funcționalități. Pentru gestionarea resurselor legate de animale și utilizatori, aplicația
             noastră utilizează mai mulți controleri, care furnizează endpoint-uri pentru a efectua operații specifice
@@ -469,12 +489,142 @@
                 </ul>
             </li>
         </ul>
+
+
+
+
+        <p>API-ul nostru este securizat cu JSON Web Tokens (JWT) pentru a asigura autentificarea și autorizarea în
+            cadrul aplicației noastre. Fiecare cerere către API trebuie să includă un token JWT valid în antetul
+            autorizare pentru a permite accesul la resursele protejate. Această măsură de securitate ajută la prevenirea
+            accesului neautorizat și asigură că doar utilizatorii autentificați și autorizați pot interacționa cu API-ul
+            și resursele asociate.</p>
     </section>
 
 
-    <section id="#interfata-comunicare">
+    <section id="interfata-comunicare">
         <h2>3.3 Interfață comunicare</h2>
     </section>
+
+
+    <section id="caracteristici-sistem">
+        <h2>4. Caracteristici sistem</h2>
+    </section>
+
+    <section id="caracteristici-login">
+        <h2>4.1. Login/Logout/Register</h2>
+        <p>
+            Pentru a utiliza funcționalitățile aplicației, utilizatorii trebuie sa se
+            autentifica în contul lor. Autentificarea se realizează prin introducerea adresei de email împreună cu
+            parola corespunzătoare. După ce utilizatorul a furnizat
+            informațiile de autentificare valide, acesta obține acces la toate funcționalitățile disponibile.
+        </p>
+        <p>
+            În cazul în care utilizatorul nu are deja un cont, are opțiunea de a se înregistra. Prin înregistrare,
+            utilizatorul poate crea un cont nou introducând adresa de email, un nume, un prenume, un numar de telefon și
+            o parolă. După
+            finalizarea procesului de înregistrare, utilizatorul va putea sa se autentifice in aplicatie.
+        </p>
+        <p>În momentul în care utilizatorul dorește să încheie sesiunea și să părăsească aplicația, poate opta pentru
+            dezautentificare. Prin dezautentificare, utilizatorul este delogat din contul său și nu mai are acces la
+            funcționalitățile aplicației până când se autentifică din nou.
+        </p>
+    </section>
+
+    <section id="caracteristici-forgot">
+        <h2>4.2. Forgot Password</h2>
+        <p> În cazul în care utilizatorul uită parola și nu mai poate accesa contul, este disponibilă opțiunea de
+            recuperare a parolei. Utilizatorul trebuie să introducă adresa de email asociată contului și va primi un
+            email cu un cod special pentru a putea introduce o nouă parolă.
+        </p>
+    </section>
+
+    <section id="filtrare-animale">
+        <h2>4.3. Filtrare animale</h2>
+        <p>
+            Pe pagina "Animals", utilizatorii au posibilitatea de a căuta și filtra animalele în funcție de diferite
+            criterii. Această funcționalitate permite utilizatorilor să refineze rezultatele și să găsească rapid
+            animalele dorite. Criteriile de filtrare pot include clasa animalelor, dieta, habitatul, lifestyle (nocturn
+            sau diurn), regiunea, skin type, greautarea, inaltime si durata de viata.
+            originea, statutul, caracteristicile sau speciile înrudite.
+        </p>
+    </section>
+
+    <section id="vizionare-animale">
+        <h2>4.4. Vizionare animale</h2>
+        <p>
+            Utilizatorii au posibilitatea de a viziona paginile individuale ale animalelor din grădina zoologică. Pe
+            pagina dedicată unui animal specific, utilizatorii pot accesa informații detaliate despre acesta, inclusiv
+            denumirea populară, descriere, origine, statut, și caracteristici. De
+            asemenea, în funcție de setările și preferințele lor, utilizatorii pot beneficia de o descriere multilingvă
+            a animalelor, care să fie adaptată limbii selectate în profilul lor.
+        </p>
+    </section>
+
+
+    <section id="import-file">
+        <h2>4.5. Import/Export JSON și XML</h2>
+        <p>
+            Utilizatorii au posibilitatea de a importa și exporta date despre animale în format JSON și XML. Prin
+            import, utilizatorii pot încărca un fișier JSON sau
+            XML care conține detalii despre un animal și să adauge acele informații în aplicație. Aceasta oferă o
+            modalitate rapidă și convenabilă de a adăuga animale noi în baza de date. Prin export, utilizatorii pot
+            descărca un fișier JSON sau XML care conține datele unui animal selectat din aplicație, permițându-le să
+            stocheze informațiile cu ușurință.
+        </p>
+    </section>
+
+    <section id="stergere-animale-useri">
+        <h2>4.6. Ștergere animale și utilizatori</h2>
+        <p>
+            Utilizatorii cu privilegii de administrare au posibilitatea de a șterge atât animalele din baza de date, cât
+            și conturile utilizatorilor din aplicație. Această funcționalitate le permite să gestioneze conținutul și
+            utilizatorii aplicației într-un mod eficient. Prin ștergerea animalelor, administratorii pot elimina
+            animalele care nu mai sunt relevante sau care nu mai fac parte din grădina zoologică. De asemenea, prin
+            ștergerea utilizatorilor, administratorii pot gestiona baza de utilizatori și pot elimina conturile care nu
+            mai sunt necesare sau care încalcă regulile și politica de utilizare a aplicației.
+        </p>
+    </section>
+
+
+    <section id="tickete">
+        <h2>4.7. Tickets</h2>
+        <p>
+            Utilizatorii au posibilitatea de a trimite tickete pentru a raporta probleme sau a solicita asistență. Prin
+            intermediul unei pagini profile, utilizatorii pot completa un formular în care să specifice departamentul
+            relevant, managerul departamentului și descrierea problemei întâmpinate. Aceste tickete vor fi înregistrate
+            în aplicatie pentru
+            a fi preluate și gestionate de către departamentul corespunzător.
+        </p>
+        <p>
+            Administratorii aplicației au acces la o secțiune specială pentru vizualizarea și gestionarea ticketelor. Ei
+            pot vizualiza toate ticketele înregistrate. Pe
+            măsură ce probleme sunt rezolvate, administratorii au opțiunea de a le șterge din sistem, confirmând astfel
+            finalizarea și soluționarea problemei raportate.
+        </p>
+    </section>
+
+    <section id="non-func">
+        <h2>5. Cerinte non-functionale</h2>
+    </section>
+
+    <section id="cerinte-securitate">
+        <h2>5.1 Cerinte de securitate</h2>
+        <ul>
+            <li>Utilizarea bcrypt pentru stocarea parolelor utilizatorilor, asigurând o securitate sporită.</li>
+            <li>Implementarea autentificării și autorizării bazate pe JSON Web Tokens (JWT).</li>
+        </ul>
+    </section>
+
+
+    <section id="autori">
+        <h2>6. Autori</h2>
+        <ul>
+            <li>Cohman Teodora</li>
+            <li>Dodun Dan</li>
+            <li>Mihaita Andrei</li>
+        </ul>
+    </section>
+
 
 
 </body>

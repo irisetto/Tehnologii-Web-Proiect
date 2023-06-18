@@ -20,10 +20,21 @@ const handleRegister = async (req, res) => {
 
         try {
             let existingUser = await user.getUserWithEmail(email);
+
+            if(password != confirmPassword) {
+                console.log("Passwords don't match");
+
+                // res.setHeader("Location", "/register");
+                res.writeHead(400, { "Content-Type": "application/json" });
+                res.end();
+                return;
+            }
+
             if (existingUser) {
                 console.log("Email already exists");
-                res.statusCode = 302;
-                res.setHeader("Location", "/register");
+
+                // res.setHeader("Location", "/register");
+                res.writeHead(400, { "Content-Type": "application/json" });
                 res.end();
                 return;
             }
@@ -31,8 +42,9 @@ const handleRegister = async (req, res) => {
             existingUser = await user.getUserWithPhonenumber(phoneNumber);
             if (existingUser) {
                 console.log("Phone Number already exists");
-                res.statusCode = 302;
-                res.setHeader("Location", "/register");
+
+                res.writeHead(400, { "Content-Type": "application/json" });
+                //res.setHeader("Location", "/register");
                 res.end();
                 return;
             }
@@ -49,12 +61,12 @@ const handleRegister = async (req, res) => {
             });
             console.log("User inserted successfully");
 
-            res.statusCode = 302;
-            res.setHeader("Location", "/login");
+            res.writeHead(200, { "Content-Type": "application/json" });
+
             res.end();
         } catch (err) {
             console.error("Error handling registration", err);
-            res.statusCode = 500;
+            res.writeHead(400, { "Content-Type": "application/json" });
             res.end();
         }
     });

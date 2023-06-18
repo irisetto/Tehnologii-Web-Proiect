@@ -16,7 +16,7 @@
     <div class="form">
       <img class="logo" src="/pictures/zom.png" alt="logo" />
       <h2>Create account</h2>
-      <form>
+      <form id="register-form">
         <div class="inputs">
           <div class="txt_field">
             <input type="text" name="first_name" required />
@@ -29,7 +29,7 @@
           </div>
 
           <div class="txt_field">
-            <input type="email" name="email" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}" required />
+            <input type="email" name="email" />
             <label>Email</label>
           </div>
 
@@ -68,24 +68,25 @@
       event.preventDefault();
 
       const formData = new FormData(form);
-      const jsonData = {};
-
-      for (const [key, value] of formData.entries()) {
-        jsonData[key] = value;
-      }
+      const urlEncodedData = new URLSearchParams(formData).toString();
 
       fetch('/api/register', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
+          'Content-Type': 'application/x-www-form-urlencoded',
         },
-        body: JSON.stringify(jsonData),
+        body: urlEncodedData,
       })
         .then((response) => {
+          console.log(response);
+
           if (response.ok) {
             console.log('Registration successful');
+            window.location.href = "/login";
           } else {
             console.error('Registration failed');
+            window.location.href = "/register";
+            alert('Registration failed 1', error);
           }
         })
         .catch((error) => {
@@ -93,6 +94,7 @@
 
         });
     });
+
   </script>
 </body>
 

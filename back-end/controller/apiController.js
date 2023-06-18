@@ -122,6 +122,10 @@ exports.handleApiRequest = (req, res) => {
       authenticateJWT(req, res, () => {
         animalsController(req, res);
       });
+    } else if (req.url.match("/api/getLanguage")) {
+      authenticateJWT(req, res, () => {
+        usersController(req, res);
+      });
     } else {
       res.statusCode = 404;
       res.setHeader("Content-Type", "text/plain");

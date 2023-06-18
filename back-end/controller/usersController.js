@@ -140,6 +140,39 @@ const setLanguageSetting = async (req, res) => {
   }
 };
 
+const getLanguageSetting = async (req, res) => {
+  try {
+    const token = req.headers.authorization.split(" ")[1];
+    const decoded = jwt.decode(token);
+
+    if (!decoded) {
+      res.statusCode = 401;
+      res.end("Invalid or expired JWT");
+      return;
+    }
+
+    const email = decoded.email;
+    const user = await usersModel.getUserWithEmail(email);
+
+    if (!user) {
+      res.statusCode = 404;
+      res.end("User not found");
+      return;
+    }
+
+    const languageSetting = await usersModel.getUserLanguageSetting(user.email);
+    const { language_setting } = languageSetting; 
+
+
+    res.statusCode = 200;
+    res.end(JSON.stringify({ language_setting }));
+  } catch (err) {
+    console.error("Error getting the language setting", err);
+    res.statusCode = 500;
+    res.end("Internal Server Error");
+  }
+};
+
 
 const usersController = async (req, res) => {
   if (req.url === "/api/users") {
@@ -152,6 +185,9 @@ const usersController = async (req, res) => {
     getLoggedInTheme(req, res);
   } else if (req.url === "/api/setLanguage") {
     setLanguageSetting(req, res);
+  } else if (req.url === "/api/getLanguage") {
+    console.log('getLAng');
+    getLanguageSetting(req, res);
   }
   else {
     res.end("nu exista api pentru acest request");

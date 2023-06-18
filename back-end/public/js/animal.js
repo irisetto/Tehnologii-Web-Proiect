@@ -230,17 +230,19 @@ const createAnimalCardFromTemplate = (animal) => {
 
 //??????
 async function renderAnimalPage() {
-  await logUser();
-  console.log(userLogged.language_setting);
+  //await logUser();
+  //console.log(userLogged.language_setting);
+  const languageSetting = localStorage.getItem("language");
+  //console.log(languageSetting);
 
 
-  
+
   const urlParams = new URLSearchParams(window.location.search);
   const id = urlParams.get("id");
   animalContainer.innerHTML = "";
   //bruh
   getAnimalById(id).then(async (animal) => {
-    if (userLogged.language_setting === 'French') {
+    if (languageSetting === 'French') {
       try {
         const replaceText = await getAnimalFrenchText(animal.id);
 

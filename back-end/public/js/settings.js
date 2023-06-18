@@ -70,6 +70,7 @@ const updateBtn = document.querySelector('.update-language-btn');
 
 updateBtn.addEventListener('click', () => {
   const languageSetting = languageSelect.value;
+  localStorage.setItem("language", languageSetting);
   const token = localStorage.getItem("token");
 
   const requestBody = {
@@ -87,6 +88,7 @@ updateBtn.addEventListener('click', () => {
     .then(response => response.json())
     .then(data => {
       console.log('Language setting updated:', data);
+      alert('Language setting updated');
     })
     .catch(error => {
       console.error('Error updating language setting:', error);

@@ -1,63 +1,99 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Register Page</title>
-    <link rel="stylesheet" href="css/register.css" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Viga" />
-  </head>
-  <body>
-    <div class="container">
-      <div class="form">
-        <img class="logo" src="/pictures/zom.png" alt="logo" />
-        <h2>Create account</h2>
-        <form method="post" action="/api/register">
-          <div class="inputs">
-            <div class="txt_field">
-              <input type="text" name="first_name" required />
-              <label>First Name</label>
-            </div>
 
-            <div class="txt_field">
-              <input type="text" name="last_name" required />
-              <label>Last Name</label>
-            </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Register Page</title>
+  <link rel="stylesheet" href="css/register.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Viga" />
+</head>
 
-            <div class="txt_field">
-              <input type="email" name="email" required />
-              <label>Email</label>
-            </div>
-
-            <div class="txt_field">
-              <input type="tel" name="phone_number" required />
-              <label>Phone Number</label>
-            </div>
-
-            <div class="txt_field">
-              <input type="password" name="password" required />
-              <label>Password</label>
-            </div>
-
-            <div class="txt_field">
-              <input type="password" name="confirm_password" required />
-              <label>Confirm Password</label>
-            </div>
-
-            <div class="txt_field" id="middle">
-              <input type="text" name="position" required />
-              <label>Position</label>
-            </div>
+<body>
+  <div class="container">
+    <div class="form">
+      <img class="logo" src="/pictures/zom.png" alt="logo" />
+      <h2>Create account</h2>
+      <form>
+        <div class="inputs">
+          <div class="txt_field">
+            <input type="text" name="first_name" required />
+            <label>First Name</label>
           </div>
-          <input type="submit" value="Register" />
-          <div class="signup_link">
-            Already have an account? <a href="/login">Sign in! </a>
+
+          <div class="txt_field">
+            <input type="text" name="last_name" required />
+            <label>Last Name</label>
           </div>
-        </form>
-      </div>
-      <img class="picture" src="/pictures/lemur2.png" alt="lemur" />
+
+          <div class="txt_field">
+            <input type="email" name="email" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}" required />
+            <label>Email</label>
+          </div>
+
+          <div class="txt_field">
+            <input type="tel" name="phone_number" pattern="[0-9]{10}" required />
+            <label>Phone Number</label>
+          </div>
+
+          <div class="txt_field">
+            <input type="password" name="password" required />
+            <label>Password</label>
+          </div>
+
+          <div class="txt_field">
+            <input type="password" name="confirm_password" required />
+            <label>Confirm Password</label>
+          </div>
+
+          <div class="txt_field" id="middle">
+            <input type="text" name="position" required />
+            <label>Position</label>
+          </div>
+        </div>
+        <input type="submit" value="Register" />
+        <div class="signup_link">
+          Already have an account? <a href="/login">Sign in! </a>
+        </div>
+      </form>
     </div>
-  </body>
+    <img class="picture" src="/pictures/lemur2.png" alt="lemur" />
+  </div>
+
+  <script>
+    const form = document.getElementById('register-form');
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+
+      const formData = new FormData(form);
+      const jsonData = {};
+
+      for (const [key, value] of formData.entries()) {
+        jsonData[key] = value;
+      }
+
+      fetch('/api/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(jsonData),
+      })
+        .then((response) => {
+          if (response.ok) {
+            console.log('Registration successful');
+          } else {
+            console.error('Registration failed');
+          }
+        })
+        .catch((error) => {
+          console.error('Error:', error);
+
+        });
+    });
+  </script>
+</body>
+
 </html>

@@ -441,9 +441,38 @@
                 </ul>
             </li>
             <li>
-                HelpController: Furnizează endpoint-uri pentru furnizarea de informații și asistență utilizatorilor.
+              <p>  HelpController: Furnizează endpoint-uri pentru furnizarea de informații și asistență utilizatorilor.
+              </p>
+                <strong>POST:</strong>
+                <ul>
+                    <li>/api/help: Primește email-ul și problema introdusă și le trimite pe email-ul administratorului.</li>
+                </ul>
+      
             </li>
-            <li>ProfileController: Furnizează endpoint-uri pentru gestionarea profilurilor utilizatorilor.</li>
+            <li><p>ProfileController: Furnizează endpoint-uri pentru gestionarea profilurilor utilizatorilor.
+               </p> 
+               <strong>POST:</strong>
+                <ul>
+                    <li>/api/changePasswordProfile: Trimiterea parolei noi.
+                    </li>
+                    <li>/api/saveInfo: Trimiterea noilor informații despre user.</li>
+                    <li>/api/updateProfilePicture: Adăugarea unei poze de profil.
+                    </li>
+                    <li>/api/submitTicket: Trimiterea datelor unui ticket spre baza de date.
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <p>ForgotPasswordController: Furnizează endpoint-uri pentru gestionarea resetării parolei.
+               </p> <strong>POST:</strong>
+                <ul>
+                    <li>/api/code: Preia email-ul introdus de utilizator și îi trimite mail cu un cod unic.
+                    </li>
+                    <li>/api/insertCode: Preia codul introdus de user și îl compară cu cel generat la pasul anterior.</li>
+                    <li>/api/changePass: Trimite și modifică noua parolă introdusă.
+                    </li>
+                </ul>
+            </li>
             <li>
                 <p>SettingController: Furnizează endpoint-uri pentru gestionarea setărilor aplicației.</p>
                 <strong>POST:</strong>
@@ -451,9 +480,37 @@
                     <li>/api/theme: Seteaza tema unui utilizator.</li>
                 </ul>
             </li>
-            <li>TicketsController: Furnizează endpoint-uri pentru gestionarea operațiilor legate de bilete sau tichete.
+            <li>
+                <p>TicketsController: Furnizează endpoint-uri pentru gestionarea operațiilor legate de tichete.
+               </p> <strong>GET:</strong>
+                <ul>
+                    <li>/api/tickets: Returnează toate informațiile despre tickete.</li>
+                </ul>
+                <strong>DELETE:</strong>
+                <ul>
+                    <li>/api/tickets/{id}: Această rută șterge ticket-ul specificat prin ID-ul său. </li>
+                </ul>
             </li>
-            <li>UsersController: Furnizează endpoint-uri pentru gestionarea operațiilor legate de utilizatori.</li>
+            <li>
+                <p>UsersController: Furnizează endpoint-uri pentru gestionarea operațiilor legate de utilizatori.
+              </p>  <strong>GET:</strong>
+                <ul>
+                    <li>/api/users: Returnează toți utilizatorii din aplicație.</li>
+                    <li>/api/logUser:  Returnează informații despre utilizatorul autentificat. 
+                    </li>
+                    <li>/api/logUserTheme: Returnează tema preferată a utilizatorului autentificat.</li>
+                    <li>/api/getLanguage: Returnează setarea de limbă a utilizatorului autentificat.</li>
+                </ul>
+                <strong>PUT:</strong>
+                <ul>
+                    <li>/api/setLanguage: Modifică setarea de limbă aleasă de utilizator. </li>
+                </ul>
+                <strong>DELETE:</strong>
+                <ul>
+                    <li>api/users/{id}: Această rută șterge utilizatorul specificat prin ID-ul său. 
+                    </li>
+                   </ul>
+            </li>
             <li>
                 <p>LoginController: Furnizează endpoint-uri pentru gestionarea autentificării utilizatorilor.</p>
                 <strong>POST:</strong>
@@ -462,7 +519,7 @@
                 </ul>
             </li>
             <li>
-                <p>registerController: Furnizează endpoint-uri pentru gestionarea înregistrării utilizatorilor.</p>
+                <p>RegisterController: Furnizează endpoint-uri pentru gestionarea înregistrării utilizatorilor.</p>
                 <strong>POST:</strong>
                 <ul>
                     <li>/api/register: Înregistrează un utilizator prin înregistrarea datelor de autentificare.</li>
